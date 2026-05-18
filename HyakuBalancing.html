@@ -1122,22 +1122,6 @@ MuscleBonus = MuscleBonusFull
 }</pre>
 </section>
 
-<section id="dev">
-  <h3>Quick knob map</h3>
-  <table class="knob">
-    <thead><tr><th>You want to change…</th><th>Edit here</th></tr></thead>
-    <tbody>
-      <tr><td>A skill's damage, cooldown, range, animation speed</td><td><code>SkillReg/&lt;Name&gt;.luau</code> → <code>Skill.SkillData</code></td></tr>
-      <tr><td>A skill's hit behavior (stun, blockbreak, knockback)</td><td>same file → <code>Skill.Stages</code></td></tr>
-      <tr><td>A skill's stat weight (STR / Muscle / Fat / AGI / AS)</td><td><code>VarTemplate.luau</code> → <code>SkillScaling[&lt;Id&gt;]</code></td></tr>
-      <tr><td>How M1s scale for a style</td><td><code>VarTemplate.luau</code> → <code>Style_&lt;Name&gt;</code></td></tr>
-      <tr><td>Global damage / stamina / lean / dura math</td><td><code>ServerScriptService/Modules/CombatCalculation.luau</code></td></tr>
-      <tr><td>Training gain curves</td><td><code>ServerScriptService/System/Data/Manager.luau</code> → <code>StatsGainDecay</code></td></tr>
-      <tr><td>Stat caps</td><td>same file → <code>StatsChangeLimit</code></td></tr>
-      <tr><td>Sprint speed / muscle slowdown</td><td><code>StarterCharacterScripts/MainScript/CRnInput.server.luau</code></td></tr>
-    </tbody>
-  </table>
-</section>
 
 </main>
 </div>
