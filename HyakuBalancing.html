@@ -287,6 +287,21 @@ pre {
     <li>All combat math lives in one module now (<code>CombatCalculation</code>).</li>
     <li>All skill metadata lives in one data file (<code>CombatCalcsData</code>) — no more duplicating values across skill modules.</li>
   </ul>
+
+  <h3>Live tuning hotfixes (latest)</h3>
+  <ul class="tight">
+    <li><strong>M1 combo reset timing reverted to classic flow</strong> — back to style combo life + fixed bonus (<code>+1</code>) behavior for consistency.</li>
+    <li><strong>Perfect Block linger slightly increased</strong> — minimum PB active duration was nudged up so near-window PBs still register.</li>
+    <li><strong>Muscle attack speed floor raised</strong> — very bulky builds no longer drop under a hard minimum swing speed.</li>
+    <li><strong>M1 speed tuned down globally</strong> and <strong>M2 cooldown pinned to 3s</strong> for steadier pacing.</li>
+    <li><strong>Muscle ↔ strength inverse nerf reduced</strong> several times so muscle builds do not lose too much strength value.</li>
+    <li><strong>Lean strength bonus added</strong> — leaner builds now get extra strength scaling on top of normal scaling.</li>
+    <li><strong>General strength scaling buffed</strong> across strike and skill formulas; M1 fallback scaling in VarManager also buffed.</li>
+    <li><strong>Durability mitigation nerfed</strong> in both layers: combat-calculation durability defense and damage-handler muscle defense term.</li>
+    <li><strong>Sandbag hits count as landed</strong> for stamina logic, so bag training no longer applies miss penalty drain.</li>
+    <li><strong>Reserve server command fixed</strong> — now uses the project's private-server flow (VerseTraveller) with usable aliases.</li>
+    <li><strong>Critical (M2) lean damage buffed</strong> — stronger base M2 bonus plus an extra lean-based critical multiplier.</li>
+  </ul>
 </section>
 
 <!-- ============================== COMBAT CHANGES ============================== -->
@@ -356,7 +371,7 @@ pre {
   <h3>Damage bonuses that always apply</h3>
   <ul class="tight">
     <li><strong>M1 hits</strong> get a flat <strong>1.25×</strong> bonus.</li>
-    <li><strong>M2 hits</strong> get a flat <strong>1.5×</strong> bonus.</li>
+    <li><strong>M2 hits</strong> get a flat <strong>1.7×</strong> bonus.</li>
     <li><strong>Lean bonus</strong> — if your muscle is higher than your fat, you get up to a <strong>3×</strong> bonus. Calculated from muscle-to-fat ratio. Slim & muscled hits harder than fat & muscled.</li>
   </ul>
 
@@ -370,9 +385,9 @@ pre {
       <tr><td>0 – 600</td><td class="num">100%</td></tr>
       <tr><td>600 – 1500</td><td class="num">50%</td></tr>
       <tr><td>1500 – 3000</td><td class="num">20%</td></tr>
-      <tr><td>3000 – 6000</td><td class="num">8%</td></tr>
-      <tr><td>6000 – 20000</td><td class="num">2%</td></tr>
-      <tr><td>20000+</td><td class="num">0.5%</td></tr>
+      <tr><td>3000 – 6000</td><td class="num">10%</td></tr>
+      <tr><td>6000 – 20000</td><td class="num">8%</td></tr>
+      <tr><td>20000+</td><td class="num">1%</td></tr>
     </tbody>
   </table>
 
@@ -560,8 +575,8 @@ pre {
 
   <h3>Muscle and Fat add to your defense <span class="chip chip-new">NEW</span></h3>
   <ul class="tight">
-    <li>Muscle gives up to <strong>+800 effective durability</strong> for damage reduction purposes (maxes at 4k muscle).</li>
-    <li>Fat gives up to <strong>+600 effective durability</strong> (maxes at 2k fat).</li>
+    <li>Muscle gives up to <strong>+180 effective durability</strong> for damage reduction purposes (maxes at 5.5k muscle).</li>
+    <li>Fat gives up to <strong>+320 effective durability</strong> (maxes at 2k fat).</li>
     <li>So a beefy build with both muscle and fat ends up way tankier than just the durability stat alone would suggest.</li>
   </ul>
 </section>
@@ -638,23 +653,23 @@ pre {
   <h3>Muscle nerfs Strength</h3>
   <ul class="tight">
     <li>The more muscle you have, the less your strength stat adds to damage.</li>
-    <li>Caps at <strong>-35% strength damage</strong> at 6000+ muscle.</li>
+    <li>Caps at <strong>-2% strength damage</strong> at 12000+ muscle.</li>
     <li>So you can still go muscle + strength, but you don't get the full benefit of both.</li>
   </ul>
   <table>
     <thead><tr><th>Your muscle</th><th class="num">Strength damage</th></tr></thead>
     <tbody>
       <tr><td>0</td><td class="num">100% (full)</td></tr>
-      <tr><td>1500</td><td class="num">~91%</td></tr>
-      <tr><td>3000</td><td class="num">~82%</td></tr>
-      <tr><td>6000+</td><td class="num">65% (capped)</td></tr>
+      <tr><td>1500</td><td class="num">~99.75%</td></tr>
+      <tr><td>3000</td><td class="num">~99.5%</td></tr>
+      <tr><td>12000+</td><td class="num">98% (capped)</td></tr>
     </tbody>
   </table>
 
   <h3>Muscle + Fat both buff Durability defense</h3>
   <ul class="tight">
-    <li>Muscle adds up to <strong>+800 effective durability</strong> for damage reduction (caps at 4k muscle).</li>
-    <li>Fat adds up to <strong>+600 effective durability</strong> (caps at 2k fat).</li>
+    <li>Muscle adds up to <strong>+180 effective durability</strong> for damage reduction (caps at 5.5k muscle).</li>
+    <li>Fat adds up to <strong>+320 effective durability</strong> (caps at 2k fat).</li>
     <li>So a bulky build (high muscle + high fat) gets noticeably tankier even without grinding durability.</li>
   </ul>
 
