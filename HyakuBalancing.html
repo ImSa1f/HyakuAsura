@@ -278,6 +278,8 @@ pre {
     <li><strong>Durability actually matters now</strong> — going from 3k to 5k dura makes a real difference.</li>
     <li><strong>Stamina drains are now % of max stamina</strong> — high-stam players actually feel drain instead of running forever.</li>
     <li><strong>Muscle players are slower</strong> (sprint + attack speed) but they hit harder. Not useless, just a tradeoff.</li>
+    <li><strong>Starving eats your muscle 60% slower now</strong> — you still lose muscle on empty hunger, just nowhere near as fast.</li>
+    <li><strong>Hunger drains half as fast</strong></li>
   </ul>
 
   <h3>Code / structure (dev-side)</h3>
@@ -778,6 +780,22 @@ pre {
     <li><strong>Durability</strong>: 10,000 → <strong>100,000</strong></li>
     <li><strong>Fat</strong>: 1,000 → <strong>2,500</strong></li>
     <li>Everything else effectively caps via the gain curves slowing to a crawl.</li>
+  </ul>
+
+  <h3>Hunger drain <span class="chip chip-buff">BUFF</span></h3>
+  <p>Food drain got cut in half. You'll go way longer between meals so you can actually focus on combat / grinding instead of constantly refilling your hunger bar.</p>
+  <ul class="tight">
+    <li>Hunger drain rate is now <strong>50% lower</strong> than before across the board.</li>
+    <li>Same depletion period, just half the drain per tick.</li>
+    <li>Fat-based slow-hunger bonus still stacks on top.</li>
+  </ul>
+
+  <h3>Starvation muscle loss <span class="chip chip-buff">BUFF</span></h3>
+  <p>When your hunger hits zero, you slowly bleed muscle and fat over time. Muscle loss got cut hard so a bad food day doesn't undo your training run.</p>
+  <ul class="tight">
+    <li>Upper / Lower muscle loss while starving is now <strong>60% lower</strong> than before.</li>
+    <li>Was <code>-0.007</code> per tick (per muscle stat), now <code>-0.0028</code>.</li>
+    <li>Fat loss while starving stays the same (still <code>-0.007</code> per tick) — easier to slim down if that's what you want.</li>
   </ul>
 </section>
 
