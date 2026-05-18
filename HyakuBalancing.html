@@ -258,6 +258,7 @@ pre {
     <li><strong>Global extender cooldown of 4s</strong> — can't chain three extenders back to back anymore.</li>
     <li><strong>Wall hit gives you a tiny iframe</strong> — 0.6s of free invuln right after you get wall-bounced so you don't immediately get re-comboed.</li>
     <li><strong>Can't dash and block at the same time</strong> — pick one.</li>
+    <li><strong>Land a perfect block? no cooldown</strong> — only when u mistime it does the 4s cooldown work</li>
   </ul>
 
   <h3>Stat / training stuff</h3>
@@ -325,6 +326,16 @@ pre {
 
   <h3><span class="changed-mark"></span> Can't dash + block <span class="chip chip-new">NEW</span></h3>
   <p>If you're blocking, you can't dash. If you're mid-dash, you can't block. You have to pick.</p>
+
+  <h3><span class="changed-mark"></span> Perfect block — no cooldown if u land it <span class="chip chip-buff">BUFF</span></h3>
+  <p>Before, the second u tapped it u were stuck w/ a 4s cooldown even if u nailed it. Now:</p>
+  <ul class="tight">
+    <li>U tap it during the window → nothing happens yet, just gives u the perfect-blocking buff</li>
+    <li>Something hits u in the window and gets parried → no cooldown, u can use it again</li>
+    <li>Window ends and u didn't parry anything → <strong>now</strong> the 4s cooldown shows up</li>
+  </ul>
+  <p>basically u only get punished if u guessed wrong. land it = free.</p>
+
 </section>
 
 <!-- ============================== HOW DAMAGE SCALES ============================== -->
@@ -1112,18 +1123,6 @@ MuscleBonus = MuscleBonusFull
 </section>
 
 <section id="dev">
-  <h2>Dev / hosting <span class="chip chip-fix">INFO</span></h2>
-  <div class="callout">
-    <p><strong>Heads up:</strong> Google Docs breaks tables and CSS. Host this folder as a static site or open it locally.</p>
-    <ul class="tight">
-      <li><strong>Local:</strong> run <code>python -m http.server 5173 --directory docs</code> from the repo root, then open <code>http://localhost:5173/</code></li>
-      <li><strong>Windows:</strong> double-click <code>docs/serve.cmd</code></li>
-      <li><strong>Public:</strong> drag the <code>docs</code> folder onto <a style="color:var(--accent);" href="https://app.netlify.com/drop" target="_blank" rel="noopener">Netlify Drop</a> or GitHub Pages</li>
-    </ul>
-    <p>To regen the auto skill tables from source: <code>python tools_extract_skills.py</code></p>
-    <p style="color:var(--muted); font-size:13px; margin-top:.5rem;">Note — the balance-changes sections at the top are hand-maintained, the skill/style tables are still auto-generated from <code>VarTemplate.luau</code> + <code>SkillReg/*</code>.</p>
-  </div>
-
   <h3>Quick knob map</h3>
   <table class="knob">
     <thead><tr><th>You want to change…</th><th>Edit here</th></tr></thead>
