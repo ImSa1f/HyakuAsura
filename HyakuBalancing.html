@@ -212,8 +212,10 @@ pre {
   <a href="#combat">Combat changes</a>
   <a href="#scaling">How damage scales</a>
   <a href="#stamina">Stamina drain</a>
+  <a href="#rhythm">Rhythm bar perks</a>
   <a href="#dura">Durability defense</a>
   <a href="#movement">Sprint &amp; attack speed</a>
+  <a href="#statcoupling">Stat coupling / tradeoffs</a>
   <a href="#training">Training (stat gains)</a>
   <a href="#builds">Build cheat sheet</a>
 
@@ -259,6 +261,12 @@ pre {
     <li><strong>Wall hit gives you a tiny iframe</strong> — 0.6s of free invuln right after you get wall-bounced so you don't immediately get re-comboed.</li>
     <li><strong>Can't dash and block at the same time</strong> — pick one.</li>
     <li><strong>Land a perfect block? no cooldown</strong> — only when u mistime it does the 4s cooldown work</li>
+    <li><strong>Full Rhythm bar = cheaper stamina</strong> — up to 30% off all combat stamina drains when your rhythm is maxed. Plus the existing damage bonus.</li>
+    <li><strong>Landing a skill costs 30% less stamina than missing it</strong> — actually connect with your stuff and you save bar.</li>
+    <li><strong>Attack speed hard caps at 6000</strong> — stat won't grow past it, so stacking AS forever isn't a thing anymore.</li>
+    <li><strong>AS gives WAY more difference now</strong> — 1k vs 6k AS is a real gap, not the tiny one it was before.</li>
+    <li><strong>High AS = less stun on M1s</strong> — fast hits hit fast but don't lock people up as much. Up to 40% less stun at max AS.</li>
+    <li><strong>Stats are coupled now</strong> — stacking muscle nerfs your strength damage. Muscle + fat both buff your durability defense. Fat hits your stamina and attack speed harder. Build for tradeoffs.</li>
   </ul>
 
   <h3>Stat / training stuff</h3>
@@ -350,10 +358,10 @@ pre {
     <li><strong>Lean bonus</strong> — if your muscle is higher than your fat, you get up to a <strong>3×</strong> bonus. Calculated from muscle-to-fat ratio. Slim & muscled hits harder than fat & muscled.</li>
   </ul>
 
-  <h3>Stat returns...</h3>
+  <h3>Diminishing returns on stats (brackets)</h3>
   <p>Going from 1000 → 2000 of a stat is way more impactful than going from 10000 → 11000. Here's how each stat works for the damage formula:</p>
 
-  <h4>Strength</h4>
+  <h4>Strength (M1 / M2 / skills)</h4>
   <table>
     <thead><tr><th>Range</th><th class="num">Per point counts as</th></tr></thead>
     <tbody>
@@ -366,7 +374,7 @@ pre {
     </tbody>
   </table>
 
-  <h4>Muscle</h4>
+  <h4>Muscle (damage + lean bonus)</h4>
   <table>
     <thead><tr><th>Range</th><th class="num">Per point counts as</th></tr></thead>
     <tbody>
@@ -379,7 +387,7 @@ pre {
     </tbody>
   </table>
 
-  <h4>Fat</h4>
+  <h4>Fat (small damage bump, mostly a penalty stat)</h4>
   <table>
     <thead><tr><th>Range</th><th class="num">Per point counts as</th></tr></thead>
     <tbody>
@@ -391,7 +399,7 @@ pre {
     </tbody>
   </table>
 
-  <h4>Agility / Attack Speed</h4>
+  <h4>Agility / Attack Speed (M1 / M2 damage + speed)</h4>
   <table>
     <thead><tr><th>Range</th><th class="num">Agility</th><th class="num">Attack Speed</th></tr></thead>
     <tbody>
@@ -403,7 +411,7 @@ pre {
     </tbody>
   </table>
 
-  <h4>Durability</h4>
+  <h4>Durability (defense — see next section)</h4>
   <table>
     <thead><tr><th>Range</th><th class="num">Per point counts as</th></tr></thead>
     <tbody>
@@ -416,7 +424,7 @@ pre {
     </tbody>
   </table>
 
-  <h4>StaminaInStat</h4>
+  <h4>StaminaInStat (your max stamina pool)</h4>
   <table>
     <thead><tr><th>Range</th><th class="num">Per point counts as</th></tr></thead>
     <tbody>
@@ -440,7 +448,8 @@ pre {
     <li>More muscle = more drain (up to +2% extra).</li>
     <li>More strength = more drain (up to +1.5%).</li>
     <li>More fat = more drain (up to +1.6%).</li>
-    <li>If you land the M1 you only pay about half. Miss it and you pay full.</li>
+    <li><strong>Land it = 30% off.</strong> Miss it = pay full. Connecting is rewarded.</li>
+    <li>Full rhythm bar stacks on top — at 100 rhythm you save an extra ~30% on whatever you pay.</li>
   </ul>
   <table>
     <thead><tr><th>Build</th><th>Max stam</th><th>Landed M1 drain</th></tr></thead>
@@ -455,6 +464,8 @@ pre {
   <ul class="tight">
     <li>Base: <strong>3.4%</strong> of max stamina.</li>
     <li>Same stat scaling as M1 but bigger numbers.</li>
+    <li><strong>Land it = 30% off</strong> just like M1.</li>
+    <li>Full rhythm bar gives another ~30% off on top of that.</li>
   </ul>
   <table>
     <thead><tr><th>Build</th><th>Landed M2 drain</th></tr></thead>
@@ -492,10 +503,43 @@ pre {
   </table>
 </section>
 
+<!-- ============================== RHYTHM ============================== -->
+<section id="rhythm">
+  <h2>Rhythm bar perks <span class="chip chip-new">NEW</span></h2>
+  <p class="lead">Rhythm used to only boost your damage. Now it also cuts down how much stamina you burn through. Stack hits, stay in flow, save bar.</p>
+
+  <h3>What rhythm does now</h3>
+  <ul class="tight">
+    <li><strong>Damage boost</strong> — up to <strong>+15%</strong> damage at full rhythm (unchanged).</li>
+    <li><strong>Cheaper stamina</strong> — at full rhythm, every combat stamina drain costs up to <strong>30% less</strong>.</li>
+    <li>Scales linearly with your bar. Half rhythm = ~15% off, full = 30% off.</li>
+    <li>Only applies to combat drains (M1, M2, skills, blocking). Running stamina is unaffected.</li>
+  </ul>
+
+  <h3>Example — average player on a 40-stam M2</h3>
+  <table>
+    <thead><tr><th>Rhythm bar</th><th class="num">M2 cost (landed)</th><th class="num">M2 cost (missed)</th></tr></thead>
+    <tbody>
+      <tr><td>0 (empty)</td><td class="num">~28 stam</td><td class="num">~40 stam</td></tr>
+      <tr><td>50</td><td class="num">~24 stam</td><td class="num">~34 stam</td></tr>
+      <tr><td>100 (full)</td><td class="num">~20 stam</td><td class="num">~28 stam</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Skill cost when you land vs whiff</h3>
+  <ul class="tight">
+    <li>Every skill now pays <strong>70% up front</strong> when you cast it.</li>
+    <li>If your skill connects with someone, that's all you pay.</li>
+    <li>If your skill whiffs (no one got hit by the hitbox), you eat the extra 30% a couple seconds later.</li>
+    <li>So a missed skill costs the same as it used to. A landed skill costs 30% less than that.</li>
+  </ul>
+  <p class="muted">Tip: spamming skills into thin air is now actually punishing. Aim better and you'll have stamina for the followup.</p>
+</section>
+
 <!-- ============================== DURABILITY ============================== -->
 <section id="dura">
   <h2>Durability actually matters <span class="chip chip-fix">FIX</span></h2>
-  <p class="lead">Before, 3k and 5k durability felt identical because nothing in the damage formula used it. Now durability adds straight-up damage reduction.</p>
+  <p class="lead">Before, 3k and 5k durability felt identical because nothing in the damage formula used it. Now durability adds straight-up damage reduction — and your muscle and fat add to it too.</p>
 
   <h3>How much damage you take based on dura</h3>
   <table>
@@ -511,6 +555,13 @@ pre {
   </table>
   <p>Going from 3k to 5k dura = about <strong>15% less damage taken</strong>. Real, noticeable difference now.</p>
   <p>Durability still controls your max HP too — so it's a double tank stat.</p>
+
+  <h3>Muscle and Fat add to your defense <span class="chip chip-new">NEW</span></h3>
+  <ul class="tight">
+    <li>Muscle gives up to <strong>+800 effective durability</strong> for damage reduction purposes (maxes at 4k muscle).</li>
+    <li>Fat gives up to <strong>+600 effective durability</strong> (maxes at 2k fat).</li>
+    <li>So a beefy build with both muscle and fat ends up way tankier than just the durability stat alone would suggest.</li>
+  </ul>
 </section>
 
 <!-- ============================== MOVEMENT ============================== -->
@@ -535,16 +586,83 @@ pre {
   </table>
 
   <h3>M1 / M2 attack speed from body size</h3>
-  <p>Big bodies swing slower. Old formula was unbounded so muscle players were stuck at the slowest possible attack speed forever. Fixed — now it tops out at 45% slower max.</p>
+  <p>Big bodies swing slower. Old formula was unbounded so muscle players were stuck at the slowest possible attack speed forever. Fixed — now it tops out at 45% slower max. Fat adds another small AS nerf on top.</p>
   <table>
     <thead><tr><th>Body size (muscle + fat)</th><th class="num">Attack speed</th><th class="num">vs lean</th></tr></thead>
     <tbody>
-      <tr><td>200</td><td class="num">~1.58</td><td class="num">—</td></tr>
-      <tr><td>5800 (average)</td><td class="num">~1.31</td><td class="num">-17%</td></tr>
-      <tr><td>12000 (huge)</td><td class="num">~1.13</td><td class="num">-28%</td></tr>
+      <tr><td>200</td><td class="num">~2.7</td><td class="num">—</td></tr>
+      <tr><td>5800 (average)</td><td class="num">~2.3</td><td class="num">-15%</td></tr>
+      <tr><td>12000 (huge)</td><td class="num">~2.0</td><td class="num">-26%</td></tr>
     </tbody>
   </table>
   <p>Muscle players swing slower per hit, but their damage per hit is way higher. Net DPS stays competitive.</p>
+
+  <h3>Attack speed stat — capped at 6000 <span class="chip chip-new">NEW</span></h3>
+  <p>Used to be that grinding AS forever barely felt different past 1k. Now 1k vs 6k is a real gap, and the stat won't grow past <strong>6000</strong> at all.</p>
+  <table>
+    <thead><tr><th>Your AttackSpeed</th><th class="num">Speed multiplier (lean body)</th><th class="num">vs no AS</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td class="num">~1.0</td><td class="num">—</td></tr>
+      <tr><td>500</td><td class="num">~1.49</td><td class="num">+49%</td></tr>
+      <tr><td>1000</td><td class="num">~1.69</td><td class="num">+69%</td></tr>
+      <tr><td>2000</td><td class="num">~1.98</td><td class="num">+98%</td></tr>
+      <tr><td>4000</td><td class="num">~2.39</td><td class="num">+139%</td></tr>
+      <tr><td>6000 (max)</td><td class="num">~2.70</td><td class="num">+170%</td></tr>
+      <tr><td>10000</td><td class="num">~2.70</td><td class="num">(stat caps at 6000)</td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Sqrt curve — early AS gives huge gains, later AS gives less per stat point.</p>
+
+  <h3>Higher AS = less stun on M1 <span class="chip chip-new">NEW</span></h3>
+  <p>Lightning-fast punchers chip you down but can't hold you in place forever. Higher AS now <strong>reduces stun delivered</strong>, up to <strong>40% off</strong> at max AS.</p>
+  <table>
+    <thead><tr><th>Your AttackSpeed</th><th class="num">Stun multiplier per M1</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td class="num">1.00 (full stun)</td></tr>
+      <tr><td>1500</td><td class="num">~0.90 (-10%)</td></tr>
+      <tr><td>3000</td><td class="num">~0.80 (-20%)</td></tr>
+      <tr><td>4500</td><td class="num">~0.70 (-30%)</td></tr>
+      <tr><td>6000 (max)</td><td class="num">~0.60 (-40%)</td></tr>
+    </tbody>
+  </table>
+  <p>This counters AS-stackers who used to mash super-fast M1s and never let people out. Opponents with decent stun decay can break out way easier vs them now.</p>
+</section>
+
+<!-- ============================== STAT COUPLING ============================== -->
+<section id="statcoupling">
+  <h2>Stat coupling (build tradeoffs) <span class="chip chip-new">NEW</span></h2>
+  <p class="lead">Stats don't all stack cleanly anymore. Some buff each other, some nerf each other. Pick a lane.</p>
+
+  <h3>Muscle nerfs Strength</h3>
+  <ul class="tight">
+    <li>The more muscle you have, the less your strength stat adds to damage.</li>
+    <li>Caps at <strong>-35% strength damage</strong> at 6000+ muscle.</li>
+    <li>So you can still go muscle + strength, but you don't get the full benefit of both.</li>
+  </ul>
+  <table>
+    <thead><tr><th>Your muscle</th><th class="num">Strength damage</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td class="num">100% (full)</td></tr>
+      <tr><td>1500</td><td class="num">~91%</td></tr>
+      <tr><td>3000</td><td class="num">~82%</td></tr>
+      <tr><td>6000+</td><td class="num">65% (capped)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Muscle + Fat both buff Durability defense</h3>
+  <ul class="tight">
+    <li>Muscle adds up to <strong>+800 effective durability</strong> for damage reduction (caps at 4k muscle).</li>
+    <li>Fat adds up to <strong>+600 effective durability</strong> (caps at 2k fat).</li>
+    <li>So a bulky build (high muscle + high fat) gets noticeably tankier even without grinding durability.</li>
+  </ul>
+
+  <h3>Fat hurts Stamina and Attack Speed</h3>
+  <ul class="tight">
+    <li>Fat now drains stamina <strong>harder per M1 and M2</strong> — more than before.</li>
+    <li>Fat also adds an <strong>extra attack speed penalty</strong> on top of the size penalty — up to -25% AS at 2500 fat.</li>
+    <li>So pure fat tanks lose offensive output. Use fat for defense, not for damage.</li>
+  </ul>
+  <p class="muted">Net result: muscle = brawler (tanky-ish, hits hard, stamina-heavy). Strength = glass cannon (damage but squishy). Fat = pure tank (slow, low stam). Mix two of these and you get partial benefits from each.</p>
 </section>
 
 <!-- ============================== TRAINING ============================== -->
