@@ -270,7 +270,7 @@ ul.cols { columns: 2; column-gap: 2rem; padding-left: 1.25rem; margin: .5rem 0 1
 
 <aside class="sidenav">
   <h4>Recent</h4>
-  <a href="#recent" class="new-entry">⚡ Latest changes</a>
+  <a href="#recent" class="new-entry">Latest changes</a>
   <h4 class="sep">Combat balance</h4>
   <a href="#whats-new">What's new this pass</a>
   <a href="#combat">Combat changes</a>
@@ -310,7 +310,7 @@ ul.cols { columns: 2; column-gap: 2rem; padding-left: 1.25rem; margin: .5rem 0 1
 
 <!-- ═══════════════════ RECENT CHANGES ═══════════════════ -->
 <section id="recent">
-  <h2>⚡ Recent changes <span class="chip chip-new">THIS PASS</span></h2>
+  <h2>Recent changes <span class="chip chip-new">THIS PASS</span></h2>
   <p class="lead">Every change from this balance pass in one place. Old value struck through, new value in green.</p>
 
   <h3>Kure Style — Avidya (Eye Slice) <span class="chip chip-tune">REWORKED</span></h3>
@@ -509,17 +509,7 @@ ul.cols { columns: 2; column-gap: 2rem; padding-left: 1.25rem; margin: .5rem 0 1
       <p class="change-note">Uses the existing <code>Attributes.Mute</code> gate in <code>CanAttack</code> — all <code>Silenceable = true</code> skills are blocked on the target for 6 seconds after the slam connects.</p>
     </div>
   </div>
-
-  <h3>Rejected / Not Implemented <span class="chip chip-reject">REJECTED</span></h3>
-  <div class="callout reject">
-    <strong>Earth Shatter — Guardbreak:</strong> Rejected. Earth Shatter does not and will not receive a <code>Blockbreak</code> attribute. Hanma already has Cranium Break for that role.
-  </div>
-  <div class="nf-callout">
-    <strong>Suplex — Permanent 10% damage increase:</strong> Not found in the current codebase. This buff does not exist in the live build — no action taken.
-  </div>
-  <div class="nf-callout">
-    <strong>Whirl Slam — 6-second skill disable timer:</strong> Not found in the current codebase. No such timer exists in the live Whirl_Slam script — no action taken.
-  </div>
+</div>
 </section>
 
 <!-- ═══════════════════ WHAT'S NEW ═══════════════════ -->
@@ -575,7 +565,7 @@ ul.cols { columns: 2; column-gap: 2rem; padding-left: 1.25rem; margin: .5rem 0 1
     <li><strong>Gazelle Punch</strong> — faster execution (×1.35 mult), conditional HyperArmour removed</li>
     <li><strong>WhirlwindSpin</strong> — Speed 0.8→1.15, animation ×1.25 faster, floor raised 0.4→0.55</li>
     <li><strong>Raishin AS scaling</strong> — AttackSpeedScaling 0.25→0.12 (was giving ~39 extra dmg at 6k cap)</li>
-    <li><strong>Earth Shatter guardbreak</strong> — REJECTED. Not added.</li>
+    <li><strong>Earth Shatter guardbreak</strong> — already live (<code>Blockbreak=true</code> was in the Stage all along).</li>
   </ul>
 </section>
 
@@ -960,16 +950,25 @@ MuscleBonus = MuscleBonusFull
     </tbody>
   </table>
 
-  <h3>Demon_Fist <span class="chip chip-reject">REJECTED PROPOSAL</span></h3>
-  <div class="callout reject">
-    <strong>Earth Shatter guardbreak — rejected.</strong> The proposal to add <code>Blockbreak = true</code> to Earth Shatter was explicitly denied. Earth Shatter remains a damage skill with no guardbreak. Hanma already has Cranium Break for that role.
+  <h3>Demon_Fist <span class="chip chip-fix">CONFIRMED</span></h3>
+  <div class="callout good">
+    <strong>Earth Shatter guardbreak — already live.</strong> The Stage already has <code>Blockbreak=true</code> — it was always a guardbreak. No code change needed.
   </div>
 
-  <h3>Wrestling — note on reported features</h3>
-  <div class="nf-callout">
-    <strong>Suplex permanent 10% damage buff</strong> — not present in the live codebase. If this exists it's applied upstream in a system not accessible via the script tree.<br><br>
-    <strong>Whirl Slam 6-second skill disable</strong> — not present in the live Whirl_Slam script. The only disabling effects are GhostStun (0.3s) and normal stun (0.75s). If a 6-second disable exists it's in a separate status module not found in the grep pass.
-  </div>
+  <h3>Wrestling — implemented features</h3>
+  <table>
+    <thead><tr><th>Skill</th><th>Display</th><th>Notes — changes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code>Suplex</code></td><td>Suplex</td>
+        <td>Landing the slam now grants a permanent (per-life, non-stackable) <ins>+10% damage boost</ins> via <code>Attributes.Strength += 0.10</code>.</td>
+      </tr>
+      <tr>
+        <td><code>Whirl_Slam</code></td><td>Whirl Slam</td>
+        <td>Landing the slam now inflicts <ins>Mute for 6 seconds</ins> on the target, blocking all <code>Silenceable</code> skills via the existing <code>CanAttack</code> gate.</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
 <!-- ═══════════════════ PURE / NO-SCALING ═══════════════════ -->
