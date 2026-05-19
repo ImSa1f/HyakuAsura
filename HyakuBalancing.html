@@ -268,8 +268,9 @@ pre {
     <li><strong>High AS = less stun on M1s</strong> — fast hits hit fast but don't lock people up as much. Up to 40% less stun at max AS.</li>
     <li><strong>Stats are coupled now</strong> — stacking muscle nerfs your strength damage. Muscle + fat both buff your durability defense. Fat hits your stamina and attack speed harder. Build for tradeoffs.</li>
     <li><strong>M1/M2 Perfect Block window tightened to 0.275s</strong> <span class="chip chip-nerf">NERF</span> — press F1+M1 to activate PB; enemy M1s/M2s must land within 0.275s. Skill PB stays at 0.5s so special moves remain counterable.</li>
-    <li><strong>Muscle damage reduction removed</strong> <span class="chip chip-nerf">NERF</span> — pure muscle no longer passively reduces damage. Durability HP is buffed to compensate.</li>
-    <li><strong>Lean/fat builds get a new damage reduction</strong> <span class="chip chip-new">NEW</span> — high fat with low muscle-to-fat ratio now absorbs up to ~6.5% damage. Pure muscle builds get nothing.</li>
+    <li><strong>Muscle → damage reduction (not HP)</strong> <span class="chip chip-tune">REWORKED</span> — muscle no longer adds HP, gives up to ~15% DR at 3200 muscle instead.</li>
+    <li><strong>Fat → HP + smaller DR</strong> <span class="chip chip-tune">REWORKED</span> — fat keeps and slightly increases its HP contribution, plus adds up to ~8.3% DR at 2000 fat.</li>
+    <li><strong>Training dummy defense fixed</strong> <span class="chip chip-fix">FIX</span> — dummies now apply Dura/Muscle/Fat defense correctly so numbers match real combat.</li>
   </ul>
 
   <h3>Stat / training stuff</h3>
@@ -579,38 +580,59 @@ pre {
 
 <!-- ============================== DURABILITY ============================== -->
 <section id="dura">
-  <h2>Durability — HP buffed, muscle defense removed <span class="chip chip-tune">REWORKED</span></h2>
-  <p class="lead">Durability now gives significantly more raw HP per point. The old muscle passive damage reduction is gone — Dura is the primary tank stat again. Lean/fat hybrid builds get a small flat defense bonus instead.</p>
+  <h2>Defense — muscle gives DR, fat gives HP + DR, dura stays primary <span class="chip chip-tune">REWORKED</span></h2>
+  <p class="lead">Each body stat now has a clear defensive role. Durability = HP + damage reduction. Muscle = damage reduction only (no HP). Fat = HP + smaller damage reduction. The systems no longer bleed into each other or double-count.</p>
 
-  <h3>Durability → Max HP (buffed)</h3>
-  <p>All durability thresholds had their multipliers raised. Early dura is now substantially more rewarding.</p>
+  <h3>Durability → HP + damage reduction</h3>
   <div class="callout good">
-    <strong>Buff:</strong> Dura HP multipliers increased across all brackets (e.g. first 1k threshold raised from ×1.9 → ×2.4, final multiplier raised from 0.50 → 0.65). Grinding dura gives noticeably more HP now.
+    <strong>Buff:</strong> Dura HP multipliers raised across all brackets (threshold 1: ×1.9→×2.4, threshold 2: ×1.4→×1.8, threshold 3: ×1.0→×1.3, final ×0.5→×0.65). Same dura stat = noticeably more HP now.
   </div>
-
-  <h3>How much damage you take based on dura</h3>
   <table>
-    <thead><tr><th>Your durability</th><th class="num">Damage taken (approx)</th></tr></thead>
+    <thead><tr><th>Your durability</th><th class="num">Damage reduction</th></tr></thead>
     <tbody>
-      <tr><td>0</td><td class="num">~70%</td></tr>
-      <tr><td>1000</td><td class="num">~52%</td></tr>
-      <tr><td>3000</td><td class="num">~35%</td></tr>
-      <tr><td>5000</td><td class="num">~29%</td></tr>
-      <tr><td>8000</td><td class="num">~27%</td></tr>
-      <tr><td>10000+</td><td class="num">~27% (soft cap)</td></tr>
+      <tr><td>0</td><td class="num">0%</td></tr>
+      <tr><td>1000</td><td class="num">~20%</td></tr>
+      <tr><td>3000</td><td class="num">~32%</td></tr>
+      <tr><td>5000</td><td class="num">~38%</td></tr>
+      <tr><td>8000</td><td class="num">~43%</td></tr>
+      <tr><td>10000+</td><td class="num">~45% (soft cap)</td></tr>
     </tbody>
   </table>
-  <p>Durability controls your max HP <strong>and</strong> your damage reduction — pure tank stat.</p>
 
-  <h3>Muscle damage reduction removed <span class="chip chip-nerf">REMOVED</span></h3>
-  <p>Muscle no longer passively reduces incoming damage. Previously muscle gave up to 15% damage reduction — this is gone. The HP buff to Durability compensates for the loss in raw survivability.</p>
-
-  <h3>Lean/Fat builds get a new damage reduction <span class="chip chip-new">NEW</span></h3>
+  <h3>Muscle → damage reduction only <span class="chip chip-tune">CHANGED</span></h3>
   <ul class="tight">
-    <li>Applies when your fat is ≥ 400 <strong>and</strong> your muscle-to-fat ratio is ≤ 1.5 (i.e. you're not pure muscle).</li>
-    <li>Scales with fat, up to <strong>~6.5% damage reduction</strong> at 2000 fat.</li>
-    <li>Pure muscle builds with low fat get nothing. Fat-lean hybrid gets the partial tank perk.</li>
+    <li>Muscle <strong>no longer adds HP</strong>. Use fat or dura for survivability through HP.</li>
+    <li>Instead, muscle adds pure <strong>damage reduction</strong> — up to <strong>~15% less damage</strong> at 3200 muscle.</li>
+    <li>Scales smoothly: every point of muscle below 3200 reduces damage a little.</li>
   </ul>
+  <table>
+    <thead><tr><th>Your muscle</th><th class="num">Extra damage reduction</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td class="num">0%</td></tr>
+      <tr><td>800</td><td class="num">~4.5%</td></tr>
+      <tr><td>1600</td><td class="num">~9%</td></tr>
+      <tr><td>3200+</td><td class="num">~15% (capped)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Fat → HP + smaller damage reduction <span class="chip chip-tune">CHANGED</span></h3>
+  <ul class="tight">
+    <li>Fat still adds HP (slightly increased contribution).</li>
+    <li>Fat also adds up to <strong>~8.3% damage reduction</strong> at 2000 fat — less than muscle's ~15%.</li>
+    <li>So fat builds are tankier through raw HP, with a small DR bonus on top.</li>
+  </ul>
+  <table>
+    <thead><tr><th>Your fat</th><th class="num">Extra damage reduction from fat</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td class="num">0%</td></tr>
+      <tr><td>500</td><td class="num">~2.3%</td></tr>
+      <tr><td>1000</td><td class="num">~4.5%</td></tr>
+      <tr><td>2000+</td><td class="num">~8.3% (capped)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Training dummy defense fix <span class="chip chip-fix">FIX</span></h3>
+  <p>Dummies with a Stats folder now have their full defense applied when you hit them — Dura, Muscle, and Fat all reduce damage correctly. Previously the dummy bypassed all defense and displayed raw unmitigated numbers, which was misleading for testing builds.</p>
 </section>
 
 <!-- ============================== MOVEMENT ============================== -->
@@ -712,12 +734,12 @@ pre {
     </tbody>
   </table>
 
-  <h3>Muscle + Fat defense — reworked <span class="chip chip-tune">CHANGED</span></h3>
+  <h3>Stat defense roles — clearly separated <span class="chip chip-tune">CHANGED</span></h3>
   <ul class="tight">
-    <li>Muscle <strong>no longer gives passive damage reduction</strong>. The old +15% defense from 3200 muscle is removed.</li>
-    <li>Fat-lean builds (high fat, low muscle-to-fat ratio) now get up to <strong>6.5% flat damage reduction</strong> instead.</li>
-    <li>Durability HP is significantly buffed to compensate — grinding dura is now the main way to be tanky.</li>
-    <li>Net result: you need to either grind dura or run a fat-lean setup to be defensive. Muscle alone no longer makes you tanky.</li>
+    <li><strong>Durability</strong>: HP + damage reduction. Primary tank stat. Scales well all the way up.</li>
+    <li><strong>Muscle</strong>: Damage reduction only. Up to ~15% at 3200 muscle. No HP. Trade offense for survivability.</li>
+    <li><strong>Fat</strong>: HP + smaller damage reduction (~8.3% max at 2000 fat). Less DR than muscle but adds raw HP on top.</li>
+    <li>These are now fully independent — no double-counting, no hidden overlaps. Dummy defense also now correctly applies all three.</li>
   </ul>
 
   <h3>Fat hurts Stamina and Attack Speed</h3>
