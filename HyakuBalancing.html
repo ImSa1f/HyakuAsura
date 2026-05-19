@@ -198,7 +198,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Lion Bite and Lightning Flash can now be blocked and Perfect Blocked</strong><div class="detail">Both moves were previously unblockable and unparryable. This has been removed.</div></div>
+      <div class="check-body"><strong>Lion Bite and Lightning Flash — fully blockable and Perfect Blockable</strong><div class="detail">Removed IgnoreParry flags first. Root cause was IsBackstab triggering when attacker dashes past the target — added IgnoreBackstab to both DealDamage calls. Now properly PBable.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
@@ -253,6 +253,16 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Burst IFrame fires before stun clear — no vulnerability window</strong></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Can't block for 1 second after missing a skill</strong><div class="detail">Block checks miss endlag cooldown and returns early. Default miss endlag raised 0.4s → 1.0s.</div></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
       <div class="check-body"><strong>Low HP slow hits earlier and is slightly stronger</strong><div class="detail">The movement slow from being at low health now kicks in at 40% HP (was ~35%) and is a bit more severe.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
@@ -262,12 +272,12 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
   <div class="checklist">
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Kure · Avidya — turned into a knockback guardbreak, blindness extended +1 second</strong><div class="detail">No longer an extender that traps the enemy in a combo. Now breaks their guard, launches them backward, and blinds for longer.</div></div>
+      <div class="check-body"><strong>Kure · Avidya — knockback guardbreak, blind and knockback now simultaneous, +1s blindness</strong><div class="detail">No longer an extender that traps the enemy in a combo. Now breaks their guard and launches them immediately. The blind and knockback fire at the same time on hit. Previously the knockback was delayed until the eye hurt animation finished.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Kure · Elbow Cut — becomes the main extender, guardbreak removed, scaling reduced</strong><div class="detail">Elbow Cut swaps roles with Avidya. Now the primary Kure combo extender but loses its guardbreak. Scaling pulled back to compensate for the extender privilege.</div></div>
+      <div class="check-body"><strong>Kure · Elbow Cut — main extender, guardbreak removed, no ragdoll (stun only), scaling reduced</strong><div class="detail">Elbow Cut swaps roles with Avidya. Now the primary Kure combo extender. Loses its guardbreak and no longer ragdolls the target — applies stun only. Scaling pulled back to compensate for the extender privilege.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
@@ -304,6 +314,61 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <span class="check-icon done">✓</span>
       <div class="check-body"><strong>Wrestling · Whirl Slam — skill disable on target reduced from 6s to 2s</strong><div class="detail">The move that silences all of an enemy's skills for 6 seconds was far too oppressive. Reduced to 2 seconds.</div></div>
       <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Niko M2 / Critical — speed reduced 30%</strong></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Steel Blast — converted to stun, shorter dash, point-blank hitbox fixed</strong><div class="detail">Ragdoll → Stun 1.5s. Dash 28→18 units. Hitbox moved forward so close-range targets aren't skipped.</div></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon skip">—</span>
+      <div class="check-body"><strong>Ironbreaker — left as-is since Steel Blast now has the stun</strong></div>
+      <span class="check-tag ct-skip">N/A</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Earth Shatter — stun reduced to 0.5s</strong></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon pend">○</span>
+      <div class="check-body"><strong>Cleaving Fangs — reduce knockback distance</strong><div class="detail">Keep the "flying away" feel, just reduce how far the player travels.</div></div>
+      <span class="check-tag ct-pend">Pending</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon pend">○</span>
+      <div class="check-body"><strong>Elbow Cut — buff raw damage, increase knockback height slightly</strong></div>
+      <span class="check-tag ct-pend">Pending</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon pend">○</span>
+      <div class="check-body"><strong>Triple Kick — slightly increase knockback distance</strong></div>
+      <span class="check-tag ct-pend">Pending</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon pend">○</span>
+      <div class="check-body"><strong>Feinting Elbow — slightly increase knockback distance</strong></div>
+      <span class="check-tag ct-pend">Pending</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon pend">○</span>
+      <div class="check-body"><strong>Astro Trait — nerf true damage slightly, remove extra stun</strong></div>
+      <span class="check-tag ct-pend">Pending</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon pend">○</span>
+      <div class="check-body"><strong>Astro Trait — match color to player eye or aura color</strong></div>
+      <span class="check-tag ct-vis">Visual</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon pend">○</span>
+      <div class="check-body"><strong>Foretell Trait — remove 1 dodge (3→2), cooldown +15-20s, force cooldown on last dodge</strong></div>
+      <span class="check-tag ct-pend">Pending</span>
     </div>
     <div class="check-item">
       <span class="check-icon skip">—</span>
@@ -756,6 +821,91 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 
 
 <!-- ═════════════════ WHAT CHANGED ═════════════════ -->
+
+  <div class="sh">Parry / Perfect Block</div>
+
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Lion Bite &amp; Lightning Flash — PB Root Cause</div>
+      <div class="ce-title">Now Actually Perfect Blockable</div>
+      <div class="ce-desc">Both skills dash past the target, putting the attacker behind them. The server was detecting this as a backstab hit, which blocks parry entirely regardless of any other flags. Added IgnoreBackstab so the backstab check is skipped — both moves can now be Perfect Blocked and blocked normally.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Backstab bypass</span><span class="do">No</span><span class="da">→</span><span class="dn">IgnoreBackstab</span></div>
+      <div class="diff"><span class="dk">PBable</span><span class="do">Broken</span><span class="da">→</span><span class="dn">Working</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Miss Endlag — Block Ban</div>
+
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">All Skills — Miss Endlag</div>
+      <div class="ce-title">Can't Block for 1 Second After Missing Any Skill</div>
+      <div class="ce-desc">The punish window already existed but blocking wasn't prevented during it. Block now checks for the miss endlag cooldown and returns immediately if it's active. Default miss endlag also raised so the window is long enough to punish.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Miss endlag</span><span class="do">0.4s</span><span class="da">→</span><span class="dn">1.0s</span></div>
+      <div class="diff"><span class="dk">Can block after miss</span><span class="do">Yes</span><span class="da">→</span><span class="dn">No</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Burst</div>
+
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Burst — IFrame Timing</div>
+      <div class="ce-title">IFrame Now Fires Before the Stun Is Cleared</div>
+      <div class="ce-desc">The IFrame was applied after all the stun removes, leaving a small window where an incoming hit could still connect during burst activation. IFrame is now the very first thing applied, then stun is cleared, so there's no gap.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">IFrame timing</span><span class="do">After stun clear</span><span class="da">→</span><span class="dn">Before stun clear</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Niko Style</div>
+
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Niko · M2 / Critical</div>
+      <div class="ce-title">M2 Speed Reduced by 30%</div>
+      <div class="ce-desc">Niko's Critical punch was executing noticeably faster than other styles. A 30% speed reduction is applied on top of the standard Attack Speed scaling specifically for Niko.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">M2 speed</span><span class="do">Standard</span><span class="da">→</span><span class="dn">×0.70</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Steel Blast</div>
+
+  <div class="ce tune">
+    <div>
+      <div class="ce-label">Niko · Steel Blast</div>
+      <div class="ce-title">Converted to Stun — Shorter Dash, Point-Blank Fix</div>
+      <div class="ce-desc">Ragdoll removed and replaced with a longer stun. The dash was shortened to compensate and to reduce the chance of passing through close-range targets. Hitbox moved forward and widened so point-blank opponents are no longer missed.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">On hit</span><span class="do">Ragdoll 1.5s</span><span class="da">→</span><span class="dn">Stun 1.5s</span></div>
+      <div class="diff"><span class="dk">Dash distance</span><span class="do">28 units</span><span class="da">→</span><span class="dn">18 units</span></div>
+      <div class="diff"><span class="dk">Knockback</span><span class="do">65</span><span class="da">→</span><span class="dn">45</span></div>
+      <div class="diff"><span class="dk">Point-blank miss</span><span class="do">Common</span><span class="da">→</span><span class="dn">Fixed</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Earth Shatter</div>
+
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Demon Fist · Earth Shatter</div>
+      <div class="ce-title">Stun Reduced to 0.5s</div>
+      <div class="ce-desc">Stun on hit reduced. The move already ragdolls — the stun on top was providing too much follow-up time.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Stun</span><span class="do">Previous</span><span class="da">→</span><span class="dn">0.5s</span></div>
+    </div>
+  </div>
+
+
 <div class="sec" id="new">
   <div class="sec-t">What Changed</div>
   <p class="sec-l">Quick overview — everything in this update.</p>
@@ -1227,8 +1377,8 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
   <table>
     <thead><tr><th>Skill</th><th>What changed</th></tr></thead>
     <tbody>
-      <tr><td><strong>Avidya</strong></td><td>Was an extender → now a knockback guardbreak. Blindness 1.1s → 2.1s.</td></tr>
-      <tr><td><strong>Elbow Cut</strong></td><td>Now the main extender. Guardbreak removed. STR scaling 3.5 → 2.8.</td></tr>
+      <tr><td><strong>Avidya</strong></td><td>Was an extender → now a knockback guardbreak. Blind and knockback now fire simultaneously. Blindness 1.1s → 2.1s.</td></tr>
+      <tr><td><strong>Elbow Cut</strong></td><td>Now the main extender. Guardbreak removed. No longer ragdolls — stun only. STR scaling 3.5 → 2.8.</td></tr>
       <tr><td><strong>Lion Bite</strong></td><td>Startup 1.2 → 0.8 (slower). Stun on hit 1.0s → 1.8s. Miss recovery 0.9s added. Now blockable.</td></tr>
     </tbody>
   </table>
