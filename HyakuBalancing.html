@@ -386,9 +386,9 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <span class="check-tag ct-pend">Pending</span>
     </div>
     <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Astro Trait — nerf true damage slightly, remove extra stun</strong></div>
-      <span class="check-tag ct-pend">Pending</span>
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Astro Trait — proc damage 10%→7% per hit (VarManager + MainScript)</strong></div>
+      <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
       <span class="check-icon pend">○</span>
@@ -396,9 +396,9 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <span class="check-tag ct-vis">Visual</span>
     </div>
     <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Foretell Trait — remove 1 dodge (3→2), cooldown +15-20s, force cooldown on last dodge</strong></div>
-      <span class="check-tag ct-pend">Pending</span>
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Foretell Trait — 3→2 dodges, 30→48s cooldown, cooldown resets on final dodge</strong></div>
+      <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
       <span class="check-icon skip">—</span>
@@ -530,6 +530,11 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <div class="ce-label">Durability</div>
       <div class="ce-title">No Longer Reduces Damage — Gives Much More HP Instead</div>
       <div class="ce-desc">Durability used to both give you HP and reduce incoming damage. That damage reduction is completely gone. To compensate, the HP you get per point of Durability has roughly doubled across all brackets. Your total health is much higher, but hits land for their full value.</div>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Earth Shatter PB infinite ragdoll — Ragdoll+Stun cleared on PB success in damage handler</strong></div>
+      <span class="check-tag ct-done">Done</span>
     </div>
     <div class="diffs">
       <div class="diff"><span class="dk">Damage reduction</span><span class="do">up to ~50%</span><span class="da">→</span><span class="dn">0%</span></div>
@@ -1044,6 +1049,84 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     <div class="diffs">
       <div class="diff"><span class="dk">Triple Kick final</span><span class="do">64</span><span class="da">→</span><span class="dn">80</span></div>
       <div class="diff"><span class="dk">Feinting Elbow</span><span class="do">70</span><span class="da">→</span><span class="dn">88</span></div>
+    </div>
+  </div>
+
+
+
+  <div class="sh">Earth Shatter — Infinite Ragdoll on Perfect Block</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Earth Shatter · PB Bug</div>
+      <div class="ce-title">PBing Earth Shatter No Longer Leaves You Ragdolled</div>
+      <div class="ce-desc">Earth Shatter's hitbox fires for 0.15 seconds. A heartbeat tick within that window can re-overlap the same target after PB has already consumed its cooldown — the second hit isn't PB'd and applies ragdoll normally, causing a permanent ragdoll if the status timer misfires. Fixed by explicitly clearing Ragdoll and Stun on the target immediately when PB succeeds in the damage handler, regardless of source.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">PB → Ragdoll cleared</span><span class="do">No</span><span class="da">→</span><span class="dn">Yes</span></div>
+      <div class="diff"><span class="dk">PB → Stun cleared</span><span class="do">No</span><span class="da">→</span><span class="dn">Yes</span></div>
+    </div>
+  </div>
+
+  <div class="sh">ClientSideHitbox — Crash Fix</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">ClientSideHitbox · Nil Crash</div>
+      <div class="ce-title">No More Crash When Hitbox Initializes Before Children Exist</div>
+      <div class="ce-desc">The repeat-until loop was calling .Value on the result of FindFirstChild before guarding for nil — if the Remote/PrimaryPart/Size/Shape/CFrameValue children hadn't replicated yet, it crashed instead of retrying. Fixed with nil-safe access per child on every tick.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Crash on nil child</span><span class="do">Yes</span><span class="da">→</span><span class="dn">Fixed</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Block Stamina Drain — Further Reduced</div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Blocking — Stamina Drain</div>
+      <div class="ce-title">Block Drain Reduced by Another 30%</div>
+      <div class="ce-desc">Block drain was still too punishing. Applied a flat ×0.7 multiplier to the entire drain formula on top of previous reductions — blocking is now substantially more sustainable.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Total drain formula</span><span class="do">(max(0.5, Dmg×0.18)×R + 0.7)</span><span class="da">→</span><span class="dn">×0.7 on top</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Astro Trait</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Astro Trait · True Damage</div>
+      <div class="ce-title">Per-Hit Proc Damage Reduced</div>
+      <div class="ce-desc">The percentage of base damage dealt per Astro proc has been reduced. Still ignores block and IFrame — just less damage per tick.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Proc damage</span><span class="do">10% of hit</span><span class="da">→</span><span class="dn">7% of hit</span></div>
+    </div>
+  </div>
+
+
+
+  <div class="sh">Astro Trait</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Astro Trait · True Damage</div>
+      <div class="ce-title">Per-Hit Proc Damage Reduced</div>
+      <div class="ce-desc">The Astro proc fires 3 true damage hits after every qualifying attack, each dealing a percentage of the triggering hit's damage. That percentage has been reduced. Still bypasses block, IFrame, and PB — just less damage per tick.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Proc damage per hit</span><span class="do">10% of base hit</span><span class="da">→</span><span class="dn">7% of base hit</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Foretell Trait</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Foretell Trait · Dodge Count &amp; Cooldown</div>
+      <div class="ce-title">One Fewer Dodge, Significantly Longer Cooldown</div>
+      <div class="ce-desc">Foretell was activating too often. Dodge count reduced from 3 to 2. Cooldown increased from 30 to 48 seconds. Additionally the cooldown now resets from the moment the final dodge is consumed — previously it started at the moment of the parry, meaning players could immediately fish for another activation after burning all dodges. Now there is a full 48-second window from last dodge use before the trait can reactivate.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Dodges granted</span><span class="do">3</span><span class="da">→</span><span class="dn">2</span></div>
+      <div class="diff"><span class="dk">Cooldown</span><span class="do">30s (from parry)</span><span class="da">→</span><span class="dn">48s (from last dodge)</span></div>
     </div>
   </div>
 
