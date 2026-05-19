@@ -267,6 +267,9 @@ pre {
     <li><strong>AS gives WAY more difference now</strong> — 1k vs 6k AS is a real gap, not the tiny one it was before.</li>
     <li><strong>High AS = less stun on M1s</strong> — fast hits hit fast but don't lock people up as much. Up to 40% less stun at max AS.</li>
     <li><strong>Stats are coupled now</strong> — stacking muscle nerfs your strength damage. Muscle + fat both buff your durability defense. Fat hits your stamina and attack speed harder. Build for tradeoffs.</li>
+    <li><strong>M1/M2 Perfect Block window tightened to 0.275s</strong> <span class="chip chip-nerf">NERF</span> — press F1+M1 to activate PB; enemy M1s/M2s must land within 0.275s. Skill PB stays at 0.5s so special moves remain counterable.</li>
+    <li><strong>Muscle damage reduction removed</strong> <span class="chip chip-nerf">NERF</span> — pure muscle no longer passively reduces damage. Durability HP is buffed to compensate.</li>
+    <li><strong>Lean/fat builds get a new damage reduction</strong> <span class="chip chip-new">NEW</span> — high fat with low muscle-to-fat ratio now absorbs up to ~6.5% damage. Pure muscle builds get nothing.</li>
   </ul>
 
   <h3>Stat / training stuff</h3>
@@ -275,11 +278,20 @@ pre {
     <li><strong>Training is slower overall</strong> — was way too fast before.</li>
     <li><strong>But not at 6k–10k</strong> — you can still grind that range, just slower than early game.</li>
     <li><strong>Past 10k is harder</strong>, past 20k is real slow, past 50k is endgame whale stuff.</li>
-    <li><strong>Durability actually matters now</strong> — going from 3k to 5k dura makes a real difference.</li>
+    <li><strong>Durability HP significantly buffed</strong> — gives noticeably more HP per point now. Going 3k → 5k dura is a real survivability jump. Dura multipliers raised across all brackets.</li>
     <li><strong>Stamina drains are now % of max stamina</strong> — high-stam players actually feel drain instead of running forever.</li>
     <li><strong>Muscle players are slower</strong> (sprint + attack speed) but they hit harder. Not useless, just a tradeoff.</li>
     <li><strong>Starving eats your muscle 60% slower now</strong> — you still lose muscle on empty hunger, just nowhere near as fast.</li>
     <li><strong>Hunger drains half as fast</strong></li>
+    <li><strong>Strength gains nerfed at 6k+</strong> <span class="chip chip-nerf">NERF</span> — 6k–8k bracket halved from 1.4% to 0.7%, 8k–10k from 1.0% to 0.5%.</li>
+    <li><strong>AttackSpeed gains nerfed at 5k+</strong> <span class="chip chip-nerf">NERF</span> — new 5k–6k bracket at 0.55%, 6k–10k reduced from 0.7% to 0.35%.</li>
+    <li><strong>Upper/Lower Muscle gains rebalanced</strong> <span class="chip chip-nerf">NERF</span> — dedicated gain tables added; at 3k muscle ~2% effective vs old ~3%.</li>
+    <li><strong>Fat speed penalty increased ~15%</strong> <span class="chip chip-nerf">NERF</span> — applies when fat exceeds muscle, scales above 100 fat, up to ~11.5% extra penalty.</li>
+    <li><strong>Low HP sprint slow kicks in at 35% HP</strong> <span class="chip chip-nerf">NERF</span> — was 25%, now penalizes earlier and hits slightly harder.</li>
+    <li><strong>Squat &amp; Barbell stat gains fixed</strong> <span class="chip chip-fix">FIX</span> — both now properly skip gains while hungry. Was giving full gains even when starving.</li>
+    <li><strong>Weighted Vest now boosts UpperMuscle &amp; LowerMuscle +10%</strong> <span class="chip chip-buff">BUFF</span> — on top of its existing Durability gain boost.</li>
+    <li><strong>Breathing Mask flat +25% StaminaInStat</strong> <span class="chip chip-buff">BUFF</span> — bonus now applies across all training activities, not just the stationary bike.</li>
+    <li><strong>Limb Weights +25% Agility gain</strong> <span class="chip chip-buff">BUFF</span> — alongside existing AttackSpeed boost. (Studio: add <code>Agility StatBoost = 0.25</code> to LWBUFF SumAttributes.)</li>
   </ul>
 
   <h3>Code / structure (dev-side)</h3>
@@ -297,7 +309,8 @@ pre {
     <li><strong>Muscle ↔ strength inverse nerf reduced</strong> several times so muscle builds do not lose too much strength value.</li>
     <li><strong>Lean strength bonus added</strong> — leaner builds now get extra strength scaling on top of normal scaling.</li>
     <li><strong>General strength scaling buffed</strong> across strike and skill formulas; M1 fallback scaling in VarManager also buffed.</li>
-    <li><strong>Durability mitigation nerfed</strong> in both layers: combat-calculation durability defense and damage-handler muscle defense term.</li>
+    <li><strong>Durability HP buffed across all brackets</strong> — gives noticeably more max HP per point now.</li>
+    <li><strong>Muscle damage reduction removed</strong> — replaced with fat-lean build mitigation (up to 6.5%).</li>
     <li><strong>Sandbag hits count as landed</strong> for stamina logic, so bag training no longer applies miss penalty drain.</li>
     <li><strong>Reserve server command fixed</strong> — now uses the project's private-server flow (VerseTraveller) with usable aliases.</li>
     <li><strong>Critical (M2) lean damage buffed</strong> — stronger base M2 bonus plus an extra lean-based critical multiplier (up to <strong>+55%</strong>).</li>
@@ -360,6 +373,17 @@ pre {
     <li>Window ends and u didn't parry anything → <strong>now</strong> the 4s cooldown shows up</li>
   </ul>
   <p>basically u only get punished if u guessed wrong. land it = free.</p>
+
+  <h3><span class="changed-mark"></span> Per-type Perfect Block windows <span class="chip chip-nerf">NERF</span></h3>
+  <p>Press F1 (block) + M1 to activate Perfect Block. After pressing, the enemy has a limited window to hit you for it to count as a parry — and that window depends on their attack type:</p>
+  <table>
+    <thead><tr><th>Attack type</th><th class="num">Enemy must hit you within</th><th class="num">Old window</th></tr></thead>
+    <tbody>
+      <tr><td>M1 / M2 (basic &amp; critical punches)</td><td class="num" style="color:var(--bad)"><strong>0.275s</strong></td><td class="num">0.5s</td></tr>
+      <tr><td>Skills</td><td class="num" style="color:var(--good)"><strong>0.5s</strong></td><td class="num">0.5s (unchanged)</td></tr>
+    </tbody>
+  </table>
+  <p>M1 spam-parrying is much harder — you have to genuinely read the punch. Skill parries are still forgiving so special moves remain counterable. PB is timestamped on activation; the handler checks how long ago you pressed vs. the attack type.</p>
 
 </section>
 
@@ -555,29 +579,37 @@ pre {
 
 <!-- ============================== DURABILITY ============================== -->
 <section id="dura">
-  <h2>Durability actually matters <span class="chip chip-fix">FIX</span></h2>
-  <p class="lead">Before, 3k and 5k durability felt identical because nothing in the damage formula used it. Now durability adds straight-up damage reduction — and your muscle and fat add to it too.</p>
+  <h2>Durability — HP buffed, muscle defense removed <span class="chip chip-tune">REWORKED</span></h2>
+  <p class="lead">Durability now gives significantly more raw HP per point. The old muscle passive damage reduction is gone — Dura is the primary tank stat again. Lean/fat hybrid builds get a small flat defense bonus instead.</p>
+
+  <h3>Durability → Max HP (buffed)</h3>
+  <p>All durability thresholds had their multipliers raised. Early dura is now substantially more rewarding.</p>
+  <div class="callout good">
+    <strong>Buff:</strong> Dura HP multipliers increased across all brackets (e.g. first 1k threshold raised from ×1.9 → ×2.4, final multiplier raised from 0.50 → 0.65). Grinding dura gives noticeably more HP now.
+  </div>
 
   <h3>How much damage you take based on dura</h3>
   <table>
-    <thead><tr><th>Your durability</th><th class="num">Damage taken</th></tr></thead>
+    <thead><tr><th>Your durability</th><th class="num">Damage taken (approx)</th></tr></thead>
     <tbody>
       <tr><td>0</td><td class="num">~70%</td></tr>
-      <tr><td>1000</td><td class="num">~55%</td></tr>
-      <tr><td>3000</td><td class="num">~38%</td></tr>
-      <tr><td>5000</td><td class="num">~33%</td></tr>
-      <tr><td>8000</td><td class="num">~31%</td></tr>
-      <tr><td>10000+</td><td class="num">~31% (soft cap)</td></tr>
+      <tr><td>1000</td><td class="num">~52%</td></tr>
+      <tr><td>3000</td><td class="num">~35%</td></tr>
+      <tr><td>5000</td><td class="num">~29%</td></tr>
+      <tr><td>8000</td><td class="num">~27%</td></tr>
+      <tr><td>10000+</td><td class="num">~27% (soft cap)</td></tr>
     </tbody>
   </table>
-  <p>Going from 3k to 5k dura = about <strong>15% less damage taken</strong>. Real, noticeable difference now.</p>
-  <p>Durability still controls your max HP too — so it's a double tank stat.</p>
+  <p>Durability controls your max HP <strong>and</strong> your damage reduction — pure tank stat.</p>
 
-  <h3>Muscle and Fat add to your defense <span class="chip chip-new">NEW</span></h3>
+  <h3>Muscle damage reduction removed <span class="chip chip-nerf">REMOVED</span></h3>
+  <p>Muscle no longer passively reduces incoming damage. Previously muscle gave up to 15% damage reduction — this is gone. The HP buff to Durability compensates for the loss in raw survivability.</p>
+
+  <h3>Lean/Fat builds get a new damage reduction <span class="chip chip-new">NEW</span></h3>
   <ul class="tight">
-    <li>Muscle gives up to <strong>+180 effective durability</strong> for damage reduction purposes (maxes at 5.5k muscle).</li>
-    <li>Fat gives up to <strong>+320 effective durability</strong> (maxes at 2k fat).</li>
-    <li>So a beefy build with both muscle and fat ends up way tankier than just the durability stat alone would suggest.</li>
+    <li>Applies when your fat is ≥ 400 <strong>and</strong> your muscle-to-fat ratio is ≤ 1.5 (i.e. you're not pure muscle).</li>
+    <li>Scales with fat, up to <strong>~6.5% damage reduction</strong> at 2000 fat.</li>
+    <li>Pure muscle builds with low fat get nothing. Fat-lean hybrid gets the partial tank perk.</li>
   </ul>
 </section>
 
@@ -591,6 +623,20 @@ pre {
     <li>Below <strong>800 total muscle</strong>: no penalty.</li>
     <li>Above that, sprint speed drops as muscle goes up.</li>
     <li>Caps at <strong>14% slower</strong> sprint around 7000 muscle.</li>
+  </ul>
+
+  <h3>Fat sprint penalty — increased for low-muscle builds <span class="chip chip-nerf">NERF</span></h3>
+  <ul class="tight">
+    <li>Base fat slow unchanged (up to -20% at 1000 fat for all builds).</li>
+    <li>If your fat exceeds your muscle, an <strong>extra penalty</strong> now stacks on top — up to an additional <strong>-11.5%</strong> at high fat.</li>
+    <li>This kicks in at 100 fat and scales up to 1000 fat. Total max penalty for pure fat builds is roughly <strong>-31.5%</strong> sprint speed.</li>
+    <li>Muscle builds carrying fat are unaffected by this extra penalty (their muscle-to-fat ratio is above 1).</li>
+  </ul>
+
+  <h3>Low HP sprint slow — earlier activation <span class="chip chip-nerf">NERF</span></h3>
+  <ul class="tight">
+    <li>Previously the slow debuff only kicked in at <strong>25% HP</strong>. Now it starts at <strong>35% HP</strong>.</li>
+    <li>Slightly stronger slow curve — you'll feel it sooner when you're getting pressured.</li>
   </ul>
   <table>
     <thead><tr><th>Your muscle</th><th class="num">Sprint speed</th><th class="num">vs lean</th></tr></thead>
@@ -666,11 +712,12 @@ pre {
     </tbody>
   </table>
 
-  <h3>Muscle + Fat both buff Durability defense</h3>
+  <h3>Muscle + Fat defense — reworked <span class="chip chip-tune">CHANGED</span></h3>
   <ul class="tight">
-    <li>Muscle adds up to <strong>+180 effective durability</strong> for damage reduction (caps at 5.5k muscle).</li>
-    <li>Fat adds up to <strong>+320 effective durability</strong> (caps at 2k fat).</li>
-    <li>So a bulky build (high muscle + high fat) gets noticeably tankier even without grinding durability.</li>
+    <li>Muscle <strong>no longer gives passive damage reduction</strong>. The old +15% defense from 3200 muscle is removed.</li>
+    <li>Fat-lean builds (high fat, low muscle-to-fat ratio) now get up to <strong>6.5% flat damage reduction</strong> instead.</li>
+    <li>Durability HP is significantly buffed to compensate — grinding dura is now the main way to be tanky.</li>
+    <li>Net result: you need to either grind dura or run a fat-lean setup to be defensive. Muscle alone no longer makes you tanky.</li>
   </ul>
 
   <h3>Fat hurts Stamina and Attack Speed</h3>
@@ -690,7 +737,7 @@ pre {
   <h3>What the multiplier means</h3>
   <p>Whatever your base training gives you per tick gets multiplied by the value below depending on what you currently have.</p>
 
-  <h3>Strength</h3>
+  <h3>Strength <span class="chip chip-nerf">NERFED 6k+</span></h3>
   <table>
     <thead><tr><th>Your strength</th><th class="num">Gain multiplier</th></tr></thead>
     <tbody>
@@ -700,10 +747,10 @@ pre {
       <tr><td>1000 – 1500</td><td class="num">8%</td></tr>
       <tr><td>1500 – 2500</td><td class="num">5.5%</td></tr>
       <tr><td>2500 – 4000</td><td class="num">3.5%</td></tr>
-      <tr><td>4000 – 6000</td><td class="num">2.2%</td></tr>
-      <tr><td>6000 – 8000</td><td class="num">1.4%</td></tr>
-      <tr><td>8000 – 10000</td><td class="num">1.0%</td></tr>
-      <tr><td>10000 – 20000</td><td class="num">0.4%</td></tr>
+      <tr><td>4000 – 6000</td><td class="num">2.0%</td></tr>
+      <tr><td>6000 – 8000</td><td class="num"><strong style="color:var(--bad)">0.70%</strong> (was 1.4%)</td></tr>
+      <tr><td>8000 – 10000</td><td class="num"><strong style="color:var(--bad)">0.50%</strong> (was 1.0%)</td></tr>
+      <tr><td>10000 – 20000</td><td class="num">0.20%</td></tr>
       <tr><td>20000+</td><td class="num">very slow</td></tr>
     </tbody>
   </table>
@@ -758,7 +805,7 @@ pre {
     </tbody>
   </table>
 
-  <h3>Attack Speed</h3>
+  <h3>Attack Speed <span class="chip chip-nerf">NERFED 5k+</span></h3>
   <table>
     <thead><tr><th>Your atk speed</th><th class="num">Gain multiplier</th></tr></thead>
     <tbody>
@@ -768,14 +815,32 @@ pre {
       <tr><td>1000 – 1500</td><td class="num">5.5%</td></tr>
       <tr><td>1500 – 2500</td><td class="num">3%</td></tr>
       <tr><td>2500 – 4000</td><td class="num">1.7%</td></tr>
-      <tr><td>4000 – 6000</td><td class="num">1.1%</td></tr>
-      <tr><td>6000 – 10000</td><td class="num">0.7%</td></tr>
+      <tr><td>4000 – 5000</td><td class="num">1.1%</td></tr>
+      <tr><td>5000 – 6000</td><td class="num"><strong style="color:var(--bad)">0.55%</strong> (new bracket)</td></tr>
+      <tr><td>6000 – 10000</td><td class="num"><strong style="color:var(--bad)">0.35%</strong> (was 0.7%)</td></tr>
       <tr><td>10000+</td><td class="num">very slow</td></tr>
     </tbody>
   </table>
 
-  <h3>Muscle (extra nerf on top of base)</h3>
-  <p>Upper + Lower muscle combined gets an extra multiplier on top of the regular gain. This is what stops everyone from being a 50k muscle monster.</p>
+  <h3>Upper / Lower Muscle <span class="chip chip-nerf">NERFED 3k+</span></h3>
+  <p>Dedicated per-muscle gain tables — replaces the old untracked base value. At 3k each muscle stat you gain ~2% effective, down from the old ~3%.</p>
+  <table>
+    <thead><tr><th>Your muscle stat (Upper or Lower)</th><th class="num">Gain multiplier</th></tr></thead>
+    <tbody>
+      <tr><td>0 – 200</td><td class="num">50%</td></tr>
+      <tr><td>200 – 500</td><td class="num">38%</td></tr>
+      <tr><td>500 – 1000</td><td class="num">28%</td></tr>
+      <tr><td>1000 – 2000</td><td class="num">18%</td></tr>
+      <tr><td>2000 – 3000</td><td class="num">11%</td></tr>
+      <tr><td>3000 – 5000</td><td class="num"><strong style="color:var(--bad)">6.5%</strong> (was ~untracked ~3% raw)</td></tr>
+      <tr><td>5000 – 8000</td><td class="num">3.8%</td></tr>
+      <tr><td>8000 – 15000</td><td class="num">1.8%</td></tr>
+      <tr><td>15000+</td><td class="num">very slow</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Muscle (total extra nerf on top of base)</h3>
+  <p>Upper + Lower muscle combined gets an extra multiplier on top of the above table. This is what stops everyone from being a 50k muscle monster.</p>
   <table>
     <thead><tr><th>Total muscle (upper + lower)</th><th class="num">Extra multiplier</th></tr></thead>
     <tbody>
@@ -812,6 +877,28 @@ pre {
     <li>Was <code>-0.007</code> per tick (per muscle stat), now <code>-0.0028</code>.</li>
     <li>Fat loss while starving stays the same (still <code>-0.007</code> per tick) — easier to slim down if that's what you want.</li>
   </ul>
+
+  <h3>Training gear — updated bonuses <span class="chip chip-buff">BUFF</span></h3>
+  <table>
+    <thead><tr><th>Gear</th><th>What it boosts</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Weighted Vest</strong></td>
+        <td>Durability gains (existing) + <strong>UpperMuscle &amp; LowerMuscle +10%</strong></td>
+        <td><span class="chip chip-buff">NEW</span> muscle gains now included</td>
+      </tr>
+      <tr>
+        <td><strong>Breathing Mask</strong></td>
+        <td><strong>Flat +25% StaminaInStat</strong> across all training activities</td>
+        <td><span class="chip chip-buff">EXPANDED</span> was bike-only, now universal</td>
+      </tr>
+      <tr>
+        <td><strong>Limb Weights</strong></td>
+        <td>AttackSpeed +25% (existing) + <strong>Agility +25%</strong></td>
+        <td><span class="chip chip-buff">NEW</span> agility gains now included<br><small style="color:var(--muted)">(Studio: add <code>Agility StatBoost = 0.25</code> to LWBUFF SumAttributes)</small></td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
 <!-- ============================== BUILDS ============================== -->
