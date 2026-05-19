@@ -253,6 +253,36 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Glowing eyes no longer turn white after color reroll</strong><div class="detail">Was multiplying each RGB channel ×5 which saturated mixed colors to white. Now normalizes to max brightness, preserving hue.</div></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Squat &amp; Bench crash on key press fixed</strong><div class="detail">Nil check added for Data.Stats before accessing LowerMuscle/UpperMuscle.</div></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Attackers with IFrames can no longer deal damage</strong></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Burst gain per hit reduced 5 → 2</strong></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Kure M2 damage buffed (15→18), Niko M2 damage buffed (14→17)</strong></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Block stamina drain reduced — multiplier 0.32→0.18, base 1.2→0.7</strong></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
       <div class="check-body"><strong>Burst IFrame fires before stun clear — no vulnerability window</strong></div>
       <span class="check-tag ct-done">Done</span>
     </div>
@@ -336,23 +366,23 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Cleaving Fangs — reduce knockback distance</strong><div class="detail">Keep the "flying away" feel, just reduce how far the player travels.</div></div>
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Cleaving Fangs — knockback distance reduced (KnockbackZ 70→35, KnockbackY 40→20)</strong><div class="detail">Keep the "flying away" feel, just reduce how far the player travels.</div></div>
       <span class="check-tag ct-pend">Pending</span>
     </div>
     <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Elbow Cut — buff raw damage, increase knockback height slightly</strong></div>
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Elbow Cut — base power 13→16, knockback height 18→28</strong></div>
       <span class="check-tag ct-pend">Pending</span>
     </div>
     <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Triple Kick — slightly increase knockback distance</strong></div>
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Triple Kick — final knockback 64→80</strong></div>
       <span class="check-tag ct-pend">Pending</span>
     </div>
     <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Feinting Elbow — slightly increase knockback distance</strong></div>
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Feinting Elbow — knockback 70→88</strong></div>
       <span class="check-tag ct-pend">Pending</span>
     </div>
     <div class="check-item">
@@ -902,6 +932,118 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="diffs">
       <div class="diff"><span class="dk">Stun</span><span class="do">Previous</span><span class="da">→</span><span class="dn">0.5s</span></div>
+    </div>
+  </div>
+
+
+
+  <div class="sh">Glowing Eyes</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Glowing Eyes — Color Reroll</div>
+      <div class="ce-title">Eyes No Longer Turn White After Rerolling</div>
+      <div class="ce-desc">The glow effect was multiplying every RGB channel by ×5, which pushed any mixed color (e.g. orange, purple, teal) straight to white by saturating all three channels. Fixed: the channels are now normalized so the dominant channel reaches 255 while the others scale proportionally — full brightness, correct hue preserved.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Glow method</span><span class="do">×5 flat mult</span><span class="da">→</span><span class="dn">Normalize to 255</span></div>
+      <div class="diff"><span class="dk">Hue preserved</span><span class="do">No</span><span class="da">→</span><span class="dn">Yes</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Squats &amp; Bench — Crash Fix</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Training — Squat &amp; Bench</div>
+      <div class="ce-title">Server Crash on Key Press Fixed</div>
+      <div class="ce-desc">When pressing a training key the server crashed with "attempt to index nil with LowerMuscle." The keypress data doesn't always include Stats — added a nil check before accessing it.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Crash on press</span><span class="do">Yes</span><span class="da">→</span><span class="dn">Fixed</span></div>
+    </div>
+  </div>
+
+  <div class="sh">IFrames &amp; Damage</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Damage Handler — Attacker IFrame</div>
+      <div class="ce-title">Players With IFrames Can No Longer Deal Damage</div>
+      <div class="ce-desc">IFrame only protected the target from taking damage. If the attacker had an active IFrame (e.g. from Burst), they could still deal damage to others. Added a check so any attacker with an active IFrame has their damage blocked as well.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Attacker IFrame</span><span class="do">Can still hit</span><span class="da">→</span><span class="dn">Blocked</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Burst Bar</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Burst / Adrenaline</div>
+      <div class="ce-title">Minimum Gain Per Hit Reduced — 5 → 2</div>
+      <div class="ce-desc">The minimum flat Adrenaline gain per hit was filling the burst bar too quickly. Reduced from 5 to 2 per hit — burst now charges roughly 50 hits to fill from zero on minimum-damage hits.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Min gain/hit</span><span class="do">5</span><span class="da">→</span><span class="dn">2</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Kure &amp; Niko — M2 Damage</div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Kure &amp; Niko · M2 Base Damage</div>
+      <div class="ce-title">Critical Damage Buffed</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Kure M2 base</span><span class="do">15</span><span class="da">→</span><span class="dn">18</span></div>
+      <div class="diff"><span class="dk">Niko M2 base</span><span class="do">14</span><span class="da">→</span><span class="dn">17</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Stamina on Block</div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Blocking — Stamina Drain</div>
+      <div class="ce-title">Stamina Drain on Successfully Blocking a Hit Reduced</div>
+      <div class="ce-desc">Blocking was draining too much stamina per blocked hit. Both the base drain and the damage-scaling multiplier have been reduced.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Dmg multiplier</span><span class="do">×0.32</span><span class="da">→</span><span class="dn">×0.18</span></div>
+      <div class="diff"><span class="dk">Base drain</span><span class="do">+1.2</span><span class="da">→</span><span class="dn">+0.7</span></div>
+      <div class="diff"><span class="dk">Min drain</span><span class="do">0.8</span><span class="da">→</span><span class="dn">0.5</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Cleaving Fangs</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Taekwondo · Cleaving Fangs</div>
+      <div class="ce-title">Final Knockback Distance Reduced</div>
+      <div class="ce-desc">The "flying away" property is kept — the distance is just significantly shorter.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">KnockbackZ</span><span class="do">70</span><span class="da">→</span><span class="dn">35</span></div>
+      <div class="diff"><span class="dk">KnockbackY</span><span class="do">40</span><span class="da">→</span><span class="dn">20</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Elbow Cut, Triple Kick, Feinting Elbow</div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Kure · Elbow Cut</div>
+      <div class="ce-title">Damage Buffed, Knockback Height Increased</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Base power</span><span class="do">13</span><span class="da">→</span><span class="dn">16</span></div>
+      <div class="diff"><span class="dk">KnockbackY</span><span class="do">18</span><span class="da">→</span><span class="dn">28</span></div>
+    </div>
+  </div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Taekwondo · Triple Kick &amp; Karate · Feinting Elbow</div>
+      <div class="ce-title">Knockback Distance Increased</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Triple Kick final</span><span class="do">64</span><span class="da">→</span><span class="dn">80</span></div>
+      <div class="diff"><span class="dk">Feinting Elbow</span><span class="do">70</span><span class="da">→</span><span class="dn">88</span></div>
     </div>
   </div>
 
