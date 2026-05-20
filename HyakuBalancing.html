@@ -120,6 +120,34 @@ ul.lg.c2 { columns: 2; column-gap: 2rem; }
 
 pre { font-family: var(--mono); font-size: 12px; line-height: 1.6; background: var(--bg2); border: 1px solid var(--line); border-radius: 4px; padding: .9rem 1rem; overflow-x: auto; color: #a8c4d8; margin: .6rem 0 1.2rem; }
 p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
+
+/* ── DAY SECTIONS ──────────────────────────────────── */
+.day-sec { margin-bottom: 2rem; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.day-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .7rem 1.1rem; cursor: pointer; user-select: none;
+  background: var(--bg2); gap: .75rem;
+  transition: background .12s;
+}
+.day-hdr:hover { background: var(--bg3); }
+.day-date {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--acc); font-weight: 600;
+}
+.day-count {
+  font-family: var(--mono); font-size: 10px; padding: .08rem .4rem;
+  border-radius: 3px; background: rgba(224,92,42,.1);
+  color: var(--acc); border: 1px solid rgba(224,92,42,.2);
+  margin-left: .4rem;
+}
+.day-arrow {
+  width: 18px; height: 18px; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); transition: transform .2s; flex-shrink: 0;
+  font-size: 11px; font-family: var(--mono);
+}
+.day-hdr.open .day-arrow { transform: rotate(180deg); }
+.day-body { padding: 0 1rem 1rem; display: block; }
+.day-body.collapsed { display: none; }
 </style>
 </head>
 <body>
@@ -520,10 +548,20 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 <!-- ═════════════════ RECENT CHANGES ═════════════════ -->
 <div class="sec" id="recent">
   <div class="sec-t">Recent Changes</div>
-  <p class="sec-l">Everything implemented this update, with before/after values.</p>
+  <p class="sec-l">Grouped by session date. Click a date to expand or collapse.</p>
   <div class="sec-hr"></div>
 
-  <div class="sh">Defense Rework</div>
+  <!-- ── May 19 2026 ────────────────────────────────── -->
+  <div class="day-sec">
+    <div class="day-hdr" title="Click to expand/collapse">
+      <span>
+        <span class="day-date">May 19, 2026</span>
+        <span class="day-count">31 changes</span>
+      </span>
+      <span class="day-arrow">▼</span>
+    </div>
+    <div class="day-body collapsed">
+<div class="sh">Defense Rework</div>
 
   <div class="ce nerf">
     <div>
@@ -939,10 +977,20 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <div class="diff"><span class="dk">Stun</span><span class="do">Previous</span><span class="da">→</span><span class="dn">0.5s</span></div>
     </div>
   </div>
+    </div>
+  </div>
 
-
-
-  <div class="sh">Glowing Eyes</div>
+  <!-- ── May 20 2026 ────────────────────────────────── -->
+  <div class="day-sec">
+    <div class="day-hdr open" title="Click to expand/collapse">
+      <span>
+        <span class="day-date">May 20, 2026</span>
+        <span class="day-count">15 changes</span>
+      </span>
+      <span class="day-arrow">▼</span>
+    </div>
+    <div class="day-body">
+<div class="sh">Glowing Eyes</div>
   <div class="ce fix">
     <div>
       <div class="ce-label">Glowing Eyes — Color Reroll</div>
@@ -1131,6 +1179,34 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
   </div>
 
 
+
+  <div class="sh">Earth Shatter — Stop Frame Fix</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Earth Shatter · Cleanup</div>
+      <div class="ce-title">Skill No Longer Breaks Without a Stop Keyframe</div>
+      <div class="ce-desc">Cleanup (HyperArmour removal, DisableAutoRotation, MoveReset) was hooked to a "Stop" keyframe that doesn't exist in the animation, so it only ever ran via Track.Stopped:Wait() — which could hang if the animation got stuck. Replaced with a shared Cleanup() function guarded by a Done flag: fires automatically 0.9s after the Smash keyframe, and also on Track.Stopped for safety. No double-cleanup possible.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Cleanup trigger</span><span class="do">Missing "Stop" keyframe</span><span class="da">→</span><span class="dn">task.delay(0.9) after Smash</span></div>
+      <div class="diff"><span class="dk">Double-fire guard</span><span class="do">None</span><span class="da">→</span><span class="dn">Done flag</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Squat Rack &amp; Bench Press — Animation Fix</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Training · Squat &amp; Bench</div>
+      <div class="ce-title">Character Animation Now Loads Correctly</div>
+      <div class="ce-desc">The player character animation was loaded from Actions.Action1 (an ObjectValue reference that was broken/nil). Both the bench and squat now load their animations directly from the known paths in ReplicatedStorage.Animations.General.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Bench anim source</span><span class="do">Actions.Action1.Value (broken ref)</span><span class="da">→</span><span class="dn">BenchMatchine.Action</span></div>
+      <div class="diff"><span class="dk">Squat anim source</span><span class="do">Actions.Action1.Value (broken ref)</span><span class="da">→</span><span class="dn">SquatMatchine.Action</span></div>
+    </div>
+  </div>
+
+
 <div class="sec" id="new">
   <div class="sec-t">What Changed</div>
   <p class="sec-l">Quick overview — everything in this update.</p>
@@ -1176,7 +1252,48 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     <li><strong>Breathing Mask</strong> — flat +25% Stamina gains everywhere (was bike only).</li>
     <li><strong>Limb Weights</strong> — now boosts Agility gains +25%.</li>
   </ul>
+  <div class="sh">Foretell Trait</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Foretell Trait · Mythical</div>
+      <div class="ce-title">Dodges Reduced, Cooldown Increased — Resets on Last Dodge</div>
+      <div class="ce-desc">Foretell granted 3 free dodge dashes after a successful PB, with a 30-second cooldown starting at activation. Now grants 2 dashes and the cooldown is 48 seconds, starting fresh when the final dodge is consumed — so you can't immediately re-trigger it after burning all your dashes.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Dodge count</span><span class="do">3</span><span class="da">→</span><span class="dn">2</span></div>
+      <div class="diff"><span class="dk">Cooldown</span><span class="do">30s from activation</span><span class="da">→</span><span class="dn">48s from last dodge</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Astro Trait</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Astro Trait · Legendary</div>
+      <div class="ce-title">Proc Damage Reduced — 10% → 7%</div>
+      <div class="ce-desc">Each Astro true-damage proc now deals 7% of the triggering hit's damage instead of 10%. Still fires 3 times per proc cycle, bypasses block and IFrame.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Proc multiplier</span><span class="do">10%</span><span class="da">→</span><span class="dn">7%</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Block Stamina Drain — Second Reduction</div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Blocking · Stamina</div>
+      <div class="ce-title">Block Drain Reduced by Another 30%</div>
+      <div class="ce-desc">Applied a second ×0.7 pass to the drain formula — blocking is now roughly half as punishing as the original values.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Stack multiplier</span><span class="do">×0.7 (prior)</span><span class="da">→</span><span class="dn">×0.49 total</span></div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
 </div>
+
 
 
 <!-- ═════════════════ BLOCKING & PARRY ═════════════════ -->
@@ -1648,5 +1765,19 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 
 </main>
 </div>
+
+<script>
+document.querySelectorAll('.day-hdr').forEach(function(hdr) {
+  var body = hdr.nextElementSibling;
+  hdr.addEventListener('click', function() {
+    var collapsed = body.classList.toggle('collapsed');
+    if (collapsed) {
+      hdr.classList.remove('open');
+    } else {
+      hdr.classList.add('open');
+    }
+  });
+});
+</script>
 </body>
 </html>
