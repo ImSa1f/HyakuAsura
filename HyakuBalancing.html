@@ -29,7 +29,7 @@
 html { scroll-behavior: smooth; }
 body { font-family: var(--sans); font-size: 14px; line-height: 1.7; color: var(--text); background: var(--bg); }
 
-.wrap { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 195px 1fr; }
+.wrap { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 195px 1fr; align-items: start; }
 @media (max-width: 800px) { .wrap { grid-template-columns: 1fr; } nav { display: none; } }
 
 nav {
@@ -63,7 +63,7 @@ main { padding: 0 2.5rem 6rem; max-width: 840px; }
 
 .sh { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .13em; color: var(--muted); margin: 2rem 0 0; padding-bottom: .35rem; border-bottom: 1px solid var(--line); }
 
-.ce { display: grid; grid-template-columns: 1fr 200px; gap: .5rem 1.5rem; align-items: start; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.ce { display: grid; grid-template-columns: 1fr minmax(220px, auto); gap: .5rem 1.5rem; align-items: start; padding: 1rem 0; border-bottom: 1px solid var(--line); }
 .ce:first-of-type { border-top: 1px solid var(--line); }
 .ce.buff  { border-left: 2px solid var(--green);  padding-left: .7rem; }
 .ce.nerf  { border-left: 2px solid var(--red);    padding-left: .7rem; }
@@ -74,17 +74,12 @@ main { padding: 0 2.5rem 6rem; max-width: 840px; }
 .ce-title { font-size: 14px; font-weight: 600; color: var(--bright); margin-bottom: .25rem; line-height: 1.35; }
 .ce-desc  { font-size: 12.5px; color: var(--text); line-height: 1.6; }
 
-.diffs { display: flex; flex-direction: column; gap: .25rem; padding-top: .1rem; max-width: 340px; min-width: 200px; overflow-wrap: anywhere; }
-.diff { display: flex; align-items: center; gap: .35rem; font-family: var(--mono); font-size: 11.5px; white-space: normal; justify-content: flex-end; flex-wrap: wrap;
-  word-break: break-word; overflow-wrap: anywhere; min-width: 0; }
-.dk { color: var(--muted); font-size: 10px; letter-spacing: .04em;
-  word-break: break-word; overflow-wrap: anywhere; max-width: 100%; }
-.do { color: var(--red); text-decoration: line-through; opacity: .75;
-  word-break: break-word; overflow-wrap: anywhere; max-width: 100%; }
-.da { color: var(--muted);
-  word-break: break-word; overflow-wrap: anywhere; max-width: 100%; }
-.dn { color: var(--green); font-weight: 600;
-  word-break: break-word; overflow-wrap: anywhere; max-width: 100%; }
+.diffs { display: flex; flex-direction: column; gap: .25rem; padding-top: .1rem; }
+.diff { display: flex; align-items: center; gap: .35rem; font-family: var(--mono); font-size: 11.5px; white-space: nowrap; justify-content: flex-end; }
+.dk { color: var(--muted); font-size: 10px; letter-spacing: .04em;}
+.do { color: var(--red); text-decoration: line-through; opacity: .75;}
+.da { color: var(--muted);}
+.dn { color: var(--green); font-weight: 600;}
 
 /* CHECKLIST */
 .checklist { margin: 0 0 1.5rem; }
@@ -153,10 +148,27 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 .day-hdr.open .day-arrow { transform: rotate(180deg); }
 .day-body { padding: 0 1rem 1rem; display: block; }
 .day-body.collapsed { display: none !important; }
+
+/* ── NAV / MAIN COLUMNS ─────────────────────────────────── */
+.nav-col {
+  position: sticky;
+  top: 1.5rem;
+  align-self: start;
+  grid-column: 1;
+  grid-row: 1;
+  padding-right: .75rem;
+}
+.main-col {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
 </style>
 </head>
 <body>
 <div class="wrap">
+<div class="nav-col">
+
 
 <nav>
   <div class="grp">
@@ -191,7 +203,8 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 </nav>
 
 <main>
-
+</div>
+<div class="main-col">
 <div class="ph">
   <h1>Combat Balance</h1>
   <div class="sub">Hyaku Asura · Balance Update · Ongoing</div>
@@ -574,11 +587,6 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <div class="ce-title">No Longer Reduces Damage — Gives Much More HP Instead</div>
       <div class="ce-desc">Durability used to both give you HP and reduce incoming damage. That damage reduction is completely gone. To compensate, the HP you get per point of Durability has roughly doubled across all brackets. Your total health is much higher, but hits land for their full value.</div>
     </div>
-    <div class="check-item">
-      <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Earth Shatter PB infinite ragdoll — Ragdoll+Stun cleared on PB success in damage handler</strong></div>
-      <span class="check-tag ct-done">Done</span>
-    </div>
     <div class="diffs">
       <div class="diff"><span class="dk">Damage reduction</span><span class="do">up to ~50%</span><span class="da">→</span><span class="dn">0%</span></div>
       <div class="diff"><span class="dk">0–1k HP mult</span><span class="do">2.4×</span><span class="da">→</span><span class="dn">5.0×</span></div>
@@ -895,7 +903,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <div class="diff"><span class="dk">0-damage hits</span><span class="do">0 burst to victim</span><span class="da">→</span><span class="dn">5 burst min.</span></div>
     </div>
   </div>
-</div>
+
 
 
 <!-- ═════════════════ WHAT CHANGED ═════════════════ -->
@@ -982,10 +990,11 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <div class="diff"><span class="dk">Stun</span><span class="do">Previous</span><span class="da">→</span><span class="dn">0.5s</span></div>
     </div>
   </div>
-    </div>
-  </div>
+    
+</div>
 
-  <!-- ── May 20 2026 ────────────────────────────────── -->
+</div>
+
   <div class="day-sec">
     <div class="day-hdr open" title="Click to expand/collapse">
       <span>
@@ -1300,6 +1309,10 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 </div>
 
 
+
+  </div>
+
+  <!-- ── May 20 2026 ────────────────────────────────── -->
 
 <!-- ═════════════════ BLOCKING & PARRY ═════════════════ -->
 <div class="sec" id="blocking">
@@ -1769,6 +1782,8 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 </div>
 
 </main>
+
+</div>
 </div>
 
 <script>
