@@ -176,6 +176,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
   </div>
   <div class="grp">
     <span class="lbl">Changelog</span>
+    <a href="#d-may21c">May 21 — Combat &amp; Style Balancing</a>
     <a href="#d-may21b">May 21 — Block, Dash &amp; Fixes</a>
     <a href="#d-may21">May 21 — Damage Overhaul</a>
     <a href="#d-may20">May 20</a>
@@ -321,7 +322,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Low HP slow hits earlier and is slightly stronger</strong><div class="detail">The movement slow from being at low health now kicks in at 40% HP (was ~35%) and is a bit more severe.</div></div>
+      <div class="check-body"><strong>Low HP slow now only triggers below 30% HP</strong><div class="detail">The movement slow from low health was incorrectly ramping in from 80% HP. It now stays inactive until below 30% HP and ramps to its full ~50% slow at 0 HP.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
   </div>
@@ -350,7 +351,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Boxing · Liver Blow — drains 18% of enemy max stamina on hit</strong><div class="detail">Landing Liver Blow now burns 18% of the opponent's stamina bar directly, regardless of the damage it deals.</div></div>
+      <div class="check-body"><strong>Boxing · Liver Blow — drains 15% of enemy max stamina + 1.5s regen pause</strong><div class="detail">Landing Liver Blow burns 15% of the opponent's stamina bar directly and pauses their stamina regeneration for 1.5 seconds.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
@@ -424,8 +425,28 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Reinhold · Rock Punch — ×1.75 damage, doubled cooldown, always-on Hyper Armor</strong><div class="detail">Reworked into a heavy top-tier finisher. Hyper Armor no longer requires 1000+ Muscle.</div></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Reinhold · Bear Hug — grab window halved, faster ragdoll recovery</strong></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Cross-Style Penalty — stamina-drain skills do half drain when used off-style</strong></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
       <span class="check-icon skip">—</span>
       <div class="check-body"><strong>Earth Shatter — no guardbreak added</strong><div class="detail">The move already breaks guard. The proposal to add guardbreak was based on outdated info — it was always there.</div></div>
+      <span class="check-tag ct-skip">Confirmed</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon skip">—</span>
+      <div class="check-body"><strong>Hammer Palm — sideways (left) knockback</strong><div class="detail">Already configured to knock the target sideways via PushAway — no change needed. Verify in-game.</div></div>
       <span class="check-tag ct-skip">Confirmed</span>
     </div>
   </div>
@@ -507,11 +528,28 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <div class="check-body"><strong>Raishin/Mika Attack Speed scaling nerfed — was giving ~39 extra damage at cap</strong></div>
       <span class="check-tag ct-done">Done</span>
     </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Max Fat now slows swing speed by up to 10%</strong><div class="detail">A clamp floor was previously swallowing the fat swing-speed penalty entirely. A dedicated penalty now applies after the clamp.</div></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Durability high-end scaling improved — 50% faster from 4k to 10k</strong><div class="detail">Effective-stat brackets in the 4k–10k range were boosted to match other stats.</div></div>
+      <span class="check-tag ct-done">Done</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon skip">—</span>
+      <div class="check-body"><strong>Muscle high-end damage scaling — no change</strong><div class="detail">The doc assumed 6k→10k Muscle gave ~60% more damage. The live formula already applies very heavy diminishing returns past 6k (~4–5% over that range), so no nerf was applied — reducing it further would over-weaken muscle builds.</div></div>
+      <span class="check-tag ct-skip">Reviewed</span>
+    </div>
   </div>
 
   <div class="sh">Section 4 — Visual &amp; QoL</div>
   <div class="checklist">
     <div class="check-item"><span class="check-icon done">✓</span><div class="check-body"><strong>Screen shake toggle — turn off M1 shake, keep skill shakes</strong></div><span class="check-tag ct-done">Done</span></div>
+    <div class="check-item"><span class="check-icon done">✓</span><div class="check-body"><strong>M1 CamShake toggle also stops the camera drifting with the punch animation</strong></div><span class="check-tag ct-done">Done</span></div>
+    <div class="check-item"><span class="check-icon done">✓</span><div class="check-body"><strong>Astro trait effects recolor to the player's aura color</strong></div><span class="check-tag ct-done">Done</span></div>
   </div>
 
 </div>
@@ -519,12 +557,177 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 <div class="sec-t">Changelog</div>
 <p class="sec-l">Dated balance changes, newest first. Click any date to expand or collapse.</p>
 <div class="sec-hr"></div>
-<div class="day-sec" id="d-may21b">
+<div class="day-sec" id="d-may21c">
   <div class="day-hdr open" title="Click to expand/collapse">
-    <span><span class="day-date">May 21, 2026</span><span class="day-count">Block, Dash &amp; Fixes</span></span>
+    <span><span class="day-date">May 21, 2026</span><span class="day-count">Combat &amp; Style Balancing</span></span>
     <span class="day-arrow">&#9660;</span>
   </div>
   <div class="day-body">
+
+<div class="sh">Reinhold — Rock Punch</div>
+<div class="ce buff">
+  <div>
+    <div class="ce-label">Reinhold · Rock Punch</div>
+    <div class="ce-title">Damage &amp; Cooldown Overhaul — A True Top-Tier Move</div>
+    <div class="ce-desc">Base power was raised by &times;1.75 and the base cooldown doubled, turning Rock Punch into a heavy, high-commitment finisher. Hyper Armor is now always granted on use &mdash; previously it only triggered with 1000+ Muscle. Guard Break was already active and is unchanged.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Base power</span><span class="do">31</span><span class="da">&rarr;</span><span class="dn">54.25</span></div>
+    <div class="diff"><span class="dk">Cooldown</span><span class="do">80s</span><span class="da">&rarr;</span><span class="dn">160s</span></div>
+    <div class="diff"><span class="dk">Hyper Armor</span><span class="do">&ge;1k Muscle</span><span class="da">&rarr;</span><span class="dn">Always</span></div>
+  </div>
+</div>
+
+<div class="sh">Reinhold — Bear Hug</div>
+<div class="ce nerf">
+  <div>
+    <div class="ce-label">Reinhold · Bear Hug</div>
+    <div class="ce-title">Tighter Grab Window, Faster Ragdoll Recovery</div>
+    <div class="ce-desc">The window to land the grab was halved, making Bear Hug harder to fish for. The ragdoll applied on the final drop was shortened so the victim recovers sooner. Bear Hug already drained 10% of the target's stamina &mdash; unchanged.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Grab window</span><span class="do">0.15s</span><span class="da">&rarr;</span><span class="dn">0.075s</span></div>
+    <div class="diff"><span class="dk">Drop ragdoll</span><span class="do">2.0s</span><span class="da">&rarr;</span><span class="dn">1.25s</span></div>
+  </div>
+</div>
+
+<div class="sh">Taekwondo</div>
+<div class="ce tune">
+  <div>
+    <div class="ce-label">Taekwondo · Style</div>
+    <div class="ce-title">Striking Speed &amp; Scaling Buff</div>
+    <div class="ce-desc">Taekwondo was underperforming on speed and damage. Its M1 striking speed was raised and its lower-body muscle scaling improved to give kick-based builds more payoff.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">M1 speed</span><span class="do">0.95</span><span class="da">&rarr;</span><span class="dn">1.10</span></div>
+    <div class="diff"><span class="dk">Lower Muscle scaling</span><span class="do">3.0</span><span class="da">&rarr;</span><span class="dn">3.5</span></div>
+  </div>
+</div>
+
+<div class="sh">Style M1 Range</div>
+<div class="ce tune">
+  <div>
+    <div class="ce-label">Style Reach</div>
+    <div class="ce-title">Per-Style M1 Range Adjusted</div>
+    <div class="ce-desc">A numeric range multiplier was added per style, applied on top of the existing range category. Longer-reach styles were extended slightly; tighter-reach styles were pulled in.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Taekwondo</span><span class="do">1.00&times;</span><span class="da">&rarr;</span><span class="dn">1.05&times;</span></div>
+    <div class="diff"><span class="dk">Raishin</span><span class="do">1.00&times;</span><span class="da">&rarr;</span><span class="dn">1.03&times;</span></div>
+    <div class="diff"><span class="dk">Karate</span><span class="do">1.00&times;</span><span class="da">&rarr;</span><span class="dn">1.02&times;</span></div>
+    <div class="diff"><span class="dk">Sumo</span><span class="do">1.00&times;</span><span class="da">&rarr;</span><span class="dn">1.02&times;</span></div>
+    <div class="diff"><span class="dk">Wrestling</span><span class="do">1.00&times;</span><span class="da">&rarr;</span><span class="dn">0.97&times;</span></div>
+    <div class="diff"><span class="dk">Muay Thai</span><span class="do">1.00&times;</span><span class="da">&rarr;</span><span class="dn">0.97&times;</span></div>
+    <div class="diff"><span class="dk">Kure</span><span class="do">1.00&times;</span><span class="da">&rarr;</span><span class="dn">0.98&times;</span></div>
+    <div class="diff"><span class="dk">Aikido</span><span class="do">1.00&times;</span><span class="da">&rarr;</span><span class="dn">0.98&times;</span></div>
+  </div>
+</div>
+
+<div class="sh">Stats &amp; Scaling</div>
+<div class="ce nerf">
+  <div>
+    <div class="ce-label">Max Fat · Swing Speed</div>
+    <div class="ce-title">Max Fat Now Slows Swing Speed</div>
+    <div class="ce-desc">High Fat was supposed to reduce swing speed, but a clamp floor was swallowing the penalty entirely &mdash; fat builds swung at the same speed as lean ones. A dedicated penalty now applies after the clamp: up to 10% slower swings at max Fat, scaling smoothly below that.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Max Fat swing</span><span class="do">No effect</span><span class="da">&rarr;</span><span class="dn">&minus;10%</span></div>
+  </div>
+</div>
+<div class="ce buff">
+  <div>
+    <div class="ce-label">Durability &rarr; Effective Stat</div>
+    <div class="ce-title">High-End Durability Scaling Improved</div>
+    <div class="ce-desc">Durability scaled poorly between 4k and 10k compared to other stats. The effective-stat brackets in that range were boosted &mdash; Durability gained from 4k&ndash;10k is now 50% higher.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">4k&ndash;6k bracket</span><span class="do">35%</span><span class="da">&rarr;</span><span class="dn">52.5%</span></div>
+    <div class="diff"><span class="dk">6k&ndash;10k bracket</span><span class="do">12%</span><span class="da">&rarr;</span><span class="dn">18%</span></div>
+  </div>
+</div>
+<div class="ce fix">
+  <div>
+    <div class="ce-label">Low-HP Slow</div>
+    <div class="ce-title">Now Only Triggers Below 30% HP</div>
+    <div class="ce-desc">The low-health movement slow was ramping in from 80% HP &mdash; far too early. It now stays inactive until you drop below 30% HP, then ramps to its full ~50% slow at 0 HP. Maximum severity is unchanged; only the threshold was corrected.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Slow starts at</span><span class="do">80% HP</span><span class="da">&rarr;</span><span class="dn">30% HP</span></div>
+    <div class="diff"><span class="dk">Full slow at</span><span class="do">40% HP</span><span class="da">&rarr;</span><span class="dn">0% HP</span></div>
+  </div>
+</div>
+
+<div class="sh">Skills</div>
+<div class="ce tune">
+  <div>
+    <div class="ce-label">Boxing · Liver Blow</div>
+    <div class="ce-title">Stamina Drain Retuned + Regen Pause Added</div>
+    <div class="ce-desc">Liver Blow&rsquo;s stamina drain was standardised to 15% of the target&rsquo;s max stamina, and it now also pauses their stamina regeneration for 1.5 seconds on hit.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Stamina drain</span><span class="do">18%</span><span class="da">&rarr;</span><span class="dn">15%</span></div>
+    <div class="diff"><span class="dk">Regen pause</span><span class="do">None</span><span class="da">&rarr;</span><span class="dn">1.5s</span></div>
+  </div>
+</div>
+<div class="ce nerf">
+  <div>
+    <div class="ce-label">Cross-Style Penalty</div>
+    <div class="ce-title">Off-Style Stamina-Drain Skills Halved</div>
+    <div class="ce-desc">Stamina-draining skills (Liver Blow, Bear Hug) now drain only half their normal amount when used while not in their native style. Matching the skill to its style gives full effect.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Off-style drain</span><span class="do">100%</span><span class="da">&rarr;</span><span class="dn">50%</span></div>
+  </div>
+</div>
+
+<div class="sh">Visual &amp; Camera</div>
+<div class="ce fix">
+  <div>
+    <div class="ce-label">Camera · M1</div>
+    <div class="ce-title">M1 CamShake Toggle Now Also Stops Camera Drift</div>
+    <div class="ce-desc">With M1 CamShake off, the camera still drifted along with the punch animation because it tracks the head bone. Head-follow is now suppressed during basic attacks while the toggle is off, so M1s leave the camera completely still. Head-follow while walking and idle is unaffected.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">M1 camera drift</span><span class="do">Always on</span><span class="da">&rarr;</span><span class="dn">Off with toggle</span></div>
+  </div>
+</div>
+<div class="ce buff">
+  <div>
+    <div class="ce-label">Astro · Trait</div>
+    <div class="ce-title">Astro Effects Match Your Aura Color</div>
+    <div class="ce-desc">Astro&rsquo;s arm auras and star-hit bursts now recolor to the player&rsquo;s aura color instead of the default purple, so the trait matches your character.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Effect color</span><span class="do">Fixed purple</span><span class="da">&rarr;</span><span class="dn">Aura color</span></div>
+  </div>
+</div>
+
+<div class="sh">Bug Fix</div>
+<div class="ce fix">
+  <div>
+    <div class="ce-label">Style_Reinhold · Data</div>
+    <div class="ce-title">Lower-Muscle Scaling Typo Corrected</div>
+    <div class="ce-desc">The Reinhold style had a data typo &mdash; its lower-muscle scaling was written 3,5 instead of 3.5, which silently set it to 3 plus a stray value. Corrected to 3.5.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Lower Muscle scaling</span><span class="do">3 (typo)</span><span class="da">&rarr;</span><span class="dn">3.5</span></div>
+  </div>
+</div>
+
+<div class="sh">Player Notes — Stat Scaling</div>
+<div class="callout info"><strong>Agility</strong> &mdash; heavy diminishing returns past 2k. Beyond 2,000, additional Agility mainly contributes to burst gain rather than raw output.</div>
+<div class="callout info"><strong>Attack Speed</strong> &mdash; significant drop-off past 5k. Investment beyond 5,000 yields very little; Raishin stays the strongest Attack-Speed style without being oppressive.</div>
+<div class="callout info"><strong>Strength</strong> &mdash; well balanced. 6k&rarr;10k Strength yields roughly a 24% damage increase.</div>
+<div class="callout info"><strong>Stamina</strong> &mdash; always useful, but effectiveness tapers off past 10k.</div>
+
+  </div>
+</div>
+<div class="day-sec" id="d-may21b">
+  <div class="day-hdr" title="Click to expand/collapse">
+    <span><span class="day-date">May 21, 2026</span><span class="day-count">Block, Dash &amp; Fixes</span></span>
+    <span class="day-arrow">&#9660;</span>
+  </div>
+  <div class="day-body collapsed">
 
 <div class="sec">
   <div class="sec-t">Blocking &amp; Dashing</div>
@@ -1147,7 +1350,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     <div>
       <div class="ce-label">Low HP Slow</div>
       <div class="ce-title">Full Slowdown Kicks In Earlier and Is Slightly Stronger</div>
-      <div class="ce-desc">The movement slow when you're at low health now reaches full strength at 40% HP instead of 35%, and the penalty itself is a bit more severe.</div>
+      <div class="ce-desc">The movement slow when you're at low health now reaches full strength at 40% HP instead of 35%, and the penalty itself is a bit more severe. <em>(Superseded May 21 — the slow now only triggers below 30% HP.)</em></div>
     </div>
     <div class="diffs">
       <div class="diff"><span class="dk">Full penalty at</span><span class="do">35% HP</span><span class="da">→</span><span class="dn">40% HP</span></div>
@@ -1262,7 +1465,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     <div>
       <div class="ce-label">All Skills — Miss Endlag</div>
       <div class="ce-title">Can't Block for 1 Second After Missing Any Skill</div>
-      <div class="ce-desc">The punish window already existed but blocking wasn't prevented during it. Block now checks for the miss endlag cooldown and returns immediately if it's active. Default miss endlag also raised so the window is long enough to punish.</div>
+      <div class="ce-desc">The punish window already existed but blocking wasn't prevented during it. Block now checks for the miss endlag cooldown and returns immediately if it's active. Default miss endlag also raised so the window is long enough to punish. <em>(Later retuned May 21 — miss endlag set to 0.3s.)</em></div>
     </div>
     <div class="diffs">
       <div class="diff"><span class="dk">Miss endlag</span><span class="do">0.4s</span><span class="da">→</span><span class="dn">1.0s</span></div>
@@ -1449,6 +1652,7 @@ Skill     =  base power   &times;  stat multiplier</pre>
 <tr><td>5,000+</td><td class="r">1%</td></tr>
 </tbody>
 </table>
+<p class="note">Past 2,000 Agility, additional points contribute almost entirely to burst gain rather than raw output.</p>
 <div class="sh">Attack Speed</div>
 <table>
 <thead><tr><th>Stat range</th><th class="r">Value per point</th></tr></thead>
@@ -1460,18 +1664,21 @@ Skill     =  base power   &times;  stat multiplier</pre>
 <tr><td>5,000+</td><td class="r">1%</td></tr>
 </tbody>
 </table>
+<p class="note">Attack Speed drops off sharply past 5,000 — investment beyond that point yields very little.</p>
 <div class="sh">Durability</div>
 <table>
 <thead><tr><th>Stat range</th><th class="r">Value per point</th></tr></thead>
 <tbody>
 <tr><td>0 – 1,000</td><td class="r">100%</td></tr>
 <tr><td>1,000 – 3,000</td><td class="r">55%</td></tr>
-<tr><td>3,000 – 6,000</td><td class="r">35%</td></tr>
-<tr><td>6,000 – 10,000</td><td class="r">12%</td></tr>
+<tr><td>3,000 – 4,000</td><td class="r">35%</td></tr>
+<tr><td>4,000 – 6,000</td><td class="r">52.5%</td></tr>
+<tr><td>6,000 – 10,000</td><td class="r">18%</td></tr>
 <tr><td>10,000 – 25,000</td><td class="r">4%</td></tr>
 <tr><td>25,000+</td><td class="r">0.8%</td></tr>
 </tbody>
 </table>
+<p class="note">The 4k–10k range was boosted on May 21 so Durability scales ~50% faster through that band.</p>
 </div>
 
 <div class="sec" id="ref-defense">
@@ -1531,6 +1738,7 @@ Skill     =  base power   &times;  stat multiplier</pre>
     <li><strong>Landing a hit refunds 30%</strong> of the stamina cost. Missing pays full.</li>
     <li><strong>Full Rhythm bar</strong> takes another 30% off all combat stamina costs.</li>
     <li><strong>Skills</strong> pay 70% up front. Land it and you are done; miss and the remaining 30% drains a few seconds later.</li>
+    <li><strong>Liver Blow</strong> drains 15% of the target's max stamina and pauses their regen for 1.5s. <strong>Bear Hug</strong> drains 10%. Both effects are halved if the skill is used off its native style.</li>
   </ul>
 </div>
 
@@ -1555,14 +1763,15 @@ Skill     =  base power   &times;  stat multiplier</pre>
     <li><strong>0 Muscle</strong> &mdash; &minus;28% sprint speed and &minus;35% damage. Both penalties fade to zero by 70 Muscle.</li>
     <li><strong>High Muscle (800&ndash;7,000)</strong> &mdash; up to &minus;14% sprint speed.</li>
     <li><strong>Fat without Muscle</strong> &mdash; extra sprint penalty on top of the base fat slow.</li>
+    <li><strong>Max Fat</strong> &mdash; up to &minus;10% swing speed, scaling with how close to the Fat cap you are.</li>
   </ul>
 
   <div class="sh">Low HP slow</div>
   <table>
     <thead><tr><th>HP remaining</th><th>Speed</th></tr></thead>
     <tbody>
-      <tr><td>80%+</td><td>No penalty</td></tr>
-      <tr><td>40% or below</td><td>Full penalty (~51% slower)</td></tr>
+      <tr><td>Above 30%</td><td>No penalty</td></tr>
+      <tr><td>30% &rarr; 0%</td><td>Ramps to full penalty (~50% slower at 0 HP)</td></tr>
     </tbody>
   </table>
 
@@ -1716,37 +1925,38 @@ Skill     =  base power   &times;  stat multiplier</pre>
 
 <div class="sec" id="ref-styles">
   <div class="sec-t">Style Scaling</div>
-  <p class="sec-l">Base M1/M2 damage and per-stat scaling weights for every style. Muscle scaling is the average of the Upper and Lower columns.</p>
+  <p class="sec-l">Base M1/M2 damage and per-stat scaling weights for every style. Muscle scaling is the average of the Upper and Lower columns. The Range column is the M1 reach multiplier.</p>
   <div class="sec-hr"></div>
 <table>
-<thead><tr><th>Style</th><th class="r">Base M1</th><th class="r">Base M2</th><th class="r">STR</th><th class="r">Upper Mus</th><th class="r">Lower Mus</th><th class="r">Fat</th></tr></thead>
+<thead><tr><th>Style</th><th class="r">Base M1</th><th class="r">Base M2</th><th class="r">STR</th><th class="r">Upper Mus</th><th class="r">Lower Mus</th><th class="r">Fat</th><th class="r">Range</th></tr></thead>
 <tbody>
-<tr><td>Aikido</td><td class="r">15</td><td class="r">16</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Basic</td><td class="r">5</td><td class="r">8.5</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Boxing (Long Guard)</td><td class="r">13</td><td class="r">15</td><td class="r">0.75</td><td class="r">2.7</td><td class="r">2.5</td><td class="r">0.1</td></tr>
-<tr><td>Cat</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Demon Fist</td><td class="r">14.5</td><td class="r">15.5</td><td class="r">0.67</td><td class="r">5</td><td class="r">5</td><td class="r">0.1</td></tr>
-<tr><td>Grand War Axe</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Karate</td><td class="r">13.25</td><td class="r">14</td><td class="r">0.75</td><td class="r">2.2</td><td class="r">2.2</td><td class="r">0.1</td></tr>
-<tr><td>Kazu</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Kujin</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Kung Fu</td><td class="r">5.3</td><td class="r">8.5</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Kure</td><td class="r">14</td><td class="r">18</td><td class="r">0.725</td><td class="r">2.5</td><td class="r">2.5</td><td class="r">0.1</td></tr>
-<tr><td>Muay Thai</td><td class="r">14</td><td class="r">15</td><td class="r">0.75</td><td class="r">2.5</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Niko</td><td class="r">13.5</td><td class="r">17</td><td class="r">0.75</td><td class="r">2.2</td><td class="r">2.2</td><td class="r">0.1</td></tr>
-<tr><td>Raishin</td><td class="r">13</td><td class="r">14</td><td class="r">0.7</td><td class="r">1.2</td><td class="r">1.3</td><td class="r">0.1</td></tr>
-<tr><td>Reinhold</td><td class="r">24</td><td class="r">25.5</td><td class="r">0.2</td><td class="r">6.5</td><td class="r">6.5</td><td class="r">0.1</td></tr>
-<tr><td>Sky</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Sumo</td><td class="r">22.5</td><td class="r">23.5</td><td class="r">0.1</td><td class="r">2</td><td class="r">2</td><td class="r">1.1</td></tr>
-<tr><td>Taekwondo</td><td class="r">14</td><td class="r">15</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>The Middle</td><td class="r">16</td><td class="r">17</td><td class="r">0.8</td><td class="r">3.5</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>War Axe</td><td class="r">15</td><td class="r">19</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Wrestling</td><td class="r">22.5</td><td class="r">23.5</td><td class="r">0.2</td><td class="r">6.5</td><td class="r">5.8</td><td class="r">0.1</td></tr>
-<tr><td>Ya</td><td class="r">17.75</td><td class="r">18.5</td><td class="r">0.675</td><td class="r">2.7</td><td class="r">2.7</td><td class="r">0.1</td></tr>
-<tr><td>Yuzuki-no-Mai</td><td class="r">5</td><td class="r">8.5</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td></tr>
-<tr><td>Zhin</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Aikido</td><td class="r">15</td><td class="r">16</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td><td class="r">0.98&times;</td></tr>
+<tr><td>Basic</td><td class="r">5</td><td class="r">8.5</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Boxing (Long Guard)</td><td class="r">13</td><td class="r">15</td><td class="r">0.75</td><td class="r">2.7</td><td class="r">2.5</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Cat</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Demon Fist</td><td class="r">14.5</td><td class="r">15.5</td><td class="r">0.67</td><td class="r">3.25</td><td class="r">3.25</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Grand War Axe</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Karate</td><td class="r">13.25</td><td class="r">14</td><td class="r">0.75</td><td class="r">2.2</td><td class="r">2.2</td><td class="r">0.1</td><td class="r">1.02&times;</td></tr>
+<tr><td>Kazu</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Kujin</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Kung Fu</td><td class="r">5.3</td><td class="r">8.5</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Kure</td><td class="r">14</td><td class="r">18</td><td class="r">0.725</td><td class="r">2.5</td><td class="r">2.5</td><td class="r">0.1</td><td class="r">0.98&times;</td></tr>
+<tr><td>Muay Thai</td><td class="r">14</td><td class="r">15</td><td class="r">0.75</td><td class="r">2.5</td><td class="r">3</td><td class="r">0.1</td><td class="r">0.97&times;</td></tr>
+<tr><td>Niko</td><td class="r">13.5</td><td class="r">17</td><td class="r">0.75</td><td class="r">2.2</td><td class="r">2.2</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Raishin</td><td class="r">13</td><td class="r">14</td><td class="r">0.7</td><td class="r">1.2</td><td class="r">1.3</td><td class="r">0.1</td><td class="r">1.03&times;</td></tr>
+<tr><td>Reinhold</td><td class="r">24</td><td class="r">25.5</td><td class="r">0.2</td><td class="r">3.5</td><td class="r">3.5</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Sky</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Sumo</td><td class="r">22.5</td><td class="r">23.5</td><td class="r">0.1</td><td class="r">2</td><td class="r">2</td><td class="r">1.1</td><td class="r">1.02&times;</td></tr>
+<tr><td>Taekwondo</td><td class="r">14</td><td class="r">15</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.5</td><td class="r">0.1</td><td class="r">1.05&times;</td></tr>
+<tr><td>The Middle</td><td class="r">16</td><td class="r">17</td><td class="r">0.8</td><td class="r">3.5</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>War Axe</td><td class="r">15</td><td class="r">19</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Wrestling</td><td class="r">22.5</td><td class="r">23.5</td><td class="r">0.2</td><td class="r">3.1</td><td class="r">3.1</td><td class="r">0.1</td><td class="r">0.97&times;</td></tr>
+<tr><td>Ya</td><td class="r">17.75</td><td class="r">18.5</td><td class="r">0.675</td><td class="r">2.7</td><td class="r">2.7</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Yuzuki-no-Mai</td><td class="r">5</td><td class="r">8.5</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+<tr><td>Zhin</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
 </tbody>
 </table>
+<p class="note">Range column reflects the per-style M1 reach multiplier added May 21. Styles not adjusted sit at 1.00&times;.</p>
 </div>
 
 <div class="sec" id="ref-skills">
@@ -1758,29 +1968,29 @@ Skill     =  base power   &times;  stat multiplier</pre>
 <tbody>
 <tr><td>A Just Vengeance</td><td class="r">18</td><td class="r">2.5</td><td class="r">1.5</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Avidya</td><td class="r">13</td><td class="r">2</td><td class="r">0.5</td><td class="r">0.5</td><td class="r">0</td></tr>
-<tr><td>Bear Hug</td><td class="r">22</td><td class="r">0.3</td><td class="r">5</td><td class="r">5</td><td class="r">0</td></tr>
+<tr><td>Bear Hug</td><td class="r">22</td><td class="r">0.3</td><td class="r">4</td><td class="r">4</td><td class="r">0</td></tr>
 <tr><td>Binding Hold</td><td class="r">15</td><td class="r">2.5</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Blazing Dragon</td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Body Drop</td><td class="r">27</td><td class="r">0.2</td><td class="r">0</td><td class="r">0</td><td class="r">6</td></tr>
-<tr><td>Brute Throw</td><td class="r">22</td><td class="r">0.5</td><td class="r">6.5</td><td class="r">6</td><td class="r">0</td></tr>
+<tr><td>Brute Throw</td><td class="r">22</td><td class="r">0.5</td><td class="r">5.5</td><td class="r">5</td><td class="r">0</td></tr>
 <tr><td>Bulldoze</td><td class="r">26</td><td class="r">0.5</td><td class="r">1.5</td><td class="r">1.5</td><td class="r">5.5</td></tr>
 <tr><td>Cascade</td><td class="r">9.5</td><td class="r">0.45</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-<tr><td>ChokeSlam</td><td class="r">29.5</td><td class="r">0.5</td><td class="r">6.5</td><td class="r">6</td><td class="r">0</td></tr>
+<tr><td>ChokeSlam</td><td class="r">29.5</td><td class="r">0.5</td><td class="r">4.5</td><td class="r">5</td><td class="r">0</td></tr>
 <tr><td>Cleaving Fang</td><td class="r">16</td><td class="r">2</td><td class="r">0</td><td class="r">0.5</td><td class="r">0</td></tr>
 <tr><td>Counter Cut</td><td class="r">16</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
-<tr><td>Cranium Break</td><td class="r">30</td><td class="r">0.5</td><td class="r">6</td><td class="r">6</td><td class="r">0</td></tr>
+<tr><td>Cranium Break</td><td class="r">30</td><td class="r">0.5</td><td class="r">5</td><td class="r">6</td><td class="r">0</td></tr>
 <tr><td>Crushing Throw</td><td class="r">30</td><td class="r">0.5</td><td class="r">2</td><td class="r">2</td><td class="r">6</td></tr>
 <tr><td>Devil Lance</td><td class="r">12</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Dream Walking</td><td class="r">15</td><td class="r">2.5</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-<tr><td>Ear Clap</td><td class="r">13</td><td class="r">1.3</td><td class="r">5</td><td class="r">0.1</td><td class="r">0</td></tr>
+<tr><td>Ear Clap</td><td class="r">13</td><td class="r">1.3</td><td class="r">4</td><td class="r">0.1</td><td class="r">0</td></tr>
 <tr><td>Earth Shatter</td><td class="r">14</td><td class="r">2.2</td><td class="r">5</td><td class="r">0</td><td class="r">0</td></tr>
-<tr><td>ElbowDrop</td><td class="r">24</td><td class="r">0.3</td><td class="r">5</td><td class="r">5</td><td class="r">0</td></tr>
+<tr><td>ElbowDrop</td><td class="r">24</td><td class="r">0.3</td><td class="r">4</td><td class="r">4</td><td class="r">0</td></tr>
 <tr><td>Elbow Cut</td><td class="r">16</td><td class="r">2.8</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
 <tr><td>Feinting Elbow</td><td class="r">15.2</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Flash Fire</td><td class="r">15</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Flicker Jab</td><td class="r">12</td><td class="r">1.1</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Gazelle Punch</td><td class="r">15</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
-<tr><td>Hammer Palm</td><td class="r">19.5</td><td class="r">0.5</td><td class="r">5.5</td><td class="r">3.5</td><td class="r">0</td></tr>
+<tr><td>Hammer Palm</td><td class="r">19.5</td><td class="r">0.5</td><td class="r">4</td><td class="r">3.5</td><td class="r">0</td></tr>
 <tr><td>Hardpoint</td><td class="r">15</td><td class="r">2.3</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Head Slam</td><td class="r">15</td><td class="r">2</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Hyakuretsukyaku</td><td class="r">18.2</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
@@ -1796,27 +2006,28 @@ Skill     =  base power   &times;  stat multiplier</pre>
 <tr><td>OneTwo</td><td class="r">0</td><td class="r">1</td><td class="r">0.9</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Palm Barrage</td><td class="r">25</td><td class="r">0.5</td><td class="r">1.5</td><td class="r">0</td><td class="r">5</td></tr>
 <tr><td>Payback</td><td class="r">13.5</td><td class="r">2</td><td class="r">1.5</td><td class="r">0</td><td class="r">0</td></tr>
-<tr><td>Predictive Strikes</td><td class="r">25</td><td class="r">0.5</td><td class="r">5</td><td class="r">6</td><td class="r">0</td></tr>
+<tr><td>Predictive Strikes</td><td class="r">25</td><td class="r">0.5</td><td class="r">4</td><td class="r">5</td><td class="r">0</td></tr>
 <tr><td>Promised Suffering</td><td class="r">22</td><td class="r">2.5</td><td class="r">0</td><td class="r">1.5</td><td class="r">0</td></tr>
 <tr><td>Pure Taekwondo</td><td class="r">0</td><td class="r">1</td><td class="r">0</td><td class="r">0.9</td><td class="r">0</td></tr>
 <tr><td>Questionmark Kick</td><td class="r">12</td><td class="r">1.5</td><td class="r">0</td><td class="r">0.3</td><td class="r">0</td></tr>
 <tr><td>Ravage</td><td class="r">16</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Right Koken</td><td class="r">15</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
-<tr><td>Rock Punch</td><td class="r">31</td><td class="r">0.5</td><td class="r">5.5</td><td class="r">3.5</td><td class="r">0</td></tr>
+<tr><td>Rock Punch</td><td class="r">54.25</td><td class="r">0.5</td><td class="r">4</td><td class="r">3.5</td><td class="r">0</td></tr>
 <tr><td>Roundhouse Kick</td><td class="r">12</td><td class="r">1.7</td><td class="r">0</td><td class="r">0.5</td><td class="r">0</td></tr>
 <tr><td>Shoryuken</td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Six Seiken</td><td class="r">15</td><td class="r">1</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Spinning Elbow</td><td class="r">15</td><td class="r">2.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>StarDrop</td><td class="r">15</td><td class="r">2.5</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Steel Blast</td><td class="r">15</td><td class="r">3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-<tr><td>Suplex</td><td class="r">30</td><td class="r">0.5</td><td class="r">7</td><td class="r">5.5</td><td class="r">0</td></tr>
+<tr><td>Suplex</td><td class="r">30</td><td class="r">0.5</td><td class="r">5.5</td><td class="r">4.5</td><td class="r">0</td></tr>
 <tr><td>Thunderclap</td><td class="r">17.2</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Triple Kick</td><td class="r">15</td><td class="r">2.2</td><td class="r">0</td><td class="r">0.35</td><td class="r">0</td></tr>
-<tr><td>Whirl Slam</td><td class="r">29.5</td><td class="r">0.5</td><td class="r">5.5</td><td class="r">6</td><td class="r">0</td></tr>
+<tr><td>Whirl Slam</td><td class="r">29.5</td><td class="r">0.5</td><td class="r">4.5</td><td class="r">5</td><td class="r">0</td></tr>
 <tr><td>WhirlwindSpin</td><td class="r">15</td><td class="r">2</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Write em all down</td><td class="r">18</td><td class="r">2.5</td><td class="r">2</td><td class="r">0</td><td class="r">0</td></tr>
 </tbody>
 </table>
+<p class="note">Skill scaling values cross-checked against CombatCalcsData. Rock Punch power reflects the May 21 &times;1.75 buff.</p>
 </div>
 
 <div class="sec" id="ref-rules">
