@@ -1852,6 +1852,40 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 
 </div>
 
+<!-- ═══════════════════════════════════════ SESSION 3 ═══ -->
+<div class="day-hdr open" id="session3">Session 3 — Bug Fixes &amp; Skill Scaling</div>
+<div class="day-body">
+
+<div class="sec">
+  <div class="sec-t">Bug Fixes</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>Fix</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Steel_Blast — syntax error / no damage</strong></td><td>DealDamage call was garbled from a prior edit. Rewrote entire Behaviour block: <code>Blockbreak=false</code>, <code>CancelActionWeight=1</code>, proper <code>Knockback=function(T) SuperKnockback({...}) end</code>, <code>OnSuccessHit</code>, <code>IgnoreParry=false</code>, <code>AttackState="Skill"</code>.</td></tr>
+      <tr><td><strong>PB cooldown (client-side)</strong></td><td>Fixed by developer directly.</td></tr>
+      <tr><td><strong>Wall hit procs at foot/floor level</strong></td><td>Knockback handler used <code>HitWall.Position.Y + offset</code> for the stick CFrame Y coordinate, placing the character at geometry level. Changed to <code>Root.Position.Y</code> so character sticks at torso height.</td></tr>
+      <tr><td><strong>Wall hit procs on small ledges</strong></td><td>WallCheck detected any surface including ledge tops (Normal.Y &approx; 1). Added <code>math.abs(wall.Normal.Y) &lt; 0.55</code> guard — only near-horizontal normals (actual walls) trigger the wall-hit effect.</td></tr>
+      <tr><td><strong>Whirl_Slam / GrabSkill no-damage</strong></td><td>VarManager DealDamage now auto-sets <code>IgnoreBan=true</code> when AttackState == GrabSkill, allowing hits through the attacker-IFrame check during grab sequences.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Skill &amp; M2 Damage Calculations</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>Change</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>DamageScaling — now uses CombatCalculation</strong></td><td>Previously used a hardcoded formula with a 3-tier strength cap. Replaced with <code>CombatCalculation.SkillStatMultiplier(scaling, stats)</code> — uses <code>EffectiveStat</code> brackets with proper diminishing returns, matching the same system used by M1/M2. All skills calling <code>self:DamageScaling(NAME)</code> automatically get the corrected calculation.</td></tr>
+      <tr><td><strong>M2 damage pipeline (confirmed)</strong></td><td>M2 (Critical) already used <code>ComputeM2Damage → StrikeStatMultiplier → EffectiveStat</code>. Working correctly.</td></tr>
+      <tr><td><strong>Skill power source</strong></td><td>Base Power values read from <code>CombatCalcsData.Skills[name].SkillData.Power</code>. Stat multiplier from <code>DamageScaling</code> (now <code>SkillStatMultiplier</code>). Skill-specific stat scalings from <code>CombatCalcsData.SkillScaling</code> (e.g. Steel_Blast StrengthScaling = 3).</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+
 </main>
 
 </div>
