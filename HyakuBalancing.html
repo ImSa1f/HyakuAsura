@@ -176,6 +176,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
   </div>
   <div class="grp">
     <span class="lbl">Changelog</span>
+    <a href="#d-may21b">May 21 — Block, Dash &amp; Fixes</a>
     <a href="#d-may21">May 21 — Damage Overhaul</a>
     <a href="#d-may20">May 20</a>
     <a href="#d-may19">May 19 — Defense Rework</a>
@@ -242,11 +243,6 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <span class="check-icon done">✓</span>
       <div class="check-body"><strong>Fix the Damage Calculation Dummy</strong><div class="detail">The dummy showed inflated damage because it had no defensive stats. It now matches a real player’s defense, and its stats can be configured for testing.</div></div>
       <span class="check-tag ct-done">Done</span>
-    </div>
-    <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Perfect Block skill glitch fix</strong><div class="detail">A specific skill has a broken interaction when it's being parried. The exact skill hasn't been confirmed yet — needs a clip or more info to identify.</div></div>
-      <span class="check-tag ct-pend">Pending</span>
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
@@ -320,7 +316,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Can't block for 1 second after missing a skill</strong><div class="detail">Block checks miss endlag cooldown and returns early. Default miss endlag raised 0.4s → 1.0s.</div></div>
+      <div class="check-body"><strong>Can't block briefly after missing a skill</strong><div class="detail">Block checks the miss endlag cooldown and returns early. Default miss endlag is 0.3s.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
@@ -400,22 +396,22 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     <div class="check-item">
       <span class="check-icon done">✓</span>
       <div class="check-body"><strong>Cleaving Fangs — knockback distance reduced (KnockbackZ 70→35, KnockbackY 40→20)</strong><div class="detail">Keep the "flying away" feel, just reduce how far the player travels.</div></div>
-      <span class="check-tag ct-pend">Pending</span>
+      <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
       <div class="check-body"><strong>Elbow Cut — base power 13→16, knockback height 18→28</strong></div>
-      <span class="check-tag ct-pend">Pending</span>
+      <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
       <div class="check-body"><strong>Triple Kick — final knockback 64→80</strong></div>
-      <span class="check-tag ct-pend">Pending</span>
+      <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
       <div class="check-body"><strong>Feinting Elbow — knockback 70→88</strong></div>
-      <span class="check-tag ct-pend">Pending</span>
+      <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
@@ -423,13 +419,8 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Astro Trait — match color to player eye or aura color</strong></div>
-      <span class="check-tag ct-vis">Visual</span>
-    </div>
-    <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Foretell Trait — 3→2 dodges, 30→48s cooldown, cooldown resets on final dodge</strong></div>
+      <div class="check-body"><strong>Foretell Trait — 3→2 dodges, 30→48s cooldown, 96s cooldown once both dodges are spent</strong></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
@@ -487,14 +478,9 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <span class="check-tag ct-skip">N/A</span>
     </div>
     <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Character leg scaling bug at high muscle</strong><div class="detail">Legs don't match up with the body visually at very high muscle stats. Animation/model issue.</div></div>
-      <span class="check-tag ct-pend">Pending</span>
-    </div>
-    <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Muscle grinding animation sometimes doesn't trigger</strong><div class="detail">When grinding Upper/Lower Muscle the full animation sequence occasionally fails to play properly.</div></div>
-      <span class="check-tag ct-pend">Pending</span>
+      <span class="check-icon done">✓</span>
+      <div class="check-body"><strong>Muscle grinding animation sometimes doesn't trigger</strong><div class="detail">Fixed — the full grinding animation sequence now plays reliably every time.</div></div>
+      <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
@@ -517,34 +503,15 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Boxing Gloves equippable at Punching Bags — +10–25% Strength gains</strong><div class="detail">New item not yet implemented.</div></div>
-      <span class="check-tag ct-pend">Pending</span>
-    </div>
-    <div class="check-item">
       <span class="check-icon done">✓</span>
       <div class="check-body"><strong>Raishin/Mika Attack Speed scaling nerfed — was giving ~39 extra damage at cap</strong></div>
       <span class="check-tag ct-done">Done</span>
-    </div>
-    <div class="check-item">
-      <span class="check-icon pend">○</span>
-      <div class="check-body"><strong>Fat Lean Sumo should not out-damage or out-speed a full 6k Muscle Wrestling build</strong><div class="detail">Build hierarchy balance check — needs investigation of current output numbers.</div></div>
-      <span class="check-tag ct-pend">Pending</span>
     </div>
   </div>
 
   <div class="sh">Section 4 — Visual &amp; QoL</div>
   <div class="checklist">
-    <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Muay Thai full animation revamp</strong></div><span class="check-tag ct-vis">Visual</span></div>
-    <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Demon Fist M1 animation revamp</strong></div><span class="check-tag ct-vis">Visual</span></div>
-    <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Screen shake toggle — turn off M1 shake, keep skill shakes</strong></div><span class="check-tag ct-vis">Visual</span></div>
-    <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Low texture mode for lower-end devices</strong></div><span class="check-tag ct-vis">Visual</span></div>
-    <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Leaderboard — show player organizations, bigger gamemode notifications</strong></div><span class="check-tag ct-vis">Visual</span></div>
-    <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Announce gamemode winner in global chat, auto-ban runners 2–3 days</strong></div><span class="check-tag ct-vis">Visual</span></div>
-    <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Bleeding effect at low health, smaller skill bleed indicators</strong></div><span class="check-tag ct-vis">Visual</span></div>
-    <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Quieter rain walking/running sounds and harsh ambient audio</strong></div><span class="check-tag ct-vis">Visual</span></div>
-    <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Wall collision on all solid map structures (except bushes)</strong></div><span class="check-tag ct-vis">Visual</span></div>
-    <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Map barriers + reduced jump height while in combat</strong></div><span class="check-tag ct-vis">Visual</span></div>
+    <div class="check-item"><span class="check-icon done">✓</span><div class="check-body"><strong>Screen shake toggle — turn off M1 shake, keep skill shakes</strong></div><span class="check-tag ct-done">Done</span></div>
   </div>
 
 </div>
@@ -552,12 +519,51 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 <div class="sec-t">Changelog</div>
 <p class="sec-l">Dated balance changes, newest first. Click any date to expand or collapse.</p>
 <div class="sec-hr"></div>
-<div class="day-sec" id="d-may21">
+<div class="day-sec" id="d-may21b">
   <div class="day-hdr open" title="Click to expand/collapse">
-    <span><span class="day-date">May 21, 2026</span><span class="day-count">Damage Overhaul</span></span>
+    <span><span class="day-date">May 21, 2026</span><span class="day-count">Block, Dash &amp; Fixes</span></span>
     <span class="day-arrow">&#9660;</span>
   </div>
   <div class="day-body">
+
+<div class="sec">
+  <div class="sec-t">Blocking &amp; Dashing</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>Change</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Dash while blocking</strong></td><td>You can now hold block and dash. Blocking no longer locks you out of dashing.</td></tr>
+      <tr><td><strong>No blocking mid-dash</strong></td><td>You can&rsquo;t start a block during the dash animation itself. Block before or after a dash &mdash; just not in the middle of one.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Options</div>
+  <div class="sec-hr"></div>
+  <div class="callout good"><strong>New setting &mdash; M1 CamShake.</strong> The camera shake from landing basic attacks can now be switched off on its own, under Settings &rarr; Graphics. The main CamShake slider still controls every other shake.</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Bug Fixes</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>Fix</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hadouken &amp; Steel Blast &mdash; broken</strong></td><td>Both skills had a duplicate copy of their code left sitting after the module&rsquo;s end, which caused a load error and disabled the skills entirely. The leftover duplicate was removed &mdash; both skills load and function again.</td></tr>
+      <tr><td><strong>Miss endlag 1.0s &rarr; 0.3s</strong></td><td>The recovery window after whiffing a skill &mdash; during which you cannot block &mdash; was shortened from 1 second to 0.3 seconds.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+  </div>
+</div>
+<div class="day-sec" id="d-may21">
+  <div class="day-hdr" title="Click to expand/collapse">
+    <span><span class="day-date">May 21, 2026</span><span class="day-count">Damage Overhaul</span></span>
+    <span class="day-arrow">&#9660;</span>
+  </div>
+  <div class="day-body collapsed">
 <div class="sh">Skill Damage — Buffed</div>
 <div class="ce buff">
   <div>
@@ -865,7 +871,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     <div>
       <div class="ce-label">Foretell Trait · Dodge Count &amp; Cooldown</div>
       <div class="ce-title">One Fewer Dodge, Significantly Longer Cooldown</div>
-      <div class="ce-desc">Foretell was activating too often. Dodge count reduced from 3 to 2. Cooldown increased from 30 to 48 seconds. Additionally the cooldown now resets from the moment the final dodge is consumed — previously it started at the moment of the parry, meaning players could immediately fish for another activation after burning all dodges. Now there is a full 48-second window from last dodge use before the trait can reactivate.</div>
+      <div class="ce-desc">Foretell was activating too often. Dodge count reduced from 3 to 2. Cooldown increased from 30 to 48 seconds. Additionally the cooldown now resets from the moment the final dodge is consumed — previously it started at the moment of the parry, meaning players could immediately fish for another activation after burning all dodges. Now there is a full 96-second window from last dodge use before the trait can reactivate.</div>
     </div>
     <div class="diffs">
       <div class="diff"><span class="dk">Dodges granted</span><span class="do">3</span><span class="da">→</span><span class="dn">2</span></div>
@@ -1769,7 +1775,7 @@ Skill     =  base power   &times;  stat multiplier</pre>
 <tr><td>Ear Clap</td><td class="r">13</td><td class="r">1.3</td><td class="r">5</td><td class="r">0.1</td><td class="r">0</td></tr>
 <tr><td>Earth Shatter</td><td class="r">14</td><td class="r">2.2</td><td class="r">5</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>ElbowDrop</td><td class="r">24</td><td class="r">0.3</td><td class="r">5</td><td class="r">5</td><td class="r">0</td></tr>
-<tr><td>Elbow Cut</td><td class="r">13</td><td class="r">2.8</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
+<tr><td>Elbow Cut</td><td class="r">16</td><td class="r">2.8</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
 <tr><td>Feinting Elbow</td><td class="r">15.2</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Flash Fire</td><td class="r">15</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
 <tr><td>Flicker Jab</td><td class="r">12</td><td class="r">1.1</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
@@ -1857,9 +1863,10 @@ Skill     =  base power   &times;  stat multiplier</pre>
     </tbody>
   </table>
   <ul class="lg">
-    <li><strong>Can&rsquo;t block for 1s after whiffing a skill.</strong></li>
-    <li><strong>A successful Perfect Block has no cooldown</strong> — a mistimed one gets the full 4s block cooldown.</li>
-    <li><strong>Can&rsquo;t block and dash at the same time.</strong></li>
+    <li><strong>Can&rsquo;t block for 0.3s after whiffing a skill.</strong></li>
+    <li><strong>Perfect Block is automatic</strong> — starting a block opens a brief parry window. Time your block just before a hit lands and it becomes a Perfect Block. No key combo needed.</li>
+    <li><strong>2s cooldown on the Perfect Block window</strong> — re-tapping block won&rsquo;t refresh the window instantly. Normal blocking is never gated by this.</li>
+    <li><strong>You can dash while blocking</strong> — but you can&rsquo;t start a block mid-dash (during the dash animation).</li>
   </ul>
 
   <div class="sh">Burst bar</div>
