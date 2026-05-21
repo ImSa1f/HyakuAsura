@@ -1781,6 +1781,77 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
   <div class="callout good"><strong>Earth Shatter</strong> — Guardbreak was always active. No change was made.</div>
 </div>
 
+
+<!-- ═══════════════════ MAY 21 ═══════════════════ -->
+<div class="day-hdr open" title="Click to expand/collapse">
+  <span class="day-arrow">&#9660;</span>
+  <span class="day-date">May 21, 2026</span>
+</div>
+<div class="day-body">
+
+<div class="sec">
+  <div class="sec-t">Foretell (Trait)</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>Change</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>New trigger: M1 landing</strong></td><td>Foretell now activates on successful M1 hits as well as Perfect Block. Both grant 2 dodges + 48s cooldown.</td></tr>
+      <tr><td><strong>Post-dodge cooldown 48s &#8594; 96s</strong></td><td>After all dodges are spent the timer is destroyed and restarted fresh at <ins>96s</ins> instead of additively adding 48s to a running timer.</td></tr>
+      <tr><td><strong>Bug fix</strong></td><td>Removed stale <code>OnDodge ~= &#34;Foretell&#34;</code> guard that could block activation entirely.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Astro (Trait)</div>
+  <div class="sec-hr"></div>
+  <div class="callout good"><strong>Star procs exempt from hit-count decay</strong> &mdash; Astro damage ticks use <code>IgnoreHitCountDecay=true</code>. They no longer consume the attacker&#39;s 9-hit decay budget.</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Skills</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>Skill</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Steel Blast</strong></td>
+        <td><del>Blockbreak</del> removed. Now purely <ins>Stun + Knockback</ins>. AttackState <del>GBSkill</del> &#8594; <ins>Skill</ins>. Knockback callback previously suppressed by <code>Breaklock=true</code> when Blockbreak fired &#8212; now fires correctly on non-blocking targets.</td>
+      </tr>
+      <tr>
+        <td><strong>Cleaving Fang</strong></td>
+        <td><strong>Last-hit knockback fixed.</strong> Root cause: Motor6D weld was still active when velocity was applied, constraining the target to the attacker&#39;s anchored root. Fix: weld destroyed first, velocity applied directly to <code>TargetRoot.AssemblyLinearVelocity</code> while attacker still holds network ownership, then <code>CancelGrabber</code> runs.</td>
+      </tr>
+      <tr>
+        <td><strong>Lightning Flash</strong></td>
+        <td><strong>Backward-dash fixed.</strong> Capture <code>ActivationCF = Root.CFrame</code> at cast time; Dash keyframe uses that instead of live <code>Root.CFrame</code>. Holding backward during the windup no longer reverses the dash direction.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Consumables</div>
+  <div class="sec-hr"></div>
+  <div class="callout good"><strong>Eating / Drinking animation speed</strong> &mdash; <code>SpeedScaleWithStats=false</code> added to both LoadAnim calls. Muscle stat no longer slows eat/drink animations.</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Combat Systems</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>System</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td><strong>PB Cooldown &#8212; dungeon detection</strong></td><td>Detection now reads <code>workspace.IsPrivate.IsDungeon.Value</code>. Normal server: hit&#8594;2s, miss&#8594;8s. Dungeon / boss: hit&#8594;instant reset, miss&#8594;5s.</td></tr>
+      <tr><td><strong>Animation track crash on training exit</strong></td><td><code>PlayingATracks[id].StopListener</code> nil-index fixed. StopListener only assigned when entry exists; <code>Destroy()</code> cancels any pending coroutine before clearing the entry.</td></tr>
+      <tr><td><strong>Low-HP slow &#8212; clears on heal</strong></td><td>HP multiplier now also divides the non-sprint walk speed so the slow is cleared the same frame health rises above the threshold, not only when sprinting.</td></tr>
+      <tr><td><strong>IgnoreHitCountDecay flag</strong></td><td>Damage Handler skips <code>GetHitCountDamageDecay</code> when <code>Data.IgnoreHitCountDecay=true</code>. Used by Astro procs; available for any damage source that should not erode the rapid-hit decay window.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+
 </main>
 
 </div>
