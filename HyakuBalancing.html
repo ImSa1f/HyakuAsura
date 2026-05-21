@@ -168,59 +168,45 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 <body>
 <div class="wrap">
 <div class="nav-col">
-
-
 <nav>
   <div class="grp">
     <span class="lbl">Overview</span>
-    <a href="#checklist" class="hot">Full spec checklist</a>
-    <a href="#recent">Recent changes</a>
-    <a href="#new">What changed</a>
+    <a href="#roadmap" class="hot">Roadmap Checklist</a>
+    <a href="#changelog">Changelog</a>
   </div>
   <div class="grp">
-    <span class="lbl">Combat</span>
-    <a href="#blocking">Blocking &amp; Parry</a>
-    <a href="#combos">Combo Rules</a>
-    <a href="#burst">Burst Bar</a>
-    <a href="#defense">Defense</a>
-    <a href="#damage">Damage Scaling</a>
-    <a href="#stamina">Stamina</a>
-    <a href="#rhythm">Rhythm Bar</a>
-    <a href="#movement">Movement &amp; Speed</a>
-    <a href="#coupling">Stat Interactions</a>
-    <a href="#training">Training Gains</a>
-    <a href="#builds">Build Guide</a>
+    <span class="lbl">Changelog</span>
+    <a href="#d-may21">May 21 — Damage Overhaul</a>
+    <a href="#d-may20">May 20</a>
+    <a href="#d-may19">May 19 — Defense Rework</a>
+    <a href="#d-sess3">Session 3</a>
   </div>
   <div class="grp">
-    <span class="lbl">Skills &amp; Styles</span>
-    <a href="#dodge">Directional Dodge</a>
-    <a href="#styles">Style Scaling</a>
-    <a href="#weights">Skill Scaling</a>
-    <a href="#noscale">Unscaled Skills</a>
-    <a href="#pure">Pure Skills</a>
-    <a href="#bystyle">By Style</a>
+    <span class="lbl">Base Reference</span>
+    <a href="#ref-damage">Damage Formulas</a>
+    <a href="#ref-eff">Effective Stats</a>
+    <a href="#ref-defense">Health &amp; Defense</a>
+    <a href="#ref-stamina">Stamina</a>
+    <a href="#ref-movement">Movement &amp; Speed</a>
+    <a href="#ref-training">Training Gains</a>
+    <a href="#ref-styles">Style Scaling</a>
+    <a href="#ref-skills">Skill Scaling</a>
+    <a href="#ref-rules">Combat Rules</a>
   </div>
 </nav>
-
-<main>
 </div>
 <div class="main-col">
+<main>
 <div class="ph">
   <h1>Combat Balance</h1>
-  <div class="sub">Hyaku Asura · Balance Update · Ongoing</div>
+  <div class="sub">Hyaku Asura · Living Balance Document</div>
   <div class="tags">
-    <span class="tag t-b">Buffed</span>
-    <span class="tag t-n">Nerfed</span>
-    <span class="tag t-t">Adjusted</span>
-    <span class="tag t-f">Fixed</span>
-    <span class="tag t-p">Visual / Coming soon</span>
-    <span class="tag t-o">No change needed</span>
+    <span class="tag t-b">Buff</span><span class="tag t-n">Nerf</span>
+    <span class="tag t-f">Fix</span><span class="tag t-t">Tune</span><span class="tag t-o">Note</span>
   </div>
+  <p class="note" style="margin-top:1rem">Two parts: the <strong>Changelog</strong> records dated changes, newest first — click a date to expand. The <strong>Base Reference</strong> at the bottom always reflects the current live values of every system.</p>
 </div>
-
-
-<!-- ═════════════════ FULL SPEC CHECKLIST ═════════════════ -->
-<div class="sec" id="checklist">
+<div class="sec" id="roadmap">
   <div class="sec-t">Full Spec Checklist</div>
   <p class="sec-l">Every item from the balance document and its current status.</p>
   <div class="sec-hr"></div>
@@ -244,7 +230,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Lion Bite and Lightning Flash — fully blockable and Perfect Blockable</strong><div class="detail">Removed IgnoreParry flags first. Root cause was IsBackstab triggering when attacker dashes past the target — added IgnoreBackstab to both DealDamage calls. Now properly PBable.</div></div>
+      <div class="check-body"><strong>Lion Bite and Lightning Flash — fully blockable and Perfect Blockable</strong><div class="detail">These skills dash behind the target, which the game mistook for a backstab — and backstabs can’t be parried. Fixed, so both can now be blocked and Perfect Blocked normally.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
@@ -254,7 +240,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Fix the Damage Calculation Dummy</strong><div class="detail">The dummy was showing inflated damage numbers because it had no defensive stats set. It now properly mirrors a real player's defense calculation. You can configure its stats via BotConfig.</div></div>
+      <div class="check-body"><strong>Fix the Damage Calculation Dummy</strong><div class="detail">The dummy showed inflated damage because it had no defensive stats. It now matches a real player’s defense, and its stats can be configured for testing.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
@@ -299,12 +285,12 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Glowing eyes no longer turn white after color reroll</strong><div class="detail">Was multiplying each RGB channel ×5 which saturated mixed colors to white. Now normalizes to max brightness, preserving hue.</div></div>
+      <div class="check-body"><strong>Glowing eyes no longer turn white after color reroll</strong><div class="detail">Rerolling eye color could wash glowing eyes out to white. The chosen color now stays correct.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Squat &amp; Bench crash on key press fixed</strong><div class="detail">Nil check added for Data.Stats before accessing LowerMuscle/UpperMuscle.</div></div>
+      <div class="check-body"><strong>Squat &amp; Bench crash on key press fixed</strong><div class="detail">Fixed a crash that could happen when pressing the training key.</div></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
@@ -433,7 +419,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
     <div class="check-item">
       <span class="check-icon done">✓</span>
-      <div class="check-body"><strong>Astro Trait — proc damage 10%→7% per hit (VarManager + MainScript)</strong></div>
+      <div class="check-body"><strong>Astro Trait — bonus star-hit damage cut from 10% to 7% per hit</strong></div>
       <span class="check-tag ct-done">Done</span>
     </div>
     <div class="check-item">
@@ -560,25 +546,367 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Wall collision on all solid map structures (except bushes)</strong></div><span class="check-tag ct-vis">Visual</span></div>
     <div class="check-item"><span class="check-icon pend">○</span><div class="check-body"><strong>Map barriers + reduced jump height while in combat</strong></div><span class="check-tag ct-vis">Visual</span></div>
   </div>
+
+</div>
+<div class="sec" id="changelog">
+<div class="sec-t">Changelog</div>
+<p class="sec-l">Dated balance changes, newest first. Click any date to expand or collapse.</p>
+<div class="sec-hr"></div>
+<div class="day-sec" id="d-may21">
+  <div class="day-hdr open" title="Click to expand/collapse">
+    <span><span class="day-date">May 21, 2026</span><span class="day-count">Damage Overhaul</span></span>
+    <span class="day-arrow">&#9660;</span>
+  </div>
+  <div class="day-body">
+<div class="sh">Skill Damage — Buffed</div>
+<div class="ce buff">
+  <div>
+    <div class="ce-label">Skill Scaling</div>
+    <div class="ce-title">All Skill Damage Raised — Stat Divisors Lowered</div>
+    <div class="ce-desc">Skills scaled far weaker than M1/M2 per stat point — a skill on cooldown could hit for less than a free M1. The Strength, Muscle and Fat divisors in the skill formula were lowered so every skill that runs through the standard skill calculation hits harder. Bigger gain the more you invest: roughly +21% at low stats, +30% at high stats.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">STR divisor</span><span class="do">/1350</span><span class="da">&rarr;</span><span class="dn">/1000</span></div>
+    <div class="diff"><span class="dk">Muscle divisor</span><span class="do">/2000</span><span class="da">&rarr;</span><span class="dn">/1400</span></div>
+    <div class="diff"><span class="dk">Fat divisor</span><span class="do">/1000</span><span class="da">&rarr;</span><span class="dn">/750</span></div>
+  </div>
+</div>
+
+<div class="sh">Durability — Nerfed</div>
+<div class="ce nerf">
+  <div>
+    <div class="ce-label">Durability &rarr; Health</div>
+    <div class="ce-title">HP Per Point of Durability Cut ~40%</div>
+    <div class="ce-desc">Durability granted an enormous HP pool — 8,000 Durability gave over 20,000 HP, making high-dura builds take 70+ hits to kill. Every tier of the Durability&rarr;Health curve was reduced by roughly 40%. Dura builds are still the tankiest in the game, just no longer unkillable.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">0&ndash;1k mult</span><span class="do">5.0&times;</span><span class="da">&rarr;</span><span class="dn">3.0&times;</span></div>
+    <div class="diff"><span class="dk">1k&ndash;2.5k mult</span><span class="do">3.8&times;</span><span class="da">&rarr;</span><span class="dn">2.2&times;</span></div>
+    <div class="diff"><span class="dk">2.5k&ndash;4k mult</span><span class="do">2.7&times;</span><span class="da">&rarr;</span><span class="dn">1.6&times;</span></div>
+    <div class="diff"><span class="dk">4k+ mult</span><span class="do">1.4&times;</span><span class="da">&rarr;</span><span class="dn">0.85&times;</span></div>
+  </div>
+</div>
+<div class="ce nerf">
+  <div>
+    <div class="ce-label">Durability Defense</div>
+    <div class="ce-title">Damage-Reduction Scaling Reduced</div>
+    <div class="ce-desc">The Durability damage-reduction value (used against dummies and any non-player target) had its divisor raised and cap lowered, roughly a 35% reduction.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Divisor</span><span class="do">/2200</span><span class="da">&rarr;</span><span class="dn">/3400</span></div>
+    <div class="diff"><span class="dk">Cap</span><span class="do">2.5</span><span class="da">&rarr;</span><span class="dn">1.6</span></div>
+  </div>
 </div>
 
 
-<!-- ═════════════════ RECENT CHANGES ═════════════════ -->
-<div class="sec" id="recent">
-  <div class="sec-t">Recent Changes</div>
-  <p class="sec-l">Grouped by session date. Click a date to expand or collapse.</p>
+<div class="sec">
+  <div class="sec-t">Foretell (Trait)</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>Change</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>New trigger: M1 landing</strong></td><td>Foretell now activates on successful M1 hits as well as Perfect Block. Both grant 2 dodges + 48s cooldown.</td></tr>
+      <tr><td><strong>Post-dodge cooldown 48s &#8594; 96s</strong></td><td>After all dodges are spent the timer is destroyed and restarted fresh at <ins>96s</ins> instead of additively adding 48s to a running timer.</td></tr>
+      <tr><td><strong>Bug fix</strong></td><td>Fixed a bug that could stop Foretell from activating at all.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Astro (Trait)</div>
+  <div class="sec-hr"></div>
+  <div class="callout good"><strong>Astro star hits ignore repeat-hit decay</strong> &mdash; Astro’s bonus hits no longer eat into your damage falloff on a target, so your normal hits keep their full value.</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Skills</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>Skill</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Steel Blast</strong></td>
+        <td><del>Guard break removed</del> &mdash; it’s now purely a <ins>stun and knockback</ins> move. Its knockback used to sometimes fail to trigger; it now reliably launches anyone who isn’t blocking.</td>
+      </tr>
+      <tr>
+        <td><strong>Cleaving Fang</strong></td>
+        <td><strong>Last-hit knockback fixed.</strong> The grab was still holding the target in place when the launch fired, so they wouldn’t actually move. The target is now released first, then knocked back properly.</td>
+      </tr>
+      <tr>
+        <td><strong>Lightning Flash</strong></td>
+        <td><strong>Backward-dash fixed.</strong> The dash now locks its direction the instant you cast it. Holding backward during the wind-up no longer flips you the wrong way.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Consumables</div>
+  <div class="sec-hr"></div>
+  <div class="callout good"><strong>Eating &amp; drinking speed</strong> &mdash; eating and drinking animations no longer slow down at high Muscle. They always play at a normal speed.</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Combat Systems</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>System</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Perfect Block cooldown</strong></td><td>The cooldown now depends on where you are. Normal servers: 2s after a successful Perfect Block, 8s after a miss. Dungeons and boss fights: resets instantly on a successful block, 5s after a miss.</td></tr>
+      <tr><td><strong>Training crash</strong></td><td>Fixed a crash that could happen when leaving a training activity.</td></tr>
+      <tr><td><strong>Low-HP slow &#8212; clears on heal</strong></td><td>HP multiplier now also divides the non-sprint walk speed so the slow is cleared the same frame health rises above the threshold, not only when sprinting.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="sec">
+  <div class="sec-t">Damage Rework &mdash; M1, M2 &amp; Skills</div>
   <div class="sec-hr"></div>
 
-  <!-- ── May 19 2026 ────────────────────────────────── -->
-  <div class="day-sec">
-    <div class="day-hdr" title="Click to expand/collapse">
-      <span>
-        <span class="day-date">May 19, 2026</span>
-        <span class="day-count">31 changes</span>
-      </span>
-      <span class="day-arrow">▼</span>
+  <div class="callout warn"><strong>The problem &mdash; &ldquo;M2 felt weaker the more Strength I had&rdquo;</strong><br>
+  M1 and M2 used to scale completely differently. As you trained Strength, M1 damage shot up fast while M2 barely moved &mdash; so M2 ended up feeling weaker the more you invested, sometimes dropping to around half of your M1 damage. Both attacks now use the same scaling, so this can’t happen anymore.</div>
+
+  <table class="ch">
+    <thead><tr><th>Change</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>M1 and M2 now scale together</strong></td><td>Both attacks use the same stat scaling. M2 now lands at a steady <ins>~4&times; your M1 damage</ins> at every Strength level, and both keep climbing as you train &mdash; no more shrinking M2.</td></tr>
+      <tr><td><strong>Punch damage uses Strength, Muscle and Fat only</strong></td><td>Agility and Attack Speed no longer add to M1 or M2 damage &mdash; only the three core stats do.</td></tr>
+      <tr><td><strong>Old &ldquo;lean&rdquo; bonus removed</strong></td><td>The hidden lean bonus is gone. Before, gaining Fat could actually <em>lower</em> your damage &mdash; a fat-heavy build could lose nearly half its punch damage. Now training any stat only ever helps.</td></tr>
+      <tr><td><strong>Skill damage simplified</strong></td><td>Skill damage also comes purely from Strength, Muscle and Fat now, with no hidden lean penalty.</td></tr>
+    </tbody>
+  </table>
+  <div class="callout info"><strong>Balancer note</strong> &mdash; the M2 damage bonus is currently set high (4&times;). Now that M1 and M2 scale together, it can be dialed back if M2 ends up hitting too hard.</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Skill &amp; Knockback Fixes</div>
+  <div class="sec-hr"></div>
+  <table class="ch">
+    <thead><tr><th>Fix</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hadouken &mdash; huge damage bug</strong></td><td>Hadouken could hit the same target many times in a single cast, spiking its damage to around 970. It now hits each target once for its proper damage, and travels in the direction you actually aimed.</td></tr>
+      <tr><td><strong>Knockback direction fix</strong></td><td>Some knockbacks could fling a target in a random direction &mdash; occasionally off the map. Knockback is now always aimed properly from the attacker toward the target.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+  </div>
+</div>
+<div class="day-sec" id="d-may20">
+  <div class="day-hdr" title="Click to expand/collapse">
+    <span><span class="day-date">May 20, 2026</span><span class="day-count">15 changes</span></span>
+    <span class="day-arrow">&#9660;</span>
+  </div>
+  <div class="day-body collapsed">
+<div class="sh">Glowing Eyes</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Glowing Eyes — Color Reroll</div>
+      <div class="ce-title">Eyes No Longer Turn White After Rerolling</div>
+      <div class="ce-desc">The glow effect was multiplying every RGB channel by ×5, which pushed any mixed color (e.g. orange, purple, teal) straight to white by saturating all three channels. Fixed: the channels are now normalized so the dominant channel reaches 255 while the others scale proportionally — full brightness, correct hue preserved.</div>
     </div>
-    <div class="day-body collapsed">
+    <div class="diffs">
+      <div class="diff"><span class="dk">Glow method</span><span class="do">×5 flat mult</span><span class="da">→</span><span class="dn">Normalize to 255</span></div>
+      <div class="diff"><span class="dk">Hue preserved</span><span class="do">No</span><span class="da">→</span><span class="dn">Yes</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Squats &amp; Bench — Crash Fix</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Training — Squat &amp; Bench</div>
+      <div class="ce-title">Crash on Key Press Fixed</div>
+      <div class="ce-desc">Pressing a training key could crash the game in certain cases. Fixed.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Crash on press</span><span class="do">Yes</span><span class="da">→</span><span class="dn">Fixed</span></div>
+    </div>
+  </div>
+
+  <div class="sh">IFrames &amp; Damage</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Attacker Iframes</div>
+      <div class="ce-title">Players With IFrames Can No Longer Deal Damage</div>
+      <div class="ce-desc">IFrame only protected the target from taking damage. If the attacker had an active IFrame (e.g. from Burst), they could still deal damage to others. Added a check so any attacker with an active IFrame has their damage blocked as well.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Attacker IFrame</span><span class="do">Can still hit</span><span class="da">→</span><span class="dn">Blocked</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Burst Bar</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Burst / Adrenaline</div>
+      <div class="ce-title">Minimum Gain Per Hit Reduced — 5 → 2</div>
+      <div class="ce-desc">The minimum flat Adrenaline gain per hit was filling the burst bar too quickly. Reduced from 5 to 2 per hit — burst now charges roughly 50 hits to fill from zero on minimum-damage hits.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Min gain/hit</span><span class="do">5</span><span class="da">→</span><span class="dn">2</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Kure &amp; Niko — M2 Damage</div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Kure &amp; Niko · M2 Base Damage</div>
+      <div class="ce-title">Critical Damage Buffed</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Kure M2 base</span><span class="do">15</span><span class="da">→</span><span class="dn">18</span></div>
+      <div class="diff"><span class="dk">Niko M2 base</span><span class="do">14</span><span class="da">→</span><span class="dn">17</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Stamina on Block</div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Blocking — Stamina Drain</div>
+      <div class="ce-title">Stamina Drain on Successfully Blocking a Hit Reduced</div>
+      <div class="ce-desc">Blocking was draining too much stamina per blocked hit. Both the base drain and the damage-scaling multiplier have been reduced.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Dmg multiplier</span><span class="do">×0.32</span><span class="da">→</span><span class="dn">×0.18</span></div>
+      <div class="diff"><span class="dk">Base drain</span><span class="do">+1.2</span><span class="da">→</span><span class="dn">+0.7</span></div>
+      <div class="diff"><span class="dk">Min drain</span><span class="do">0.8</span><span class="da">→</span><span class="dn">0.5</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Cleaving Fangs</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Taekwondo · Cleaving Fangs</div>
+      <div class="ce-title">Final Knockback Distance Reduced</div>
+      <div class="ce-desc">The "flying away" property is kept — the distance is just significantly shorter.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">KnockbackZ</span><span class="do">70</span><span class="da">→</span><span class="dn">35</span></div>
+      <div class="diff"><span class="dk">KnockbackY</span><span class="do">40</span><span class="da">→</span><span class="dn">20</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Elbow Cut, Triple Kick, Feinting Elbow</div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Kure · Elbow Cut</div>
+      <div class="ce-title">Damage Buffed, Knockback Height Increased</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Base power</span><span class="do">13</span><span class="da">→</span><span class="dn">16</span></div>
+      <div class="diff"><span class="dk">KnockbackY</span><span class="do">18</span><span class="da">→</span><span class="dn">28</span></div>
+    </div>
+  </div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Taekwondo · Triple Kick &amp; Karate · Feinting Elbow</div>
+      <div class="ce-title">Knockback Distance Increased</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Triple Kick final</span><span class="do">64</span><span class="da">→</span><span class="dn">80</span></div>
+      <div class="diff"><span class="dk">Feinting Elbow</span><span class="do">70</span><span class="da">→</span><span class="dn">88</span></div>
+    </div>
+  </div>
+
+
+
+  <div class="sh">Earth Shatter — Infinite Ragdoll on Perfect Block</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Earth Shatter</div>
+      <div class="ce-title">PBing Earth Shatter No Longer Leaves You Ragdolled</div>
+      <div class="ce-desc">Perfect Blocking Earth Shatter could still leave you ragdolled &mdash; its hitbox lingers briefly and a second overlap slipped past the block. A successful Perfect Block now instantly clears any ragdoll and stun, so it always protects you.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">PB → Ragdoll cleared</span><span class="do">No</span><span class="da">→</span><span class="dn">Yes</span></div>
+      <div class="diff"><span class="dk">PB → Stun cleared</span><span class="do">No</span><span class="da">→</span><span class="dn">Yes</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Hitbox — Crash Fix</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Hitbox</div>
+      <div class="ce-title">Fixed a Hitbox Crash</div>
+      <div class="ce-desc">A hitbox could crash the game if it was used before it finished loading in. It now waits safely until it’s fully ready.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Hitbox crash</span><span class="do">Yes</span><span class="da">→</span><span class="dn">Fixed</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Block Stamina Drain — Further Reduced</div>
+  <div class="ce buff">
+    <div>
+      <div class="ce-label">Blocking — Stamina Drain</div>
+      <div class="ce-title">Block Drain Reduced by Another 30%</div>
+      <div class="ce-desc">Block drain was still too punishing. It’s been cut by a further 30% on top of earlier reductions &mdash; blocking is much more sustainable now.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Block stamina drain</span><span class="do">Previous</span><span class="da">→</span><span class="dn">−30% more</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Astro Trait</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Astro Trait</div>
+      <div class="ce-title">Star Hit Damage Reduced</div>
+      <div class="ce-desc">Astro fires 3 bonus true-damage hits after a qualifying attack, each dealing a slice of that hit’s damage. That slice has been reduced. It still goes through block, iframes and Perfect Block &mdash; it just deals less now.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Damage per hit</span><span class="do">10% of the hit</span><span class="da">→</span><span class="dn">7% of the hit</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Foretell Trait</div>
+  <div class="ce nerf">
+    <div>
+      <div class="ce-label">Foretell Trait · Dodge Count &amp; Cooldown</div>
+      <div class="ce-title">One Fewer Dodge, Significantly Longer Cooldown</div>
+      <div class="ce-desc">Foretell was activating too often. Dodge count reduced from 3 to 2. Cooldown increased from 30 to 48 seconds. Additionally the cooldown now resets from the moment the final dodge is consumed — previously it started at the moment of the parry, meaning players could immediately fish for another activation after burning all dodges. Now there is a full 48-second window from last dodge use before the trait can reactivate.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Dodges granted</span><span class="do">3</span><span class="da">→</span><span class="dn">2</span></div>
+      <div class="diff"><span class="dk">Cooldown</span><span class="do">30s (from parry)</span><span class="da">→</span><span class="dn">48s (from last dodge)</span></div>
+    </div>
+  </div>
+
+
+
+  <div class="sh">Earth Shatter — Fix</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Earth Shatter</div>
+      <div class="ce-title">Skill No Longer Gets Stuck</div>
+      <div class="ce-desc">Earth Shatter could occasionally get stuck and fail to finish cleanly, leaving you locked in the move. It now always ends properly.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Gets stuck</span><span class="do">Sometimes</span><span class="da">→</span><span class="dn">Fixed</span></div>
+    </div>
+  </div>
+
+  <div class="sh">Squat Rack &amp; Bench Press — Animation Fix</div>
+  <div class="ce fix">
+    <div>
+      <div class="ce-label">Training · Squat &amp; Bench</div>
+      <div class="ce-title">Character Animation Now Loads Correctly</div>
+      <div class="ce-desc">The squat and bench character animations were pointing at a broken source and wouldn’t play. Both now load correctly.</div>
+    </div>
+    <div class="diffs">
+      <div class="diff"><span class="dk">Animations</span><span class="do">Broken</span><span class="da">→</span><span class="dn">Fixed</span></div>
+    </div>
+  </div>
+
+  </div>
+</div>
+<div class="day-sec" id="d-may19">
+  <div class="day-hdr" title="Click to expand/collapse">
+    <span><span class="day-date">May 19, 2026</span><span class="day-count">31 changes</span></span>
+    <span class="day-arrow">&#9660;</span>
+  </div>
+  <div class="day-body collapsed">
 <div class="sh">Defense Rework</div>
 
   <div class="ce nerf">
@@ -602,7 +930,7 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     <div>
       <div class="ce-label">Parry System</div>
       <div class="ce-title">Critical Punches (M2) Now Use the Skill Parry Window</div>
-      <div class="ce-desc">Critical punches were incorrectly being treated like normal M1 punches for parry timing. They now use the wider 0.5s window like skills do, which is the correct behaviour.</div>
+      <div class="ce-desc">Critical punches were using the short M1 parry window by mistake. They now use the wider 0.5s window, the same as skills.</div>
     </div>
     <div class="diffs">
       <div class="diff"><span class="dk">M1 window</span><span class="do">0.5s</span><span class="da">→</span><span class="dn">0.275s</span></div>
@@ -912,12 +1240,12 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 
   <div class="ce fix">
     <div>
-      <div class="ce-label">Lion Bite &amp; Lightning Flash — PB Root Cause</div>
+      <div class="ce-label">Lion Bite &amp; Lightning Flash — Perfect Block Fix</div>
       <div class="ce-title">Now Actually Perfect Blockable</div>
-      <div class="ce-desc">Both skills dash past the target, putting the attacker behind them. The server was detecting this as a backstab hit, which blocks parry entirely regardless of any other flags. Added IgnoreBackstab so the backstab check is skipped — both moves can now be Perfect Blocked and blocked normally.</div>
+      <div class="ce-desc">Both skills dash behind the target, which the game mistook for a backstab &mdash; and backstabs can’t be parried at all. That mix-up is fixed, so both moves can now be blocked and Perfect Blocked normally.</div>
     </div>
     <div class="diffs">
-      <div class="diff"><span class="dk">Backstab bypass</span><span class="do">No</span><span class="da">→</span><span class="dn">IgnoreBackstab</span></div>
+      <div class="diff"><span class="dk">Counts as backstab</span><span class="do">Yes (bug)</span><span class="da">→</span><span class="dn">No</span></div>
       <div class="diff"><span class="dk">PBable</span><span class="do">Broken</span><span class="da">→</span><span class="dn">Working</span></div>
     </div>
   </div>
@@ -991,870 +1319,15 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
   </div>
     
-</div>
-
-</div>
-
-  <div class="day-sec">
-    <div class="day-hdr open" title="Click to expand/collapse">
-      <span>
-        <span class="day-date">May 20, 2026</span>
-        <span class="day-count">15 changes</span>
-      </span>
-      <span class="day-arrow">▼</span>
-    </div>
-    <div class="day-body">
-<div class="sh">Glowing Eyes</div>
-  <div class="ce fix">
-    <div>
-      <div class="ce-label">Glowing Eyes — Color Reroll</div>
-      <div class="ce-title">Eyes No Longer Turn White After Rerolling</div>
-      <div class="ce-desc">The glow effect was multiplying every RGB channel by ×5, which pushed any mixed color (e.g. orange, purple, teal) straight to white by saturating all three channels. Fixed: the channels are now normalized so the dominant channel reaches 255 while the others scale proportionally — full brightness, correct hue preserved.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Glow method</span><span class="do">×5 flat mult</span><span class="da">→</span><span class="dn">Normalize to 255</span></div>
-      <div class="diff"><span class="dk">Hue preserved</span><span class="do">No</span><span class="da">→</span><span class="dn">Yes</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Squats &amp; Bench — Crash Fix</div>
-  <div class="ce fix">
-    <div>
-      <div class="ce-label">Training — Squat &amp; Bench</div>
-      <div class="ce-title">Server Crash on Key Press Fixed</div>
-      <div class="ce-desc">When pressing a training key the server crashed with "attempt to index nil with LowerMuscle." The keypress data doesn't always include Stats — added a nil check before accessing it.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Crash on press</span><span class="do">Yes</span><span class="da">→</span><span class="dn">Fixed</span></div>
-    </div>
-  </div>
-
-  <div class="sh">IFrames &amp; Damage</div>
-  <div class="ce fix">
-    <div>
-      <div class="ce-label">Damage Handler — Attacker IFrame</div>
-      <div class="ce-title">Players With IFrames Can No Longer Deal Damage</div>
-      <div class="ce-desc">IFrame only protected the target from taking damage. If the attacker had an active IFrame (e.g. from Burst), they could still deal damage to others. Added a check so any attacker with an active IFrame has their damage blocked as well.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Attacker IFrame</span><span class="do">Can still hit</span><span class="da">→</span><span class="dn">Blocked</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Burst Bar</div>
-  <div class="ce nerf">
-    <div>
-      <div class="ce-label">Burst / Adrenaline</div>
-      <div class="ce-title">Minimum Gain Per Hit Reduced — 5 → 2</div>
-      <div class="ce-desc">The minimum flat Adrenaline gain per hit was filling the burst bar too quickly. Reduced from 5 to 2 per hit — burst now charges roughly 50 hits to fill from zero on minimum-damage hits.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Min gain/hit</span><span class="do">5</span><span class="da">→</span><span class="dn">2</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Kure &amp; Niko — M2 Damage</div>
-  <div class="ce buff">
-    <div>
-      <div class="ce-label">Kure &amp; Niko · M2 Base Damage</div>
-      <div class="ce-title">Critical Damage Buffed</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Kure M2 base</span><span class="do">15</span><span class="da">→</span><span class="dn">18</span></div>
-      <div class="diff"><span class="dk">Niko M2 base</span><span class="do">14</span><span class="da">→</span><span class="dn">17</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Stamina on Block</div>
-  <div class="ce buff">
-    <div>
-      <div class="ce-label">Blocking — Stamina Drain</div>
-      <div class="ce-title">Stamina Drain on Successfully Blocking a Hit Reduced</div>
-      <div class="ce-desc">Blocking was draining too much stamina per blocked hit. Both the base drain and the damage-scaling multiplier have been reduced.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Dmg multiplier</span><span class="do">×0.32</span><span class="da">→</span><span class="dn">×0.18</span></div>
-      <div class="diff"><span class="dk">Base drain</span><span class="do">+1.2</span><span class="da">→</span><span class="dn">+0.7</span></div>
-      <div class="diff"><span class="dk">Min drain</span><span class="do">0.8</span><span class="da">→</span><span class="dn">0.5</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Cleaving Fangs</div>
-  <div class="ce nerf">
-    <div>
-      <div class="ce-label">Taekwondo · Cleaving Fangs</div>
-      <div class="ce-title">Final Knockback Distance Reduced</div>
-      <div class="ce-desc">The "flying away" property is kept — the distance is just significantly shorter.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">KnockbackZ</span><span class="do">70</span><span class="da">→</span><span class="dn">35</span></div>
-      <div class="diff"><span class="dk">KnockbackY</span><span class="do">40</span><span class="da">→</span><span class="dn">20</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Elbow Cut, Triple Kick, Feinting Elbow</div>
-  <div class="ce buff">
-    <div>
-      <div class="ce-label">Kure · Elbow Cut</div>
-      <div class="ce-title">Damage Buffed, Knockback Height Increased</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Base power</span><span class="do">13</span><span class="da">→</span><span class="dn">16</span></div>
-      <div class="diff"><span class="dk">KnockbackY</span><span class="do">18</span><span class="da">→</span><span class="dn">28</span></div>
-    </div>
-  </div>
-  <div class="ce buff">
-    <div>
-      <div class="ce-label">Taekwondo · Triple Kick &amp; Karate · Feinting Elbow</div>
-      <div class="ce-title">Knockback Distance Increased</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Triple Kick final</span><span class="do">64</span><span class="da">→</span><span class="dn">80</span></div>
-      <div class="diff"><span class="dk">Feinting Elbow</span><span class="do">70</span><span class="da">→</span><span class="dn">88</span></div>
-    </div>
-  </div>
-
-
-
-  <div class="sh">Earth Shatter — Infinite Ragdoll on Perfect Block</div>
-  <div class="ce fix">
-    <div>
-      <div class="ce-label">Earth Shatter · PB Bug</div>
-      <div class="ce-title">PBing Earth Shatter No Longer Leaves You Ragdolled</div>
-      <div class="ce-desc">Earth Shatter's hitbox fires for 0.15 seconds. A heartbeat tick within that window can re-overlap the same target after PB has already consumed its cooldown — the second hit isn't PB'd and applies ragdoll normally, causing a permanent ragdoll if the status timer misfires. Fixed by explicitly clearing Ragdoll and Stun on the target immediately when PB succeeds in the damage handler, regardless of source.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">PB → Ragdoll cleared</span><span class="do">No</span><span class="da">→</span><span class="dn">Yes</span></div>
-      <div class="diff"><span class="dk">PB → Stun cleared</span><span class="do">No</span><span class="da">→</span><span class="dn">Yes</span></div>
-    </div>
-  </div>
-
-  <div class="sh">ClientSideHitbox — Crash Fix</div>
-  <div class="ce fix">
-    <div>
-      <div class="ce-label">ClientSideHitbox · Nil Crash</div>
-      <div class="ce-title">No More Crash When Hitbox Initializes Before Children Exist</div>
-      <div class="ce-desc">The repeat-until loop was calling .Value on the result of FindFirstChild before guarding for nil — if the Remote/PrimaryPart/Size/Shape/CFrameValue children hadn't replicated yet, it crashed instead of retrying. Fixed with nil-safe access per child on every tick.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Crash on nil child</span><span class="do">Yes</span><span class="da">→</span><span class="dn">Fixed</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Block Stamina Drain — Further Reduced</div>
-  <div class="ce buff">
-    <div>
-      <div class="ce-label">Blocking — Stamina Drain</div>
-      <div class="ce-title">Block Drain Reduced by Another 30%</div>
-      <div class="ce-desc">Block drain was still too punishing. Applied a flat ×0.7 multiplier to the entire drain formula on top of previous reductions — blocking is now substantially more sustainable.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Total drain formula</span><span class="do">(max(0.5, Dmg×0.18)×R + 0.7)</span><span class="da">→</span><span class="dn">×0.7 on top</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Astro Trait</div>
-  <div class="ce nerf">
-    <div>
-      <div class="ce-label">Astro Trait · True Damage</div>
-      <div class="ce-title">Per-Hit Proc Damage Reduced</div>
-      <div class="ce-desc">The percentage of base damage dealt per Astro proc has been reduced. Still ignores block and IFrame — just less damage per tick.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Proc damage</span><span class="do">10% of hit</span><span class="da">→</span><span class="dn">7% of hit</span></div>
-    </div>
-  </div>
-
-
-
-  <div class="sh">Astro Trait</div>
-  <div class="ce nerf">
-    <div>
-      <div class="ce-label">Astro Trait · True Damage</div>
-      <div class="ce-title">Per-Hit Proc Damage Reduced</div>
-      <div class="ce-desc">The Astro proc fires 3 true damage hits after every qualifying attack, each dealing a percentage of the triggering hit's damage. That percentage has been reduced. Still bypasses block, IFrame, and PB — just less damage per tick.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Proc damage per hit</span><span class="do">10% of base hit</span><span class="da">→</span><span class="dn">7% of base hit</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Foretell Trait</div>
-  <div class="ce nerf">
-    <div>
-      <div class="ce-label">Foretell Trait · Dodge Count &amp; Cooldown</div>
-      <div class="ce-title">One Fewer Dodge, Significantly Longer Cooldown</div>
-      <div class="ce-desc">Foretell was activating too often. Dodge count reduced from 3 to 2. Cooldown increased from 30 to 48 seconds. Additionally the cooldown now resets from the moment the final dodge is consumed — previously it started at the moment of the parry, meaning players could immediately fish for another activation after burning all dodges. Now there is a full 48-second window from last dodge use before the trait can reactivate.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Dodges granted</span><span class="do">3</span><span class="da">→</span><span class="dn">2</span></div>
-      <div class="diff"><span class="dk">Cooldown</span><span class="do">30s (from parry)</span><span class="da">→</span><span class="dn">48s (from last dodge)</span></div>
-    </div>
-  </div>
-
-
-
-  <div class="sh">Earth Shatter — Stop Frame Fix</div>
-  <div class="ce fix">
-    <div>
-      <div class="ce-label">Earth Shatter · Cleanup</div>
-      <div class="ce-title">Skill No Longer Breaks Without a Stop Keyframe</div>
-      <div class="ce-desc">Cleanup (HyperArmour removal, DisableAutoRotation, MoveReset) was hooked to a "Stop" keyframe that doesn't exist in the animation, so it only ever ran via Track.Stopped:Wait() — which could hang if the animation got stuck. Replaced with a shared Cleanup() function guarded by a Done flag: fires automatically 0.9s after the Smash keyframe, and also on Track.Stopped for safety. No double-cleanup possible.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Cleanup trigger</span><span class="do">Missing "Stop" keyframe</span><span class="da">→</span><span class="dn">task.delay(0.9) after Smash</span></div>
-      <div class="diff"><span class="dk">Double-fire guard</span><span class="do">None</span><span class="da">→</span><span class="dn">Done flag</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Squat Rack &amp; Bench Press — Animation Fix</div>
-  <div class="ce fix">
-    <div>
-      <div class="ce-label">Training · Squat &amp; Bench</div>
-      <div class="ce-title">Character Animation Now Loads Correctly</div>
-      <div class="ce-desc">The player character animation was loaded from Actions.Action1 (an ObjectValue reference that was broken/nil). Both the bench and squat now load their animations directly from the known paths in ReplicatedStorage.Animations.General.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Bench anim source</span><span class="do">Actions.Action1.Value (broken ref)</span><span class="da">→</span><span class="dn">BenchMatchine.Action</span></div>
-      <div class="diff"><span class="dk">Squat anim source</span><span class="do">Actions.Action1.Value (broken ref)</span><span class="da">→</span><span class="dn">SquatMatchine.Action</span></div>
-    </div>
-  </div>
-
-
-<div class="sec" id="new">
-  <div class="sec-t">What Changed</div>
-  <p class="sec-l">Quick overview — everything in this update.</p>
-  <div class="sec-hr"></div>
-
-  <div class="sh">Combat</div>
-  <ul class="lg">
-    <li><strong>Damage decay</strong> — hit the same person too many times in a row and your damage drops. Resets when you stop attacking.</li>
-    <li><strong>Multiple attacker stun decay</strong> — getting ganged up on no longer locks you in stun forever. With 3+ attackers, stun duration is cut by 3×.</li>
-    <li><strong>Whiffed skill endlag</strong> — missing a skill with recovery time prevents you from immediately blocking.</li>
-    <li><strong>M1 feels snappier</strong> — base M1 cooldown reduced. M2 no longer resets your M1 combo stage.</li>
-    <li><strong>4 second extender cooldown</strong> — can't chain extenders one after another with no gap.</li>
-    <li><strong>One ragdoll per combo string</strong> — muscle builds can't stack Earth Shatter + Elbow Drop + Body Drop in one combo.</li>
-    <li><strong>Max 2 extenders per combo.</strong></li>
-    <li><strong>Extender damage drop</strong> — each extender or grab that connects reduces the following damage by 20% (stacking).</li>
-    <li><strong>Landing a punch halves your recovery</strong> — miss and you take the full penalty.</li>
-    <li><strong>Walking and punching is 18% slower.</strong></li>
-    <li><strong>Lion Bite and Lightning Flash are now blockable.</strong></li>
-    <li><strong>Wall hit iframes doubled</strong> — contact 0.6→1.5s, pinned 1.0→2.5s.</li>
-    <li><strong>Perfect Block window tightened for M1s</strong> — 0.5s→0.275s. Skills and Criticals remain at 0.5s.</li>
-    <li><strong>Burst bar fills on every hit</strong> — grabs and 0-damage contacts now count.</li>
-    <li><strong>Full Rhythm bar = up to 30% cheaper stamina</strong> on all combat moves.</li>
-    <li><strong>Attack Speed hard capped at 6,000.</strong></li>
-    <li><strong>High Attack Speed = up to 40% shorter stun on your M1s</strong> at the cap.</li>
-  </ul>
-
-  <div class="sh">Defense</div>
-  <ul class="lg">
-    <li><strong>Durability no longer reduces damage</strong> — gives much more HP instead.</li>
-    <li><strong>Muscle gives damage reduction only</strong> — up to ~15% at 3,200 muscle.</li>
-    <li><strong>Fat gives both HP and damage reduction</strong> — DR is lower than muscle (max ~8% at 2,000 fat).</li>
-  </ul>
-
-  <div class="sh">Stats &amp; Movement</div>
-  <ul class="lg">
-    <li><strong>0 muscle start</strong> — −28% sprint speed and −35% damage. Both reach normal at 70 muscle.</li>
-    <li><strong>Fat without muscle penalty increased.</strong></li>
-    <li><strong>Low HP slow hits earlier and is stronger</strong> — full effect at 40% HP.</li>
-    <li><strong>Strength training gains halved at 6k+.</strong></li>
-    <li><strong>Attack Speed training gains halved at 5k+.</strong></li>
-    <li><strong>Upper/Lower Muscle training gains reduced at 3k+</strong> — ~3% per rep → ~2%.</li>
-    <li><strong>Weighted Vest</strong> — now boosts Upper/Lower Muscle gains +10% (was Durability only).</li>
-    <li><strong>Breathing Mask</strong> — flat +25% Stamina gains everywhere (was bike only).</li>
-    <li><strong>Limb Weights</strong> — now boosts Agility gains +25%.</li>
-  </ul>
-  <div class="sh">Foretell Trait</div>
-  <div class="ce nerf">
-    <div>
-      <div class="ce-label">Foretell Trait · Mythical</div>
-      <div class="ce-title">Dodges Reduced, Cooldown Increased — Resets on Last Dodge</div>
-      <div class="ce-desc">Foretell granted 3 free dodge dashes after a successful PB, with a 30-second cooldown starting at activation. Now grants 2 dashes and the cooldown is 48 seconds, starting fresh when the final dodge is consumed — so you can't immediately re-trigger it after burning all your dashes.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Dodge count</span><span class="do">3</span><span class="da">→</span><span class="dn">2</span></div>
-      <div class="diff"><span class="dk">Cooldown</span><span class="do">30s from activation</span><span class="da">→</span><span class="dn">48s from last dodge</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Astro Trait</div>
-  <div class="ce nerf">
-    <div>
-      <div class="ce-label">Astro Trait · Legendary</div>
-      <div class="ce-title">Proc Damage Reduced — 10% → 7%</div>
-      <div class="ce-desc">Each Astro true-damage proc now deals 7% of the triggering hit's damage instead of 10%. Still fires 3 times per proc cycle, bypasses block and IFrame.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Proc multiplier</span><span class="do">10%</span><span class="da">→</span><span class="dn">7%</span></div>
-    </div>
-  </div>
-
-  <div class="sh">Block Stamina Drain — Second Reduction</div>
-  <div class="ce buff">
-    <div>
-      <div class="ce-label">Blocking · Stamina</div>
-      <div class="ce-title">Block Drain Reduced by Another 30%</div>
-      <div class="ce-desc">Applied a second ×0.7 pass to the drain formula — blocking is now roughly half as punishing as the original values.</div>
-    </div>
-    <div class="diffs">
-      <div class="diff"><span class="dk">Stack multiplier</span><span class="do">×0.7 (prior)</span><span class="da">→</span><span class="dn">×0.49 total</span></div>
-    </div>
-  </div>
-
-    </div>
-  </div>
-
-</div>
-
-
 
   </div>
-
-  <!-- ── May 20 2026 ────────────────────────────────── -->
-
-<!-- ═════════════════ BLOCKING & PARRY ═════════════════ -->
-<div class="sec" id="blocking">
-  <div class="sec-t">Blocking &amp; Parry</div>
-  <div class="sec-hr"></div>
-
-  <div class="sh">Perfect Block windows</div>
-  <table>
-    <thead><tr><th>Attack type</th><th class="r">Parry window</th></tr></thead>
-    <tbody>
-      <tr><td>M1 (regular punch)</td><td class="r">0.275s</td></tr>
-      <tr><td>M2 / Critical punch</td><td class="r">0.5s</td></tr>
-      <tr><td>Skills</td><td class="r">0.5s</td></tr>
-    </tbody>
-  </table>
-  <p class="note">Parry window = how long after activating block you can parry an incoming hit.</p>
-
-  <div class="sh">Rules</div>
-  <ul class="lg">
-    <li><strong>Can't block after whiffing</strong> — missing a skill with recovery frames prevents you from immediately blocking during that window.</li>
-    <li><strong>Perfect block gives no cooldown</strong> — a mistimed parry gets the full 4s block cooldown.</li>
-    <li><strong>Can't block and dash at the same time.</strong></li>
-  </ul>
 </div>
-
-
-<!-- ═════════════════ COMBO RULES ═════════════════ -->
-<div class="sec" id="combos">
-  <div class="sec-t">Combo Rules</div>
-  <div class="sec-hr"></div>
-
-  <div class="sh">Limits</div>
-  <ul class="lg">
-    <li><strong>One ragdoll move per combo string</strong> — the first ragdoll-causing move goes through. Everything after is blocked until the combo resets.</li>
-    <li><strong>Maximum 2 extenders per string</strong> — the third one simply won't connect. Resets when combo ends.</li>
-    <li><strong>Extender/grab damage drop</strong> — each extender or grab that connects makes following hits deal 20% less (stacking). Resets when combo ends.</li>
-    <li><strong>Landing an M1 cuts recovery in half</strong> — whiffing gets full endlag.</li>
-    <li><strong>Walking while punching is 18% slower.</strong></li>
-  </ul>
-
-  <div class="sh">Damage decay (repeat hitting)</div>
-  <table>
-    <thead><tr><th>Hits on same target</th><th>Damage</th></tr></thead>
-    <tbody>
-      <tr><td>First 9 hits</td><td>Full damage</td></tr>
-      <tr><td>Every 9 after</td><td>−8% (stacking, floor at 50%)</td></tr>
-    </tbody>
-  </table>
-  <p class="note">Tracked per attacker–target pair. Resets when you stop hitting that person.</p>
-
-  <div class="sh">Multiple attackers — stun decay</div>
-  <table>
-    <thead><tr><th>Attackers</th><th>Stun length</th></tr></thead>
-    <tbody>
-      <tr><td>1</td><td>Normal</td></tr>
-      <tr><td>2</td><td>1.5× shorter</td></tr>
-      <tr><td>3</td><td>3× shorter</td></tr>
-      <tr><td>4+</td><td>Scales up, capped</td></tr>
-    </tbody>
-  </table>
-</div>
-
-
-<!-- ═════════════════ BURST BAR ═════════════════ -->
-<div class="sec" id="burst">
-  <div class="sec-t">Burst Bar</div>
-  <div class="sec-hr"></div>
-  <ul class="lg">
-    <li>Every hit you take — including grabs and 0-damage contacts — fills your Burst bar by at least 5 points (out of 100).</li>
-    <li>Damage-dealing hits fill more based on how much HP was taken.</li>
-    <li>At 100 Burst you can use the Burst skill to break out of a combo and stun nearby opponents.</li>
-  </ul>
-</div>
-
-
-<!-- ═════════════════ DEFENSE ═════════════════ -->
-<div class="sec" id="defense">
-  <div class="sec-t">Defense</div>
-  <p class="sec-l">How much damage reduction each stat gives and how HP is calculated.</p>
-  <div class="sec-hr"></div>
-
-  <div class="sh">What each stat does now</div>
-  <table>
-    <thead><tr><th>Stat</th><th>HP bonus</th><th>Damage reduction</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Durability</strong></td><td>Yes — large</td><td>None (removed)</td></tr>
-      <tr><td><strong>Muscle</strong></td><td>None</td><td>Yes — up to ~15%</td></tr>
-      <tr><td><strong>Fat</strong></td><td>Yes</td><td>Yes — up to ~8% (less than Muscle)</td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Durability → HP (no longer reduces damage)</div>
-  <table>
-    <thead><tr><th>Durability bracket</th><th class="r">Old HP mult</th><th class="r">New HP mult</th></tr></thead>
-    <tbody>
-      <tr><td>0 – 1,000</td><td class="r">2.4×</td><td class="r"><ins>5.0×</ins></td></tr>
-      <tr><td>1,000 – 2,500</td><td class="r">1.8×</td><td class="r"><ins>3.8×</ins></td></tr>
-      <tr><td>2,500 – 4,000</td><td class="r">1.3×</td><td class="r"><ins>2.7×</ins></td></tr>
-      <tr><td>4,000+</td><td class="r">0.65×</td><td class="r"><ins>1.4×</ins></td></tr>
-    </tbody>
-  </table>
-  <p class="note">Multipliers roughly doubled to compensate for the removed damage reduction. The total survivability of a max-dura build should be roughly equivalent.</p>
-
-  <div class="sh">Muscle → damage reduction only</div>
-  <table>
-    <thead><tr><th>Muscle</th><th class="r">Damage reduction</th></tr></thead>
-    <tbody>
-      <tr><td>0</td><td class="r">0%</td></tr>
-      <tr><td>1,000</td><td class="r">~5%</td></tr>
-      <tr><td>3,200 (cap)</td><td class="r">~15%</td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Fat → HP + damage reduction (lower than Muscle)</div>
-  <table>
-    <thead><tr><th>Fat</th><th class="r">Damage reduction</th></tr></thead>
-    <tbody>
-      <tr><td>0</td><td class="r">0%</td></tr>
-      <tr><td>1,000</td><td class="r">~4%</td></tr>
-      <tr><td>2,000 (cap)</td><td class="r">~8%</td></tr>
-    </tbody>
-  </table>
-  <p class="note">Fat also gives extra raw HP on top of the reduction. The damage reduction from Fat is always lower than Muscle's.</p>
-
-  <div class="sh">Maximum combined reduction example</div>
-  <div class="callout good">Maxing both Muscle (3,200) and Fat (2,000): ~15% + ~8% = ~21% total damage reduction. A 100-damage hit lands for about 79 damage. Plus the large HP pool from Durability on top.</div>
-</div>
-
-
-<!-- ═════════════════ DAMAGE SCALING ═════════════════ -->
-<div class="sec" id="damage">
-  <div class="sec-t">Damage Scaling</div>
-  <div class="sec-hr"></div>
-
-  <div class="sh">Base multipliers</div>
-  <ul class="lg">
-    <li><strong>M1 flat multiplier: 1.25×</strong></li>
-    <li><strong>M2 flat multiplier: 1.7×</strong></li>
-    <li><strong>Lean bonus</strong> (more muscle than fat): up to <strong>3×</strong></li>
-  </ul>
-
-  <div class="sh">Strength diminishing returns</div>
-  <table>
-    <thead><tr><th>Strength range</th><th class="r">Effective value per point</th></tr></thead>
-    <tbody>
-      <tr><td>0 – 600</td><td class="r">100%</td></tr>
-      <tr><td>600 – 1,500</td><td class="r">50%</td></tr>
-      <tr><td>1,500 – 3,000</td><td class="r">20%</td></tr>
-      <tr><td>3,000 – 6,000</td><td class="r">10%</td></tr>
-      <tr><td>6,000 – 20,000</td><td class="r">8%</td></tr>
-      <tr><td>20,000+</td><td class="r">1%</td></tr>
-    </tbody>
-  </table>
-</div>
-
-
-<!-- ═════════════════ STAMINA ═════════════════ -->
-<div class="sec" id="stamina">
-  <div class="sec-t">Stamina</div>
-  <div class="sec-hr"></div>
-  <ul class="lg">
-    <li><strong>M1 base cost: 2%</strong> of max stamina per swing. Higher muscle/strength/fat adds more.</li>
-    <li><strong>M2 base cost: 3.4%</strong> of max stamina.</li>
-    <li><strong>Landing a hit gives 30% off</strong> the stamina cost. Missing costs full. Full Rhythm bar stacks another 30% off.</li>
-    <li>Skills pay 70% upfront. Land it and you're done. Miss and the remaining 30% drains a few seconds later.</li>
-  </ul>
-</div>
-
-
-<!-- ═════════════════ RHYTHM BAR ═════════════════ -->
-<div class="sec" id="rhythm">
-  <div class="sec-t">Rhythm Bar</div>
-  <div class="sec-hr"></div>
-  <ul class="lg">
-    <li><strong>Damage bonus</strong> — up to +15% at full Rhythm.</li>
-    <li><strong>Stamina discount</strong> — up to −30% on all combat stamina costs at full Rhythm.</li>
-    <li>Builds by landing hits. Decays when you stop fighting.</li>
-  </ul>
-</div>
-
-
-<!-- ═════════════════ MOVEMENT ═════════════════ -->
-<div class="sec" id="movement">
-  <div class="sec-t">Movement &amp; Speed</div>
-  <div class="sec-hr"></div>
-
-  <div class="sh">Muscle and speed</div>
-  <table>
-    <thead><tr><th>Muscle range</th><th>Speed effect</th></tr></thead>
-    <tbody>
-      <tr><td>0 muscle</td><td>−28% sprint speed</td></tr>
-      <tr><td>0–70 muscle</td><td>Penalty fades to zero linearly</td></tr>
-      <tr><td>70 muscle</td><td>Full base speed</td></tr>
-      <tr><td>800–7,000 muscle</td><td>Existing high-muscle penalty (up to −14%)</td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Muscle and damage</div>
-  <table>
-    <thead><tr><th>Muscle range</th><th>Damage effect</th></tr></thead>
-    <tbody>
-      <tr><td>0 muscle</td><td>−35% damage</td></tr>
-      <tr><td>0–70 muscle</td><td>Penalty fades to zero, then increases above baseline</td></tr>
-      <tr><td>70+ muscle</td><td>Normal scaling kicks in</td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Attack Speed cap and effects</div>
-  <table>
-    <thead><tr><th>Attack Speed</th><th class="r">Swing speed multiplier</th></tr></thead>
-    <tbody>
-      <tr><td>0</td><td class="r">~1.0×</td></tr>
-      <tr><td>1,000</td><td class="r">~1.69×</td></tr>
-      <tr><td>3,000</td><td class="r">~2.10×</td></tr>
-      <tr><td>6,000 (hard cap)</td><td class="r">~2.70×</td></tr>
-    </tbody>
-  </table>
-  <p class="note">High Attack Speed also reduces how long your M1s stun opponents — up to −40% stun at the cap.</p>
-
-  <div class="sh">Low HP speed slow</div>
-  <table>
-    <thead><tr><th>HP remaining</th><th>Speed</th></tr></thead>
-    <tbody>
-      <tr><td>80%+</td><td>No penalty</td></tr>
-      <tr><td>40% (full penalty)</td><td>~51% slower</td></tr>
-      <tr><td>0% (dead)</td><td>Same as 40% — penalty doesn't increase further</td></tr>
-    </tbody>
-  </table>
-</div>
-
-
-<!-- ═════════════════ STAT INTERACTIONS ═════════════════ -->
-<div class="sec" id="coupling">
-  <div class="sec-t">Stat Interactions</div>
-  <div class="sec-hr"></div>
-  <ul class="lg">
-    <li><strong>High muscle reduces Strength damage</strong> — caps at −10% at 7,000+ muscle.</li>
-    <li><strong>High fat reduces Attack Speed</strong> — up to −25% extra AS penalty at 2,500 fat.</li>
-    <li><strong>Fat without muscle</strong> — extra speed penalty on top of the base fat slow. Significant at high fat values.</li>
-  </ul>
-</div>
-
-
-<!-- ═════════════════ TRAINING ═════════════════ -->
-<div class="sec" id="training">
-  <div class="sec-t">Training Gains</div>
-  <p class="sec-l">Diminishing return brackets. Gains drop as your stat gets higher. These are the raw GainMultiplier values used in the decay table.</p>
-  <div class="sec-hr"></div>
-
-  <div class="sh">Strength</div>
-  <table>
-    <thead><tr><th>Stat range</th><th class="r">Gain multiplier</th></tr></thead>
-    <tbody>
-      <tr><td>0 – 3,000</td><td class="r">40% → 7%</td></tr>
-      <tr><td>3,000 – 6,000</td><td class="r">7% → 2%</td></tr>
-      <tr><td>6,000 – 8,000</td><td class="r"><del>4.0%</del> <ins>2.0%</ins></td></tr>
-      <tr><td>8,000 – 10,000</td><td class="r"><del>2.5%</del> <ins>1.2%</ins></td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Attack Speed</div>
-  <table>
-    <thead><tr><th>Stat range</th><th class="r">Gain multiplier</th></tr></thead>
-    <tbody>
-      <tr><td>0 – 5,000</td><td class="r">40% → 1.1%</td></tr>
-      <tr><td>5,000 – 6,000</td><td class="r"><del>0.55%</del> <ins>0.28%</ins></td></tr>
-      <tr><td>6,000 – 10,000</td><td class="r"><del>0.35%</del> <ins>0.18%</ins></td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Upper &amp; Lower Muscle</div>
-  <table>
-    <thead><tr><th>Stat range</th><th class="r">Gain multiplier</th></tr></thead>
-    <tbody>
-      <tr><td>0 – 3,000</td><td class="r">50% → 11%</td></tr>
-      <tr><td>3,000 – 5,000</td><td class="r"><del>6.5%</del> <ins>4.0%</ins></td></tr>
-      <tr><td>5,000 – 8,000</td><td class="r"><del>3.8%</del> <ins>2.3%</ins></td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Gear bonuses</div>
-  <table>
-    <thead><tr><th>Gear</th><th>Boost</th><th>Change</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Weighted Vest</strong></td><td>Durability +10%, Upper/Lower Muscle +10%</td><td><ins>Muscle gains added</ins></td></tr>
-      <tr><td><strong>Breathing Mask</strong></td><td>Stamina gains +25% on all activities</td><td><ins>Was bike-only</ins></td></tr>
-      <tr><td><strong>Limb Weights</strong></td><td>Attack Speed +25%, Agility +25%</td><td><ins>Agility gains added</ins></td></tr>
-    </tbody>
-  </table>
-</div>
-
-
-<!-- ═════════════════ BUILD GUIDE ═════════════════ -->
-<div class="sec" id="builds">
-  <div class="sec-t">Build Guide</div>
-  <div class="sec-hr"></div>
-  <table>
-    <thead><tr><th>Build</th><th>Role</th><th>Strengths</th><th>Weaknesses</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Lean / Agility</strong></td><td>Skirmisher</td><td>Fastest sprint and swings, lowest stamina cost</td><td>Lowest damage per hit, frail</td></tr>
-      <tr><td><strong>Muscle</strong></td><td>Heavy hitter</td><td>Highest damage per hit, up to ~15% DR</td><td>−14% sprint at high muscle, drains more stamina</td></tr>
-      <tr><td><strong>Strength</strong></td><td>Balanced</td><td>Strong multipliers on both M1 and M2, normal sprint</td><td>No lean bonus, average HP pool</td></tr>
-      <tr><td><strong>Durability</strong></td><td>Tank</td><td>Massive HP pool, very hard to burst down</td><td>No damage reduction by itself — needs Muscle or Fat too</td></tr>
-      <tr><td><strong>Fat + Muscle</strong></td><td>Bruiser</td><td>HP from Fat, DR from Muscle, solid all-round</td><td>Sprint penalty, needs both stats trained</td></tr>
-    </tbody>
-  </table>
-</div>
-
-
-<!-- ═════════════════ DODGE ═════════════════ -->
-<div class="sec" id="dodge">
-  <div class="sec-t">Directional Dodge</div>
-  <div class="sec-hr"></div>
-  <ul class="lg">
-    <li><strong>Base distance: 58 units.</strong> Scales up with Agility (up to 2,000 Agility) and Total Muscle (up to 800 TM bonus).</li>
-    <li><strong>Distance drops with each consecutive dash</strong> — spamming dashes gets you less distance each time.</li>
-    <li><strong>Heavy muscle (4,000+ TM) halves the bonus distance</strong> if you've already dashed twice in a string.</li>
-    <li><strong>Hard cap at 175 units</strong> per dash regardless of stats.</li>
-    <li>Cooldown: 2 seconds per direction. Increases to 3 seconds above 500 Total Muscle.</li>
-  </ul>
-</div>
-
-
-<!-- ═════════════════ STYLE SCALING ═════════════════ -->
-<div class="sec" id="styles">
-  <div class="sec-t">Style Scaling — M1 Base</div>
-  <p class="sec-l">How much each stat contributes to M1 damage per style. Higher = more damage from that stat.</p>
-  <div class="sec-hr"></div>
-  <table>
-    <thead><tr><th>Style</th><th class="r">STR</th><th class="r">UpMuscle</th><th class="r">LowMuscle</th><th class="r">Fat</th><th class="r">AGI</th><th class="r">AtkSpd</th><th class="r">AS cap</th></tr></thead>
-    <tbody>
-      <tr><td>Aikido</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td><td class="r">0</td><td class="r">0</td><td class="r">0.8</td></tr>
-      <tr><td>Basic</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td><td class="r">0</td><td class="r">0</td><td class="r">0.8</td></tr>
-      <tr><td>Boxing</td><td class="r">0.75</td><td class="r">2.7</td><td class="r">2.5</td><td class="r">0.1</td><td class="r">0</td><td class="r">0.1</td><td class="r">0.8</td></tr>
-      <tr><td>Demon Fist</td><td class="r">0.67</td><td class="r">5</td><td class="r">5</td><td class="r">0.1</td><td class="r">0</td><td class="r">0.1</td><td class="r">0.8</td></tr>
-      <tr><td>Karate</td><td class="r">0.75</td><td class="r">2.2</td><td class="r">2.2</td><td class="r">0.1</td><td class="r">0</td><td class="r">0.1</td><td class="r">0.8</td></tr>
-      <tr><td>Kure</td><td class="r">0.725</td><td class="r">2.5</td><td class="r">2.5</td><td class="r">0.1</td><td class="r">0</td><td class="r">0.1</td><td class="r">0.8</td></tr>
-      <tr><td>Muay Thai</td><td class="r">0.75</td><td class="r">2.5</td><td class="r">3</td><td class="r">0.1</td><td class="r">0</td><td class="r">0.1</td><td class="r">0.8</td></tr>
-      <tr><td>Niko</td><td class="r">0.75</td><td class="r">2.2</td><td class="r">2.2</td><td class="r">0.1</td><td class="r">0</td><td class="r">0.1</td><td class="r">0.8</td></tr>
-      <tr><td>Raishin</td><td class="r">0.7</td><td class="r">1.2</td><td class="r">1.3</td><td class="r">0.1</td><td class="r">0</td><td class="r">0.12</td><td class="r">0.8</td></tr>
-      <tr><td>Sumo</td><td class="r">0.1</td><td class="r">2</td><td class="r">2</td><td class="r">1</td><td class="r">0</td><td class="r">0</td><td class="r">0.8</td></tr>
-      <tr><td>Taekwondo</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td><td class="r">0</td><td class="r">0</td><td class="r">0.8</td></tr>
-      <tr><td>The Middle</td><td class="r">0.8</td><td class="r">3.5</td><td class="r">3</td><td class="r">0.1</td><td class="r">0</td><td class="r">0</td><td class="r">0.8</td></tr>
-      <tr><td>Wrestling</td><td class="r">0.2</td><td class="r">6.5</td><td class="r">5.8</td><td class="r">0.1</td><td class="r">0</td><td class="r">0</td><td class="r">0.8</td></tr>
-      <tr><td>Ya</td><td class="r">0.675</td><td class="r">2.7</td><td class="r">2.7</td><td class="r">0.1</td><td class="r">0</td><td class="r">0.2</td><td class="r">1</td></tr>
-    </tbody>
-  </table>
-</div>
-
-
-<!-- ═════════════════ SKILL SCALING ═════════════════ -->
-<div class="sec" id="weights">
-  <div class="sec-t">Skill Scaling</div>
-  <p class="sec-l">How much each stat contributes to individual skill damage. Skills not listed here fall back on their style's M1 scaling.</p>
-  <div class="sec-hr"></div>
-  <table>
-    <thead><tr><th>Skill</th><th class="r">STR</th><th class="r">UpMuscle</th><th class="r">LowMuscle</th><th class="r">Fat</th><th class="r">AGI</th><th class="r">AtkSpd</th></tr></thead>
-    <tbody>
-      <tr><td>Avidya</td><td class="r">2</td><td class="r">0.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0.3</td><td class="r">0.1</td></tr>
-      <tr><td>Body Drop</td><td class="r">0.2</td><td class="r">0</td><td class="r">0</td><td class="r">6</td><td class="r">0.1</td><td class="r">0.5</td></tr>
-      <tr><td>Bulldoze</td><td class="r">0.5</td><td class="r">1.5</td><td class="r">1.5</td><td class="r">5.5</td><td class="r">0.1</td><td class="r">0.5</td></tr>
-      <tr><td>Choke Slam</td><td class="r">0.5</td><td class="r">6.5</td><td class="r">6</td><td class="r">0</td><td class="r">0</td><td class="r">0.5</td></tr>
-      <tr><td>Earth Shatter</td><td class="r">2.2</td><td class="r">5</td><td class="r">0</td><td class="r">0</td><td class="r">0.1</td><td class="r">0.2</td></tr>
-      <tr><td>Elbow Cut</td><td class="r">2.8</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td><td class="r">0.3</td><td class="r">0.1</td></tr>
-      <tr><td>Elbow Drop</td><td class="r">0.3</td><td class="r">5</td><td class="r">5</td><td class="r">0</td><td class="r">0.5</td><td class="r">0</td></tr>
-      <tr><td>Gazelle Punch</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td><td class="r">1</td><td class="r">1</td></tr>
-      <tr><td>Lightning Flash</td><td class="r">1.8</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">0.43</td><td class="r">0.25</td></tr>
-      <tr><td>Lion Bite</td><td class="r">2</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td><td class="r">0.3</td><td class="r">0.1</td></tr>
-      <tr><td>Liver Blow</td><td class="r">1.3</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td><td class="r">0.5</td><td class="r">1</td></tr>
-      <tr><td>Suplex</td><td class="r">0.5</td><td class="r">7</td><td class="r">5.5</td><td class="r">0</td><td class="r">0.1</td><td class="r">0.5</td></tr>
-      <tr><td>Whirl Slam</td><td class="r">0.5</td><td class="r">5.5</td><td class="r">6</td><td class="r">0</td><td class="r">0.2</td><td class="r">0.3</td></tr>
-      <tr><td>Whirlwind Spin</td><td class="r">2</td><td class="r">0</td><td class="r">0</td><td class="r">0</td><td class="r">1</td><td class="r">0.5</td></tr>
-    </tbody>
-  </table>
-</div>
-
-
-<!-- ═════════════════ UNSCALED SKILLS ═════════════════ -->
-<div class="sec" id="noscale">
-  <div class="sec-t">Unscaled Skills</div>
-  <p class="sec-l">These skills don't have their own stat weights — they use their style's M1 scaling instead.</p>
-  <div class="sec-hr"></div>
-  <ul class="lg c2">
-    <li>Awaken</li><li>Back Dash</li><li>Basic Attack</li><li>Block</li>
-    <li>Burst</li><li>Change Stance</li><li>Consume</li><li>Critical</li>
-    <li>Flying Knee</li><li>Front Dash</li><li>Hadouken</li><li>Left Dash</li>
-    <li>Minotaur Charge</li><li>Minotaur Enraged Roar</li><li>Minotaur Leap</li>
-    <li>Rhythm</li><li>Right Dash</li><li>Tatsumaki</li>
-    <li>War Axe Slam</li><li>Weeping Willow</li>
-  </ul>
-</div>
-
-
-<!-- ═════════════════ PURE SKILLS ═════════════════ -->
-<div class="sec" id="pure">
-  <div class="sec-t">Pure Skills</div>
-  <p class="sec-l">Style-locked skills that don't use the standard skill scaling formula.</p>
-  <div class="sec-hr"></div>
-  <table>
-    <thead><tr><th>Skill</th><th>Required Style</th><th>Type</th></tr></thead>
-    <tbody>
-      <tr><td>Flicker Jab</td><td>Boxing</td><td>Pure</td></tr>
-      <tr><td>Whirlwind Spin</td><td>Taekwondo</td><td>Pure</td></tr>
-      <tr><td>Knee Strike</td><td>Muay Thai</td><td>Pure</td></tr>
-      <tr><td>Crushing Throw</td><td>Sumo</td><td>Pure</td></tr>
-      <tr><td>Suplex</td><td>Wrestling</td><td>Pure</td></tr>
-      <tr><td>Devil Lance</td><td>Karate</td><td>Pure</td></tr>
-      <tr><td>Bulldoze</td><td>Any</td><td>Knockback</td></tr>
-      <tr><td>Spinning Elbow</td><td>Any</td><td>Knockback</td></tr>
-    </tbody>
-  </table>
-</div>
-
-
-<!-- ═════════════════ BY STYLE ═════════════════ -->
-<div class="sec" id="bystyle">
-  <div class="sec-t">Skills by Style — Changes</div>
-  <p class="sec-l">Only skills that changed this update.</p>
-  <div class="sec-hr"></div>
-
-  <div class="sh">Kure</div>
-  <table>
-    <thead><tr><th>Skill</th><th>What changed</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Avidya</strong></td><td>Was an extender → now a knockback guardbreak. Blind and knockback now fire simultaneously. Blindness 1.1s → 2.1s.</td></tr>
-      <tr><td><strong>Elbow Cut</strong></td><td>Now the main extender. Guardbreak removed. No longer ragdolls — stun only. STR scaling 3.5 → 2.8.</td></tr>
-      <tr><td><strong>Lion Bite</strong></td><td>Startup 1.2 → 0.8 (slower). Stun on hit 1.0s → 1.8s. Miss recovery 0.9s added. Now blockable.</td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Raishin</div>
-  <table>
-    <thead><tr><th>Skill</th><th>What changed</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Lightning Flash</strong></td><td>Startup 1.0 → 1.45 (faster). Stun 1.0s → 0.6s. Now blockable.</td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Boxing</div>
-  <table>
-    <thead><tr><th>Skill</th><th>What changed</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Liver Blow</strong></td><td>Now drains 18% of enemy max stamina on hit.</td></tr>
-      <tr><td><strong>Gazelle Punch</strong></td><td>Speed mult ×1.0 → ×1.35. Speed floor 0.7 → 0.85. Conditional hyper armor removed.</td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Taekwondo</div>
-  <table>
-    <thead><tr><th>Skill</th><th>What changed</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Whirlwind Spin</strong></td><td>Base speed 0.8 → 1.15. Anim speed ×1.0 → ×1.25. Speed floor 0.4 → 0.55.</td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Wrestling</div>
-  <table>
-    <thead><tr><th>Skill</th><th>What changed</th></tr></thead>
-    <tbody>
-      <tr><td><strong>Suplex</strong></td><td>Permanent +10% damage on land — removed.</td></tr>
-      <tr><td><strong>Whirl Slam</strong></td><td>Enemy skill silence 6s → 2s.</td></tr>
-    </tbody>
-  </table>
-
-  <div class="sh">Demon Fist</div>
-  <div class="callout good"><strong>Earth Shatter</strong> — Guardbreak was always active. No change was made.</div>
-</div>
-
-
-<!-- ═══════════════════ MAY 21 ═══════════════════ -->
-<div class="day-hdr open" title="Click to expand/collapse">
-  <span class="day-arrow">&#9660;</span>
-  <span class="day-date">May 21, 2026</span>
-</div>
-<div class="day-body">
-
-<div class="sec">
-  <div class="sec-t">Foretell (Trait)</div>
-  <div class="sec-hr"></div>
-  <table class="ch">
-    <thead><tr><th>Change</th><th>Detail</th></tr></thead>
-    <tbody>
-      <tr><td><strong>New trigger: M1 landing</strong></td><td>Foretell now activates on successful M1 hits as well as Perfect Block. Both grant 2 dodges + 48s cooldown.</td></tr>
-      <tr><td><strong>Post-dodge cooldown 48s &#8594; 96s</strong></td><td>After all dodges are spent the timer is destroyed and restarted fresh at <ins>96s</ins> instead of additively adding 48s to a running timer.</td></tr>
-      <tr><td><strong>Bug fix</strong></td><td>Removed stale <code>OnDodge ~= &#34;Foretell&#34;</code> guard that could block activation entirely.</td></tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="sec">
-  <div class="sec-t">Astro (Trait)</div>
-  <div class="sec-hr"></div>
-  <div class="callout good"><strong>Star procs exempt from hit-count decay</strong> &mdash; Astro damage ticks use <code>IgnoreHitCountDecay=true</code>. They no longer consume the attacker&#39;s 9-hit decay budget.</div>
-</div>
-
-<div class="sec">
-  <div class="sec-t">Skills</div>
-  <div class="sec-hr"></div>
-  <table class="ch">
-    <thead><tr><th>Skill</th><th>Change</th></tr></thead>
-    <tbody>
-      <tr>
-        <td><strong>Steel Blast</strong></td>
-        <td><del>Blockbreak</del> removed. Now purely <ins>Stun + Knockback</ins>. AttackState <del>GBSkill</del> &#8594; <ins>Skill</ins>. Knockback callback previously suppressed by <code>Breaklock=true</code> when Blockbreak fired &#8212; now fires correctly on non-blocking targets.</td>
-      </tr>
-      <tr>
-        <td><strong>Cleaving Fang</strong></td>
-        <td><strong>Last-hit knockback fixed.</strong> Root cause: Motor6D weld was still active when velocity was applied, constraining the target to the attacker&#39;s anchored root. Fix: weld destroyed first, velocity applied directly to <code>TargetRoot.AssemblyLinearVelocity</code> while attacker still holds network ownership, then <code>CancelGrabber</code> runs.</td>
-      </tr>
-      <tr>
-        <td><strong>Lightning Flash</strong></td>
-        <td><strong>Backward-dash fixed.</strong> Capture <code>ActivationCF = Root.CFrame</code> at cast time; Dash keyframe uses that instead of live <code>Root.CFrame</code>. Holding backward during the windup no longer reverses the dash direction.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="sec">
-  <div class="sec-t">Consumables</div>
-  <div class="sec-hr"></div>
-  <div class="callout good"><strong>Eating / Drinking animation speed</strong> &mdash; <code>SpeedScaleWithStats=false</code> added to both LoadAnim calls. Muscle stat no longer slows eat/drink animations.</div>
-</div>
-
-<div class="sec">
-  <div class="sec-t">Combat Systems</div>
-  <div class="sec-hr"></div>
-  <table class="ch">
-    <thead><tr><th>System</th><th>Change</th></tr></thead>
-    <tbody>
-      <tr><td><strong>PB Cooldown &#8212; dungeon detection</strong></td><td>Detection now reads <code>workspace.IsPrivate.IsDungeon.Value</code>. Normal server: hit&#8594;2s, miss&#8594;8s. Dungeon / boss: hit&#8594;instant reset, miss&#8594;5s.</td></tr>
-      <tr><td><strong>Animation track crash on training exit</strong></td><td><code>PlayingATracks[id].StopListener</code> nil-index fixed. StopListener only assigned when entry exists; <code>Destroy()</code> cancels any pending coroutine before clearing the entry.</td></tr>
-      <tr><td><strong>Low-HP slow &#8212; clears on heal</strong></td><td>HP multiplier now also divides the non-sprint walk speed so the slow is cleared the same frame health rises above the threshold, not only when sprinting.</td></tr>
-      <tr><td><strong>IgnoreHitCountDecay flag</strong></td><td>Damage Handler skips <code>GetHitCountDamageDecay</code> when <code>Data.IgnoreHitCountDecay=true</code>. Used by Astro procs; available for any damage source that should not erode the rapid-hit decay window.</td></tr>
-    </tbody>
-  </table>
-</div>
-
-</div>
-
-<!-- ═══════════════════════════════════════ SESSION 3 ═══ -->
-<div class="day-hdr open" id="session3">Session 3 — Bug Fixes &amp; Skill Scaling</div>
-<div class="day-body">
+<div class="day-sec" id="d-sess3">
+  <div class="day-hdr" title="Click to expand/collapse">
+    <span><span class="day-date">Session 3</span><span class="day-count">Bug Fixes &amp; Skill Scaling</span></span>
+    <span class="day-arrow">&#9660;</span>
+  </div>
+  <div class="day-body collapsed">
 
 <div class="sec">
   <div class="sec-t">Bug Fixes</div>
@@ -1862,11 +1335,11 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
   <table class="ch">
     <thead><tr><th>Fix</th><th>Detail</th></tr></thead>
     <tbody>
-      <tr><td><strong>Steel_Blast — syntax error / no damage</strong></td><td>DealDamage call was garbled from a prior edit. Rewrote entire Behaviour block: <code>Blockbreak=false</code>, <code>CancelActionWeight=1</code>, proper <code>Knockback=function(T) SuperKnockback({...}) end</code>, <code>OnSuccessHit</code>, <code>IgnoreParry=false</code>, <code>AttackState="Skill"</code>.</td></tr>
-      <tr><td><strong>PB cooldown (client-side)</strong></td><td>Fixed by developer directly.</td></tr>
-      <tr><td><strong>Wall hit procs at foot/floor level</strong></td><td>Knockback handler used <code>HitWall.Position.Y + offset</code> for the stick CFrame Y coordinate, placing the character at geometry level. Changed to <code>Root.Position.Y</code> so character sticks at torso height.</td></tr>
-      <tr><td><strong>Wall hit procs on small ledges</strong></td><td>WallCheck detected any surface including ledge tops (Normal.Y &approx; 1). Added <code>math.abs(wall.Normal.Y) &lt; 0.55</code> guard — only near-horizontal normals (actual walls) trigger the wall-hit effect.</td></tr>
-      <tr><td><strong>Whirl_Slam / GrabSkill no-damage</strong></td><td>VarManager DealDamage now auto-sets <code>IgnoreBan=true</code> when AttackState == GrabSkill, allowing hits through the attacker-IFrame check during grab sequences.</td></tr>
+      <tr><td><strong>Steel Blast &mdash; dealt no damage</strong></td><td>A bug left Steel Blast dealing no damage at all. It was rebuilt and now correctly stuns and knocks back.</td></tr>
+      <tr><td><strong>Perfect Block cooldown</strong></td><td>Fixed.</td></tr>
+      <tr><td><strong>Wall-hit effects at floor level</strong></td><td>Wall-hit effects used to appear down near the ground. They now line up with the character properly.</td></tr>
+      <tr><td><strong>Wall-hit effects on small ledges</strong></td><td>Wall-hit effects no longer trigger on small ledges or flat ground &mdash; only on actual upright walls.</td></tr>
+      <tr><td><strong>Whirl Slam &mdash; grabs dealing no damage</strong></td><td>Fixed grab moves like Whirl Slam dealing no damage during the grab.</td></tr>
     </tbody>
   </table>
 </div>
@@ -1877,17 +1350,533 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
   <table class="ch">
     <thead><tr><th>Change</th><th>Detail</th></tr></thead>
     <tbody>
-      <tr><td><strong>DamageScaling — now uses CombatCalculation</strong></td><td>Previously used a hardcoded formula with a 3-tier strength cap. Replaced with <code>CombatCalculation.SkillStatMultiplier(scaling, stats)</code> — uses <code>EffectiveStat</code> brackets with proper diminishing returns, matching the same system used by M1/M2. All skills calling <code>self:DamageScaling(NAME)</code> automatically get the corrected calculation.</td></tr>
-      <tr><td><strong>M2 damage pipeline (confirmed)</strong></td><td>M2 (Critical) already used <code>ComputeM2Damage → StrikeStatMultiplier → EffectiveStat</code>. Working correctly.</td></tr>
-      <tr><td><strong>Skill power source</strong></td><td>Base Power values read from <code>CombatCalcsData.Skills[name].SkillData.Power</code>. Stat multiplier from <code>DamageScaling</code> (now <code>SkillStatMultiplier</code>). Skill-specific stat scalings from <code>CombatCalcsData.SkillScaling</code> (e.g. Steel_Blast StrengthScaling = 3).</td></tr>
+      <tr><td><strong>Skill damage scaling improved</strong></td><td>Skill damage now uses the same fair diminishing-returns scaling as M1 and M2, instead of an older separate system. Every skill benefits from this automatically.</td></tr>
+      <tr><td><strong>M2 damage check</strong></td><td>Confirmed M2 (Critical) damage was already calculating correctly.</td></tr>
+      <tr><td><strong>How skill damage is built</strong></td><td>Each skill has a base power value, which is then multiplied by your stats and that skill’s own stat weighting.</td></tr>
     </tbody>
   </table>
 </div>
 
+  </div>
+</div>
+</div>
+<div class="sec" id="ref-banner">
+  <div class="sec-t" style="font-size:2.4rem">Base Reference</div>
+  <p class="sec-l">The current live values of every combat system. This section is kept up to date — it always reflects what the game is running right now, regardless of when a change was made.</p>
+  <div class="sec-hr"></div>
 </div>
 
-</main>
+<div class="sec" id="ref-damage">
+  <div class="sec-t">Damage Formulas</div>
+  <p class="sec-l">How M1, M2 and skill damage are calculated. All three scale off Strength, Muscle and Fat only — Agility and Attack Speed do not affect damage.</p>
+  <div class="sec-hr"></div>
 
+  <div class="sh">How a hit is calculated</div>
+<pre>M1 punch  =  base damage  &times;  stat multiplier  &times;  1.25
+M2 punch  =  base damage  &times;  stat multiplier  &times;  4
+Skill     =  base power   &times;  stat multiplier</pre>
+  <p class="note">Every move has a base value. That gets multiplied by your stat multiplier, then by a flat bonus for the attack type. From the same stats, an M2 lands roughly 4&times; harder than an M1.</p>
+
+  <div class="sh">Your stat multiplier</div>
+  <p style="font-size:13px">Your stat multiplier grows with <strong>Strength, Muscle and Fat</strong> &mdash; the more you have, the bigger your hits. Every style and skill leans on those three stats differently; the exact weightings are in the Style Scaling and Skill Scaling tables further down. Stats have diminishing returns (see Effective Stats below), and punches reward raw stats slightly harder than skills do.</p>
+
+  <div class="sh">Flat multipliers</div>
+  <table>
+    <thead><tr><th>Multiplier</th><th class="r">Value</th></tr></thead>
+    <tbody>
+      <tr><td>M1 bonus</td><td class="r">1.25&times;</td></tr>
+      <tr><td>M2 bonus</td><td class="r">4.0&times;</td></tr>
+      <tr><td>Base skill multiplier floor</td><td class="r">0.75&times;</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout info"><strong>M1 and M2 scale the same.</strong> They use the same stat multiplier, so M2 always stays a steady amount above M1 &mdash; train your stats and both go up together. Skills use a slightly gentler curve, but their higher base power means they still hit hardest per use.</div>
+</div>
+
+<div class="sec" id="ref-eff">
+  <div class="sec-t">Effective Stats</div>
+  <p class="sec-l">Every stat has diminishing returns. Each bracket is worth less per point than the last. These &ldquo;effective&rdquo; values feed the damage, defense and health formulas.</p>
+  <div class="sec-hr"></div>
+<div class="sh">Strength</div>
+<table>
+<thead><tr><th>Stat range</th><th class="r">Value per point</th></tr></thead>
+<tbody>
+<tr><td>0 – 600</td><td class="r">100%</td></tr>
+<tr><td>600 – 1,500</td><td class="r">50%</td></tr>
+<tr><td>1,500 – 3,000</td><td class="r">20%</td></tr>
+<tr><td>3,000 – 6,000</td><td class="r">10%</td></tr>
+<tr><td>6,000 – 20,000</td><td class="r">8%</td></tr>
+<tr><td>20,000+</td><td class="r">1%</td></tr>
+</tbody>
+</table>
+<div class="sh">Muscle</div>
+<table>
+<thead><tr><th>Stat range</th><th class="r">Value per point</th></tr></thead>
+<tbody>
+<tr><td>0 – 200</td><td class="r">100%</td></tr>
+<tr><td>200 – 1,500</td><td class="r">60%</td></tr>
+<tr><td>1,500 – 3,000</td><td class="r">20%</td></tr>
+<tr><td>3,000 – 6,000</td><td class="r">8%</td></tr>
+<tr><td>6,000 – 20,000</td><td class="r">2%</td></tr>
+<tr><td>20,000+</td><td class="r">0.5%</td></tr>
+</tbody>
+</table>
+<div class="sh">Fat</div>
+<table>
+<thead><tr><th>Stat range</th><th class="r">Value per point</th></tr></thead>
+<tbody>
+<tr><td>0 – 300</td><td class="r">100%</td></tr>
+<tr><td>300 – 1,000</td><td class="r">50%</td></tr>
+<tr><td>1,000 – 3,000</td><td class="r">10%</td></tr>
+<tr><td>3,000 – 10,000</td><td class="r">3%</td></tr>
+<tr><td>10,000+</td><td class="r">0.5%</td></tr>
+</tbody>
+</table>
+<div class="sh">Agility</div>
+<table>
+<thead><tr><th>Stat range</th><th class="r">Value per point</th></tr></thead>
+<tbody>
+<tr><td>0 – 300</td><td class="r">100%</td></tr>
+<tr><td>300 – 1,000</td><td class="r">60%</td></tr>
+<tr><td>1,000 – 2,000</td><td class="r">30%</td></tr>
+<tr><td>2,000 – 5,000</td><td class="r">5%</td></tr>
+<tr><td>5,000+</td><td class="r">1%</td></tr>
+</tbody>
+</table>
+<div class="sh">Attack Speed</div>
+<table>
+<thead><tr><th>Stat range</th><th class="r">Value per point</th></tr></thead>
+<tbody>
+<tr><td>0 – 300</td><td class="r">100%</td></tr>
+<tr><td>300 – 1,000</td><td class="r">40%</td></tr>
+<tr><td>1,000 – 2,000</td><td class="r">20%</td></tr>
+<tr><td>2,000 – 5,000</td><td class="r">5%</td></tr>
+<tr><td>5,000+</td><td class="r">1%</td></tr>
+</tbody>
+</table>
+<div class="sh">Durability</div>
+<table>
+<thead><tr><th>Stat range</th><th class="r">Value per point</th></tr></thead>
+<tbody>
+<tr><td>0 – 1,000</td><td class="r">100%</td></tr>
+<tr><td>1,000 – 3,000</td><td class="r">55%</td></tr>
+<tr><td>3,000 – 6,000</td><td class="r">35%</td></tr>
+<tr><td>6,000 – 10,000</td><td class="r">12%</td></tr>
+<tr><td>10,000 – 25,000</td><td class="r">4%</td></tr>
+<tr><td>25,000+</td><td class="r">0.8%</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sec" id="ref-defense">
+  <div class="sec-t">Health &amp; Defense</div>
+  <p class="sec-l">How much HP and damage reduction each stat provides.</p>
+  <div class="sec-hr"></div>
+
+  <div class="sh">Max Health formula</div>
+<pre>Max HP  =  100  +  Durability bonus  +  Fat bonus</pre>
+  <p class="note">Everyone starts at 100 HP. Durability provides the bulk of your health (see the brackets below) and Fat adds a smaller amount on top.</p>
+
+  <div class="sh">Durability &rarr; Health brackets</div>
+  <table>
+    <thead><tr><th>Durability range</th><th class="r">HP per point</th></tr></thead>
+    <tbody>
+      <tr><td>0 &ndash; 1,000</td><td class="r">3.0&times;</td></tr>
+      <tr><td>1,000 &ndash; 2,500</td><td class="r">2.2&times;</td></tr>
+      <tr><td>2,500 &ndash; 4,000</td><td class="r">1.6&times;</td></tr>
+      <tr><td>4,000+</td><td class="r">0.85&times;</td></tr>
+    </tbody>
+  </table>
+  <table>
+    <thead><tr><th>Durability</th><th class="r">Approx. Max HP</th></tr></thead>
+    <tbody>
+      <tr><td>1,000</td><td class="r">3,100</td></tr>
+      <tr><td>2,500</td><td class="r">6,400</td></tr>
+      <tr><td>4,000</td><td class="r">8,800</td></tr>
+      <tr><td>8,000</td><td class="r">12,200</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sh">Damage reduction by stat</div>
+  <table>
+    <thead><tr><th>Stat</th><th>Effect</th><th class="r">Cap</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Muscle</strong></td><td>Cuts incoming damage &mdash; builds up to its cap around 3,200 Muscle</td><td class="r">18%</td></tr>
+      <tr><td><strong>Fat</strong></td><td>Cuts incoming damage &mdash; reaches its cap around 2,000 Fat &mdash; and adds HP on top</td><td class="r">9%</td></tr>
+      <tr><td><strong>Durability</strong></td><td>Gives a large HP pool for players; only lightly reduces damage on training dummies</td><td class="r">&mdash;</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Against real players, Muscle and Fat both cut the damage you take. Durability gives you a large HP pool instead of damage reduction. Maxing Muscle and Fat together blocks roughly 27% of incoming damage.</p>
+</div>
+
+<div class="sec" id="ref-stamina">
+  <div class="sec-t">Stamina</div>
+  <p class="sec-l">Combat stamina costs. Higher Muscle, Strength and Fat all raise swing costs.</p>
+  <div class="sec-hr"></div>
+  <table>
+    <thead><tr><th>Action</th><th>Base cost</th><th>Scaling additions</th></tr></thead>
+    <tbody>
+      <tr><td><strong>M1 swing</strong></td><td>2.0% of max stamina</td><td>+0.8% per Muscle tier, +0.6% Strength, +1.3% Fat, + style flat cost</td></tr>
+      <tr><td><strong>M2 swing</strong></td><td>3.4% of max stamina</td><td>+1.3% Muscle, +1.0% Strength, +1.6% Fat, + style flat cost</td></tr>
+      <tr><td><strong>Sprint</strong></td><td>1.0% per second</td><td>+ up to 2.0% from size (Muscle+Fat); &times;1.55 while boosted</td></tr>
+    </tbody>
+  </table>
+  <ul class="lg">
+    <li><strong>Landing a hit refunds 30%</strong> of the stamina cost. Missing pays full.</li>
+    <li><strong>Full Rhythm bar</strong> takes another 30% off all combat stamina costs.</li>
+    <li><strong>Skills</strong> pay 70% up front. Land it and you are done; miss and the remaining 30% drains a few seconds later.</li>
+  </ul>
+</div>
+
+<div class="sec" id="ref-movement">
+  <div class="sec-t">Movement &amp; Speed</div>
+  <div class="sec-hr"></div>
+
+  <div class="sh">Attack Speed</div>
+  <table>
+    <thead><tr><th>Attack Speed</th><th class="r">Swing multiplier</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td class="r">~1.0&times;</td></tr>
+      <tr><td>1,000</td><td class="r">~1.69&times;</td></tr>
+      <tr><td>3,000</td><td class="r">~2.10&times;</td></tr>
+      <tr><td>6,000 (hard cap)</td><td class="r">~2.70&times;</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Attack Speed is capped at 6,000. High Attack Speed also cuts how long your M1s stun — up to &minus;40% at the cap. Heavy Muscle and Fat reduce your effective swing speed.</p>
+
+  <div class="sh">Muscle &amp; movement</div>
+  <ul class="lg">
+    <li><strong>0 Muscle</strong> &mdash; &minus;28% sprint speed and &minus;35% damage. Both penalties fade to zero by 70 Muscle.</li>
+    <li><strong>High Muscle (800&ndash;7,000)</strong> &mdash; up to &minus;14% sprint speed.</li>
+    <li><strong>Fat without Muscle</strong> &mdash; extra sprint penalty on top of the base fat slow.</li>
+  </ul>
+
+  <div class="sh">Low HP slow</div>
+  <table>
+    <thead><tr><th>HP remaining</th><th>Speed</th></tr></thead>
+    <tbody>
+      <tr><td>80%+</td><td>No penalty</td></tr>
+      <tr><td>40% or below</td><td>Full penalty (~51% slower)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sh">Directional dodge</div>
+  <ul class="lg">
+    <li><strong>Base distance 58 units</strong>, scaling with Agility (to 2,000) and Total Muscle (to 800 bonus). Hard cap 175 units.</li>
+    <li>Each consecutive dash travels less. Heavy Muscle (4,000+) halves bonus distance after two dashes.</li>
+    <li>Cooldown 2s per direction, 3s above 500 Total Muscle.</li>
+  </ul>
+</div>
+
+<div class="sec" id="ref-training">
+  <div class="sec-t">Training Gains</div>
+  <p class="sec-l">Stat gain has diminishing returns — the gain multiplier shrinks as the stat rises. Values below are the multiplier applied to each rep&rsquo;s base gain.</p>
+  <div class="sec-hr"></div>
+<div class="sh">Strength</div>
+<table>
+<thead><tr><th>Stat value</th><th class="r">Gain multiplier</th></tr></thead>
+<tbody>
+<tr><td>0 – 300</td><td class="r">40%</td></tr>
+<tr><td>300 – 600</td><td class="r">25%</td></tr>
+<tr><td>600 – 1,000</td><td class="r">15%</td></tr>
+<tr><td>1,000 – 1,500</td><td class="r">8%</td></tr>
+<tr><td>1,500 – 2,500</td><td class="r">5.5%</td></tr>
+<tr><td>2,500 – 4,000</td><td class="r">3.5%</td></tr>
+<tr><td>4,000 – 6,000</td><td class="r">2%</td></tr>
+<tr><td>6,000 – 8,000</td><td class="r">0.7%</td></tr>
+<tr><td>8,000 – 10,000</td><td class="r">0.5%</td></tr>
+<tr><td>10,000 – 20,000</td><td class="r">0.2%</td></tr>
+<tr><td>20,000+</td><td class="r">0.06%</td></tr>
+</tbody>
+</table>
+<div class="sh">Upper / Lower Muscle</div>
+<table>
+<thead><tr><th>Stat value</th><th class="r">Gain multiplier</th></tr></thead>
+<tbody>
+<tr><td>0 – 200</td><td class="r">50%</td></tr>
+<tr><td>200 – 500</td><td class="r">38%</td></tr>
+<tr><td>500 – 1,000</td><td class="r">28%</td></tr>
+<tr><td>1,000 – 2,000</td><td class="r">18%</td></tr>
+<tr><td>2,000 – 3,000</td><td class="r">11%</td></tr>
+<tr><td>3,000 – 5,000</td><td class="r">4%</td></tr>
+<tr><td>5,000 – 8,000</td><td class="r">2.3%</td></tr>
+<tr><td>8,000 – 15,000</td><td class="r">1.2%</td></tr>
+<tr><td>15,000 – 30,000</td><td class="r">0.6%</td></tr>
+<tr><td>30,000+</td><td class="r">0.2%</td></tr>
+</tbody>
+</table>
+<div class="sh">Durability</div>
+<table>
+<thead><tr><th>Stat value</th><th class="r">Gain multiplier</th></tr></thead>
+<tbody>
+<tr><td>0 – 300</td><td class="r">42%</td></tr>
+<tr><td>300 – 600</td><td class="r">30%</td></tr>
+<tr><td>600 – 1,000</td><td class="r">20%</td></tr>
+<tr><td>1,000 – 1,500</td><td class="r">12%</td></tr>
+<tr><td>1,500 – 2,500</td><td class="r">9%</td></tr>
+<tr><td>2,500 – 4,000</td><td class="r">5.5%</td></tr>
+<tr><td>4,000 – 6,000</td><td class="r">3.5%</td></tr>
+<tr><td>6,000 – 8,000</td><td class="r">2%</td></tr>
+<tr><td>8,000 – 10,000</td><td class="r">1.3%</td></tr>
+<tr><td>10,000 – 20,000</td><td class="r">0.5%</td></tr>
+<tr><td>20,000+</td><td class="r">0.15%</td></tr>
+</tbody>
+</table>
+<div class="sh">Attack Speed</div>
+<table>
+<thead><tr><th>Stat value</th><th class="r">Gain multiplier</th></tr></thead>
+<tbody>
+<tr><td>0 – 300</td><td class="r">40%</td></tr>
+<tr><td>300 – 600</td><td class="r">15%</td></tr>
+<tr><td>600 – 1,000</td><td class="r">9%</td></tr>
+<tr><td>1,000 – 1,500</td><td class="r">5.5%</td></tr>
+<tr><td>1,500 – 2,500</td><td class="r">3%</td></tr>
+<tr><td>2,500 – 4,000</td><td class="r">1.7%</td></tr>
+<tr><td>4,000 – 5,000</td><td class="r">1.1%</td></tr>
+<tr><td>5,000 – 6,000</td><td class="r">0.28%</td></tr>
+<tr><td>6,000 – 10,000</td><td class="r">0.18%</td></tr>
+<tr><td>10,000 – 20,000</td><td class="r">0.15%</td></tr>
+<tr><td>20,000+</td><td class="r">0.05%</td></tr>
+</tbody>
+</table>
+<div class="sh">Agility</div>
+<table>
+<thead><tr><th>Stat value</th><th class="r">Gain multiplier</th></tr></thead>
+<tbody>
+<tr><td>0 – 300</td><td class="r">50%</td></tr>
+<tr><td>300 – 600</td><td class="r">30%</td></tr>
+<tr><td>600 – 1,000</td><td class="r">18%</td></tr>
+<tr><td>1,000 – 1,500</td><td class="r">10%</td></tr>
+<tr><td>1,500 – 2,500</td><td class="r">5.5%</td></tr>
+<tr><td>2,500 – 4,000</td><td class="r">2.5%</td></tr>
+<tr><td>4,000 – 6,000</td><td class="r">1.3%</td></tr>
+<tr><td>6,000 – 10,000</td><td class="r">0.8%</td></tr>
+<tr><td>10,000 – 20,000</td><td class="r">0.3%</td></tr>
+<tr><td>20,000+</td><td class="r">0.1%</td></tr>
+</tbody>
+</table>
+<div class="sh">Stamina</div>
+<table>
+<thead><tr><th>Stat value</th><th class="r">Gain multiplier</th></tr></thead>
+<tbody>
+<tr><td>0 – 300</td><td class="r">55%</td></tr>
+<tr><td>300 – 600</td><td class="r">45%</td></tr>
+<tr><td>600 – 1,000</td><td class="r">35%</td></tr>
+<tr><td>1,000 – 2,500</td><td class="r">22%</td></tr>
+<tr><td>2,500 – 5,000</td><td class="r">13%</td></tr>
+<tr><td>5,000 – 7,000</td><td class="r">6%</td></tr>
+<tr><td>7,000 – 10,000</td><td class="r">3.5%</td></tr>
+<tr><td>10,000 – 20,000</td><td class="r">1.4%</td></tr>
+<tr><td>20,000+</td><td class="r">0.4%</td></tr>
+</tbody>
+</table>
+
+  <div class="sh">Total Muscle penalty</div>
+  <p class="note">Training Upper or Lower Muscle applies an extra multiplier based on combined Total Muscle (TM):</p>
+  <table>
+    <thead><tr><th>Total Muscle</th><th class="r">Extra multiplier</th></tr></thead>
+    <tbody>
+      <tr><td>5,000</td><td class="r">&times;0.90</td></tr>
+      <tr><td>6,000</td><td class="r">&times;0.78</td></tr>
+      <tr><td>7,500</td><td class="r">&times;0.62</td></tr>
+      <tr><td>10,000</td><td class="r">&times;0.45</td></tr>
+      <tr><td>15,000</td><td class="r">&times;0.28</td></tr>
+      <tr><td>25,000</td><td class="r">&times;0.14</td></tr>
+      <tr><td>50,000</td><td class="r">&times;0.05</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sh">Gear bonuses</div>
+  <table>
+    <thead><tr><th>Gear</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Weighted Vest</strong></td><td>Upper &amp; Lower Muscle gains &times;1.10</td></tr>
+      <tr><td><strong>Breathing Mask</strong></td><td>Stamina gains &times;1.25</td></tr>
+      <tr><td><strong>Limb Weights</strong></td><td>Attack Speed &amp; Agility gains &times;1.25</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sh">Stat caps</div>
+  <table>
+    <thead><tr><th>Stat</th><th class="r">Hard cap</th></tr></thead>
+    <tbody>
+      <tr><td>Fat</td><td class="r">2,500</td></tr>
+      <tr><td>Attack Speed</td><td class="r">6,000</td></tr>
+      <tr><td>Durability</td><td class="r">100,000</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Total Power = sum of all stats &divide; 32.</p>
+</div>
+
+<div class="sec" id="ref-styles">
+  <div class="sec-t">Style Scaling</div>
+  <p class="sec-l">Base M1/M2 damage and per-stat scaling weights for every style. Muscle scaling is the average of the Upper and Lower columns.</p>
+  <div class="sec-hr"></div>
+<table>
+<thead><tr><th>Style</th><th class="r">Base M1</th><th class="r">Base M2</th><th class="r">STR</th><th class="r">Upper Mus</th><th class="r">Lower Mus</th><th class="r">Fat</th></tr></thead>
+<tbody>
+<tr><td>Aikido</td><td class="r">15</td><td class="r">16</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Basic</td><td class="r">5</td><td class="r">8.5</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Boxing (Long Guard)</td><td class="r">13</td><td class="r">15</td><td class="r">0.75</td><td class="r">2.7</td><td class="r">2.5</td><td class="r">0.1</td></tr>
+<tr><td>Cat</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Demon Fist</td><td class="r">14.5</td><td class="r">15.5</td><td class="r">0.67</td><td class="r">5</td><td class="r">5</td><td class="r">0.1</td></tr>
+<tr><td>Grand War Axe</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Karate</td><td class="r">13.25</td><td class="r">14</td><td class="r">0.75</td><td class="r">2.2</td><td class="r">2.2</td><td class="r">0.1</td></tr>
+<tr><td>Kazu</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Kujin</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Kung Fu</td><td class="r">5.3</td><td class="r">8.5</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Kure</td><td class="r">14</td><td class="r">18</td><td class="r">0.725</td><td class="r">2.5</td><td class="r">2.5</td><td class="r">0.1</td></tr>
+<tr><td>Muay Thai</td><td class="r">14</td><td class="r">15</td><td class="r">0.75</td><td class="r">2.5</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Niko</td><td class="r">13.5</td><td class="r">17</td><td class="r">0.75</td><td class="r">2.2</td><td class="r">2.2</td><td class="r">0.1</td></tr>
+<tr><td>Raishin</td><td class="r">13</td><td class="r">14</td><td class="r">0.7</td><td class="r">1.2</td><td class="r">1.3</td><td class="r">0.1</td></tr>
+<tr><td>Reinhold</td><td class="r">24</td><td class="r">25.5</td><td class="r">0.2</td><td class="r">6.5</td><td class="r">6.5</td><td class="r">0.1</td></tr>
+<tr><td>Sky</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Sumo</td><td class="r">22.5</td><td class="r">23.5</td><td class="r">0.1</td><td class="r">2</td><td class="r">2</td><td class="r">1.1</td></tr>
+<tr><td>Taekwondo</td><td class="r">14</td><td class="r">15</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>The Middle</td><td class="r">16</td><td class="r">17</td><td class="r">0.8</td><td class="r">3.5</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>War Axe</td><td class="r">15</td><td class="r">19</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Wrestling</td><td class="r">22.5</td><td class="r">23.5</td><td class="r">0.2</td><td class="r">6.5</td><td class="r">5.8</td><td class="r">0.1</td></tr>
+<tr><td>Ya</td><td class="r">17.75</td><td class="r">18.5</td><td class="r">0.675</td><td class="r">2.7</td><td class="r">2.7</td><td class="r">0.1</td></tr>
+<tr><td>Yuzuki-no-Mai</td><td class="r">5</td><td class="r">8.5</td><td class="r">0.75</td><td class="r">3</td><td class="r">3</td><td class="r">0.1</td></tr>
+<tr><td>Zhin</td><td class="r">18</td><td class="r">22</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3</td><td class="r">0.1</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sec" id="ref-skills">
+  <div class="sec-t">Skill Scaling</div>
+  <p class="sec-l">Base Power and per-stat scaling weights for every skill that uses the standard skill formula. Skills not listed fall back on their style&rsquo;s M1 scaling.</p>
+  <div class="sec-hr"></div>
+<table>
+<thead><tr><th>Skill</th><th class="r">Power</th><th class="r">STR</th><th class="r">Upper Mus</th><th class="r">Lower Mus</th><th class="r">Fat</th></tr></thead>
+<tbody>
+<tr><td>A Just Vengeance</td><td class="r">18</td><td class="r">2.5</td><td class="r">1.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Avidya</td><td class="r">13</td><td class="r">2</td><td class="r">0.5</td><td class="r">0.5</td><td class="r">0</td></tr>
+<tr><td>Bear Hug</td><td class="r">22</td><td class="r">0.3</td><td class="r">5</td><td class="r">5</td><td class="r">0</td></tr>
+<tr><td>Binding Hold</td><td class="r">15</td><td class="r">2.5</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Blazing Dragon</td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Body Drop</td><td class="r">27</td><td class="r">0.2</td><td class="r">0</td><td class="r">0</td><td class="r">6</td></tr>
+<tr><td>Brute Throw</td><td class="r">22</td><td class="r">0.5</td><td class="r">6.5</td><td class="r">6</td><td class="r">0</td></tr>
+<tr><td>Bulldoze</td><td class="r">26</td><td class="r">0.5</td><td class="r">1.5</td><td class="r">1.5</td><td class="r">5.5</td></tr>
+<tr><td>Cascade</td><td class="r">9.5</td><td class="r">0.45</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>ChokeSlam</td><td class="r">29.5</td><td class="r">0.5</td><td class="r">6.5</td><td class="r">6</td><td class="r">0</td></tr>
+<tr><td>Cleaving Fang</td><td class="r">16</td><td class="r">2</td><td class="r">0</td><td class="r">0.5</td><td class="r">0</td></tr>
+<tr><td>Counter Cut</td><td class="r">16</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Cranium Break</td><td class="r">30</td><td class="r">0.5</td><td class="r">6</td><td class="r">6</td><td class="r">0</td></tr>
+<tr><td>Crushing Throw</td><td class="r">30</td><td class="r">0.5</td><td class="r">2</td><td class="r">2</td><td class="r">6</td></tr>
+<tr><td>Devil Lance</td><td class="r">12</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Dream Walking</td><td class="r">15</td><td class="r">2.5</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Ear Clap</td><td class="r">13</td><td class="r">1.3</td><td class="r">5</td><td class="r">0.1</td><td class="r">0</td></tr>
+<tr><td>Earth Shatter</td><td class="r">14</td><td class="r">2.2</td><td class="r">5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>ElbowDrop</td><td class="r">24</td><td class="r">0.3</td><td class="r">5</td><td class="r">5</td><td class="r">0</td></tr>
+<tr><td>Elbow Cut</td><td class="r">13</td><td class="r">2.8</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
+<tr><td>Feinting Elbow</td><td class="r">15.2</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Flash Fire</td><td class="r">15</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Flicker Jab</td><td class="r">12</td><td class="r">1.1</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Gazelle Punch</td><td class="r">15</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Hammer Palm</td><td class="r">19.5</td><td class="r">0.5</td><td class="r">5.5</td><td class="r">3.5</td><td class="r">0</td></tr>
+<tr><td>Hardpoint</td><td class="r">15</td><td class="r">2.3</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Head Slam</td><td class="r">15</td><td class="r">2</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Hyakuretsukyaku</td><td class="r">18.2</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Iron Breaker</td><td class="r">13</td><td class="r">3.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Kicking</td><td class="r">18.2</td><td class="r">2.5</td><td class="r">0</td><td class="r">1.5</td><td class="r">0</td></tr>
+<tr><td>Knee Strike</td><td class="r">16</td><td class="r">2.85</td><td class="r">0</td><td class="r">0.75</td><td class="r">0</td></tr>
+<tr><td>Lightning Flash</td><td class="r">14</td><td class="r">1.8</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Lion Bite</td><td class="r">13</td><td class="r">2</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
+<tr><td>Liver Blow</td><td class="r">12</td><td class="r">1.3</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>MaDeedKalok</td><td class="r">12</td><td class="r">2.3</td><td class="r">0</td><td class="r">0.75</td><td class="r">0</td></tr>
+<tr><td>Mountain Breaker</td><td class="r">17</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
+<tr><td>Nerve Strike</td><td class="r">15</td><td class="r">2</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>OneTwo</td><td class="r">0</td><td class="r">1</td><td class="r">0.9</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Palm Barrage</td><td class="r">25</td><td class="r">0.5</td><td class="r">1.5</td><td class="r">0</td><td class="r">5</td></tr>
+<tr><td>Payback</td><td class="r">13.5</td><td class="r">2</td><td class="r">1.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Predictive Strikes</td><td class="r">25</td><td class="r">0.5</td><td class="r">5</td><td class="r">6</td><td class="r">0</td></tr>
+<tr><td>Promised Suffering</td><td class="r">22</td><td class="r">2.5</td><td class="r">0</td><td class="r">1.5</td><td class="r">0</td></tr>
+<tr><td>Pure Taekwondo</td><td class="r">0</td><td class="r">1</td><td class="r">0</td><td class="r">0.9</td><td class="r">0</td></tr>
+<tr><td>Questionmark Kick</td><td class="r">12</td><td class="r">1.5</td><td class="r">0</td><td class="r">0.3</td><td class="r">0</td></tr>
+<tr><td>Ravage</td><td class="r">16</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Right Koken</td><td class="r">15</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Rock Punch</td><td class="r">31</td><td class="r">0.5</td><td class="r">5.5</td><td class="r">3.5</td><td class="r">0</td></tr>
+<tr><td>Roundhouse Kick</td><td class="r">12</td><td class="r">1.7</td><td class="r">0</td><td class="r">0.5</td><td class="r">0</td></tr>
+<tr><td>Shoryuken</td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Six Seiken</td><td class="r">15</td><td class="r">1</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Spinning Elbow</td><td class="r">15</td><td class="r">2.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>StarDrop</td><td class="r">15</td><td class="r">2.5</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Steel Blast</td><td class="r">15</td><td class="r">3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Suplex</td><td class="r">30</td><td class="r">0.5</td><td class="r">7</td><td class="r">5.5</td><td class="r">0</td></tr>
+<tr><td>Thunderclap</td><td class="r">17.2</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Triple Kick</td><td class="r">15</td><td class="r">2.2</td><td class="r">0</td><td class="r">0.35</td><td class="r">0</td></tr>
+<tr><td>Whirl Slam</td><td class="r">29.5</td><td class="r">0.5</td><td class="r">5.5</td><td class="r">6</td><td class="r">0</td></tr>
+<tr><td>WhirlwindSpin</td><td class="r">15</td><td class="r">2</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+<tr><td>Write em all down</td><td class="r">18</td><td class="r">2.5</td><td class="r">2</td><td class="r">0</td><td class="r">0</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="sec" id="ref-rules">
+  <div class="sec-t">Combat Rules</div>
+  <div class="sec-hr"></div>
+
+  <div class="sh">Combo limits</div>
+  <ul class="lg">
+    <li><strong>One ragdoll move per combo string</strong> — the first ragdoll move lands, the rest are blocked until the combo resets.</li>
+    <li><strong>Maximum 2 extenders per string</strong> — the third will not connect.</li>
+    <li><strong>Extender / grab damage drop</strong> — each connecting extender or grab makes following hits deal 20% less (stacking).</li>
+    <li><strong>Landing an M1 halves recovery</strong> — whiffing pays full endlag.</li>
+    <li><strong>Walking while punching is 18% slower.</strong></li>
+  </ul>
+
+  <div class="sh">Damage decay — repeat hitting</div>
+  <table>
+    <thead><tr><th>Hits on same target</th><th>Damage</th></tr></thead>
+    <tbody>
+      <tr><td>First 9 hits</td><td>Full damage</td></tr>
+      <tr><td>Every 9 after</td><td>&minus;8% stacking, floor 50%</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Tracked per attacker&ndash;target pair, resets when you stop hitting that person.</p>
+
+  <div class="sh">Multiple attackers — stun decay</div>
+  <table>
+    <thead><tr><th>Attackers</th><th>Stun length</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Normal</td></tr>
+      <tr><td>2</td><td>1.5&times; shorter</td></tr>
+      <tr><td>3</td><td>3&times; shorter</td></tr>
+      <tr><td>4+</td><td>Scales up, capped</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sh">Blocking &amp; Perfect Block</div>
+  <table>
+    <thead><tr><th>Attack type</th><th class="r">Parry window</th></tr></thead>
+    <tbody>
+      <tr><td>M1 (regular punch)</td><td class="r">0.2s</td></tr>
+      <tr><td>M2 / Critical</td><td class="r">0.5s</td></tr>
+      <tr><td>Skills</td><td class="r">0.5s</td></tr>
+    </tbody>
+  </table>
+  <ul class="lg">
+    <li><strong>Can&rsquo;t block for 1s after whiffing a skill.</strong></li>
+    <li><strong>A successful Perfect Block has no cooldown</strong> — a mistimed one gets the full 4s block cooldown.</li>
+    <li><strong>Can&rsquo;t block and dash at the same time.</strong></li>
+  </ul>
+
+  <div class="sh">Burst bar</div>
+  <ul class="lg">
+    <li>Every hit taken — including grabs and 0-damage contacts — fills Burst by at least 5 of 100.</li>
+    <li>Damage-dealing hits fill more, scaled to HP lost.</li>
+    <li>At 100 Burst you can break out of a combo and stun nearby opponents.</li>
+  </ul>
+
+  <div class="sh">Rhythm bar</div>
+  <ul class="lg">
+    <li><strong>Damage</strong> — up to +15% at full Rhythm.</li>
+    <li><strong>Stamina</strong> — up to &minus;30% on all combat stamina costs at full Rhythm.</li>
+    <li>Builds by landing hits, decays when you stop fighting.</li>
+  </ul>
+</div>
+</main>
 </div>
 </div>
 
@@ -1896,11 +1885,13 @@ document.querySelectorAll('.day-hdr').forEach(function(hdr) {
   var body = hdr.nextElementSibling;
   hdr.addEventListener('click', function() {
     var collapsed = body.classList.toggle('collapsed');
-    if (collapsed) {
-      hdr.classList.remove('open');
-    } else {
-      hdr.classList.add('open');
-    }
+    hdr.classList.toggle('open', !collapsed);
+  });
+});
+document.querySelectorAll('nav a').forEach(function(a){
+  a.addEventListener('click',function(){
+    document.querySelectorAll('nav a').forEach(function(x){x.classList.remove('hot');});
+    a.classList.add('hot');
   });
 });
 </script>
