@@ -673,6 +673,76 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
 <div class="sec-t">Update Notes</div>
 <p class="sec-l">Dated changes, newest first. Click any date to open or close it.</p>
 <div class="sec-hr"></div>
+<div class="day-sec" id="d-may26">
+  <div class="day-hdr open" title="Click to expand/collapse">
+    <span><span class="day-date">May 26, 2026</span><span class="day-count">Awakening Modes</span></span>
+    <span class="day-arrow">&#9660;</span>
+  </div>
+  <div class="day-body">
+
+<div class="sh">Awakening Modes</div>
+<div class="ce nerf">
+  <div>
+    <div class="ce-label">Hanma · Demon Back</div>
+    <div class="ce-title">Heavy Builds Keep Their Weight While Awakened</div>
+    <div class="ce-desc">Demon Back used to fully cancel the attack-speed penalty that Muscle and Fat normally apply &mdash; a heavy build swung as fast as a lean one while awakened. It now only cancels 15% of that penalty. The mode's damage bonus was also trimmed.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Muscle penalty cancelled</span><span class="do">100%</span><span class="da">&rarr;</span><span class="dn">15%</span></div>
+    <div class="diff"><span class="dk">Damage bonus</span><span class="dn">&minus;10%</span></div>
+  </div>
+</div>
+<div class="ce nerf">
+  <div>
+    <div class="ce-label">Reinhold · Muscle Control</div>
+    <div class="ce-title">Muscle Penalty Reduction Cut</div>
+    <div class="ce-desc">Muscle Control's reduction of the Muscle/Fat attack-speed penalty was lowered from 45% to 20%, and its damage bonus was trimmed.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Muscle penalty reduction</span><span class="do">45%</span><span class="da">&rarr;</span><span class="dn">20%</span></div>
+    <div class="diff"><span class="dk">Damage bonus</span><span class="dn">&minus;10%</span></div>
+  </div>
+</div>
+<div class="ce nerf">
+  <div>
+    <div class="ce-label">Advanced Mode</div>
+    <div class="ce-title">Speed and Low-HP Damage Reduced</div>
+    <div class="ce-desc">The mode's movement-speed boost was reduced by about 7%, and its low-HP damage bonus had its cap lowered from +30% to +20%.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Speed boost</span><span class="dn">&minus;7%</span></div>
+    <div class="diff"><span class="dk">Low-HP damage cap</span><span class="do">+30%</span><span class="da">&rarr;</span><span class="dn">+20%</span></div>
+  </div>
+</div>
+<div class="ce nerf">
+  <div>
+    <div class="ce-label">Lightning God Mode</div>
+    <div class="ce-title">Teleport Dash Reined In</div>
+    <div class="ce-desc">Teleport Dash now has a single charge instead of three, with a 10-second cooldown. It also locks for 0.5s whenever you get hit &mdash; you can no longer instantly teleport out of a basic combo the moment a gap opens. The mode's speed and attack-speed bonuses were also reduced.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Teleport Dash charges</span><span class="do">3</span><span class="da">&rarr;</span><span class="dn">1</span></div>
+    <div class="diff"><span class="dk">Teleport Dash cooldown</span><span class="do">14s</span><span class="da">&rarr;</span><span class="dn">10s</span></div>
+    <div class="diff"><span class="dk">After being hit</span><span class="dn">0.5s dash lock</span></div>
+    <div class="diff"><span class="dk">Speed boost</span><span class="dn">&minus;7%</span></div>
+    <div class="diff"><span class="dk">Attack speed bonus</span><span class="do">+20%</span><span class="da">&rarr;</span><span class="dn">+15%</span></div>
+  </div>
+</div>
+
+<div class="sh">Skills</div>
+<div class="ce fix">
+  <div>
+    <div class="ce-label">Kure · Avidya</div>
+    <div class="ce-title">Can No Longer Be Dash-Cancelled Into a Combo</div>
+    <div class="ce-desc">Avidya's knockback was short enough that a quick forward dash let the attacker catch back up and keep comboing. Its knockback distance was increased by about 18% to push the target safely out of dash range.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Knockback distance</span><span class="dn">+18%</span></div>
+  </div>
+</div>
+
+  </div>
+</div>
 <div class="day-sec" id="d-may24">
   <div class="day-hdr open" title="Click to expand/collapse">
     <span><span class="day-date">May 24, 2026</span><span class="day-count">Defense, Controls &amp; Mobile</span></span>
@@ -1862,14 +1932,14 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
   <p style="font-size:13px">Every attack starts from a <strong>base value</strong>. That base is multiplied by your <strong>stat bonus</strong> — how much your Strength, Muscle and Fat boost you — and then by a fixed bonus for the type of attack. Train those three stats and every hit gets stronger.</p>
 <pre>Normal punch  =  base damage  &times;  stat bonus  &times;  3.5
 Critical      =  your normal punch damage  &times;  1.32
-Skill         =  base power   &times;  stat bonus  &times;  8.4</pre>
+Skill         =  base power   &times;  stat bonus  &times;  6</pre>
   <div class="sh">The three attack types</div>
   <table>
     <thead><tr><th>Attack</th><th class="r">Built-in bonus</th><th>What it means</th></tr></thead>
     <tbody>
       <tr><td><strong>Normal punch</strong></td><td class="r">3.5&times;</td><td>Your everyday attack.</td></tr>
       <tr><td><strong>Critical</strong></td><td class="r">punch &times; 1.32</td><td>Worked out straight from your punch — always lands for exactly 32% more than a normal punch.</td></tr>
-      <tr><td><strong>Skill</strong></td><td class="r">8.4&times;</td><td>The biggest built-in bonus, and skills also have much higher base power — so they hit the hardest.</td></tr>
+      <tr><td><strong>Skill</strong></td><td class="r">6&times;</td><td>The biggest built-in bonus, and skills also have much higher base power — so they hit the hardest.</td></tr>
     </tbody>
   </table>
   <div class="sh">Your stat bonus</div>
@@ -1975,19 +2045,19 @@ Skill         =  base power   &times;  stat bonus  &times;  8.4</pre>
   <table>
     <thead><tr><th>Durability range</th><th class="r">HP per point</th></tr></thead>
     <tbody>
-      <tr><td>0 &ndash; 1,000</td><td class="r">2.5&times;</td></tr>
-      <tr><td>1,000 &ndash; 2,500</td><td class="r">1.8&times;</td></tr>
-      <tr><td>2,500 &ndash; 4,000</td><td class="r">1.3&times;</td></tr>
-      <tr><td>4,000+</td><td class="r">0.85&times;</td></tr>
+      <tr><td>0 &ndash; 1,000</td><td class="r">3.125&times;</td></tr>
+      <tr><td>1,000 &ndash; 2,500</td><td class="r">2.25&times;</td></tr>
+      <tr><td>2,500 &ndash; 4,000</td><td class="r">1.625&times;</td></tr>
+      <tr><td>4,000+</td><td class="r">1.0625&times;</td></tr>
     </tbody>
   </table>
   <table>
     <thead><tr><th>Durability</th><th class="r">Roughly this much HP</th></tr></thead>
     <tbody>
-      <tr><td>1,000</td><td class="r">~2,600</td></tr>
-      <tr><td>2,500</td><td class="r">~5,300</td></tr>
-      <tr><td>4,000</td><td class="r">~7,250</td></tr>
-      <tr><td>8,000</td><td class="r">~10,650</td></tr>
+      <tr><td>1,000</td><td class="r">~3,225</td></tr>
+      <tr><td>2,500</td><td class="r">~6,600</td></tr>
+      <tr><td>4,000</td><td class="r">~9,040</td></tr>
+      <tr><td>8,000</td><td class="r">~13,290</td></tr>
     </tbody>
   </table>
   <p class="note">HP values shown at 0 Fat — Fat adds more on top.</p>
@@ -2183,31 +2253,31 @@ Skill         =  base power   &times;  stat bonus  &times;  8.4</pre>
       </tr>
     </thead>
   <tbody>
-      <tr><td><strong>Aikido</strong></td><td class="r">15</td><td class="r">2.0</td><td class="r">2.6</td><td class="r">2.6</td><td class="r">0.1</td><td class="r">0.98&times;</td></tr>
-      <tr><td><strong>Basic</strong></td><td class="r">5</td><td class="r">0.75</td><td class="r">3.0</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Boxing</strong></td><td class="r">13</td><td class="r">1.85</td><td class="r">1.7</td><td class="r">1.5</td><td class="r">0.2</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Cat</strong></td><td class="r">18</td><td class="r">1.5</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Demon Fist</strong></td><td class="r">14.5</td><td class="r">0.69</td><td class="r">3.0</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Grand War Axe</strong></td><td class="r">18</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Karate</strong></td><td class="r">13.25</td><td class="r">2.0</td><td class="r">2.2</td><td class="r">2.2</td><td class="r">0.1</td><td class="r">1.02&times;</td></tr>
-      <tr><td><strong>Kazu</strong></td><td class="r">18</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Kujin</strong></td><td class="r">18</td><td class="r">1.0</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Kung Fu</strong></td><td class="r">5.3</td><td class="r">0.75</td><td class="r">3.0</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Kure</strong></td><td class="r">14</td><td class="r">2.0</td><td class="r">2.5</td><td class="r">2.3</td><td class="r">0.1</td><td class="r">0.98&times;</td></tr>
-      <tr><td><strong>Muay Thai</strong></td><td class="r">14</td><td class="r">1.95</td><td class="r">2.5</td><td class="r">2.7</td><td class="r">0.1</td><td class="r">0.97&times;</td></tr>
-      <tr><td><strong>Niko</strong></td><td class="r">13.5</td><td class="r">2.0</td><td class="r">2.4</td><td class="r">2.3</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Raishin</strong></td><td class="r">14</td><td class="r">1.9</td><td class="r">1.2</td><td class="r">1.3</td><td class="r">0.1</td><td class="r">1.03&times;</td></tr>
-      <tr><td><strong>Reinhold</strong></td><td class="r">22.5</td><td class="r">0.2</td><td class="r">3.8</td><td class="r">3.8</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Sky</strong></td><td class="r">18</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Sumo</strong></td><td class="r">22.5</td><td class="r">0.1</td><td class="r">2.0</td><td class="r">2.0</td><td class="r">1.1</td><td class="r">1.02&times;</td></tr>
-      <tr><td><strong>Taekwondo</strong></td><td class="r">14</td><td class="r">1.65</td><td class="r">1.5</td><td class="r">2.4</td><td class="r">0.1</td><td class="r">1.05&times;</td></tr>
-      <tr><td><strong>The Middle</strong></td><td class="r">16</td><td class="r">1.7</td><td class="r">3.5</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>War Axe</strong></td><td class="r">15</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Wrestling</strong></td><td class="r">22.5</td><td class="r">0.1</td><td class="r">3.7</td><td class="r">3.7</td><td class="r">0.09</td><td class="r">0.97&times;</td></tr>
-      <tr><td><strong>Ya</strong></td><td class="r">17.75</td><td class="r">0.675</td><td class="r">2.7</td><td class="r">2.7</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Yuzuki-no-Mai</strong></td><td class="r">5</td><td class="r">0.75</td><td class="r">3.0</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-      <tr><td><strong>Zhin</strong></td><td class="r">18</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
-    </tbody>
+    <tr><td><strong>Aikido</strong></td><td class="r">15</td><td class="r">0.7</td><td class="r">2.4</td><td class="r">2.4</td><td class="r">0.02</td><td class="r">0.98&times;</td></tr>
+    <tr><td><strong>Basic</strong></td><td class="r">5</td><td class="r">0.75</td><td class="r">3.0</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Boxing</strong></td><td class="r">13</td><td class="r">0.65</td><td class="r">1.7</td><td class="r">1.5</td><td class="r">0.005</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Cat</strong></td><td class="r">18</td><td class="r">1.5</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Demon Fist</strong></td><td class="r">14.5</td><td class="r">0.7</td><td class="r">2.7</td><td class="r">2.7</td><td class="r">0</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Grand War Axe</strong></td><td class="r">18</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Karate</strong></td><td class="r">13.25</td><td class="r">0.7</td><td class="r">2.2</td><td class="r">2.2</td><td class="r">0.02</td><td class="r">1.02&times;</td></tr>
+    <tr><td><strong>Kazu</strong></td><td class="r">18</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Kujin</strong></td><td class="r">18</td><td class="r">1.5</td><td class="r">3.15</td><td class="r">3.0</td><td class="r">0.04</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Kung Fu</strong></td><td class="r">5.3</td><td class="r">0.75</td><td class="r">3.0</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Kure</strong></td><td class="r">14</td><td class="r">0.725</td><td class="r">2.5</td><td class="r">2.3</td><td class="r">0.03</td><td class="r">0.98&times;</td></tr>
+    <tr><td><strong>Muay Thai</strong></td><td class="r">14</td><td class="r">0.715</td><td class="r">2.3</td><td class="r">2.7</td><td class="r">0</td><td class="r">0.97&times;</td></tr>
+    <tr><td><strong>Niko</strong></td><td class="r">13.5</td><td class="r">0.715</td><td class="r">2.4</td><td class="r">2.3</td><td class="r">0.04</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Raishin</strong></td><td class="r">14</td><td class="r">0.8</td><td class="r">1.2</td><td class="r">1.3</td><td class="r">0</td><td class="r">1.03&times;</td></tr>
+    <tr><td><strong>Reinhold</strong></td><td class="r">23.5</td><td class="r">0.2</td><td class="r">3.15</td><td class="r">3.15</td><td class="r">0</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Sky</strong></td><td class="r">18</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Sumo</strong></td><td class="r">22.5</td><td class="r">0.18</td><td class="r">2.1</td><td class="r">2.1</td><td class="r">0.9</td><td class="r">1.02&times;</td></tr>
+    <tr><td><strong>Taekwondo</strong></td><td class="r">14</td><td class="r">0.65</td><td class="r">1.5</td><td class="r">2.4</td><td class="r">0.02</td><td class="r">1.05&times;</td></tr>
+    <tr><td><strong>The Middle</strong></td><td class="r">16</td><td class="r">0.75</td><td class="r">3.15</td><td class="r">2.7</td><td class="r">0.04</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>War Axe</strong></td><td class="r">15</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Wrestling</strong></td><td class="r">22.5</td><td class="r">0.18</td><td class="r">2.85</td><td class="r">2.85</td><td class="r">0.04</td><td class="r">0.97&times;</td></tr>
+    <tr><td><strong>Ya</strong></td><td class="r">17.75</td><td class="r">0.675</td><td class="r">2.7</td><td class="r">2.7</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Yuzuki-no-Mai</strong></td><td class="r">17.75</td><td class="r">0.675</td><td class="r">2.7</td><td class="r">2.7</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+    <tr><td><strong>Zhin</strong></td><td class="r">18</td><td class="r">0.75</td><td class="r">2.1</td><td class="r">3.0</td><td class="r">0.1</td><td class="r">1.00&times;</td></tr>
+  </tbody>
   </table>
   <div class="callout info"><strong>Critical damage is always your punch &times; 1.32, for every style.</strong> There's no separate Critical scaling per style anymore — whatever your punch hits for, your Critical hits 32% harder.</div>
   <p class="note">Reach is a punch-range multiplier — 1.05&times; reaches slightly further than average, 0.97&times; slightly shorter.</p>
@@ -2227,38 +2297,42 @@ Skill         =  base power   &times;  stat bonus  &times;  8.4</pre>
         <th class="r">Fat</th>
       </tr>
     </thead>
-    <tbody>
-      <tr><td><strong>Avidya</strong></td><td class="r">13</td><td class="r">2</td><td class="r">0.5</td><td class="r">0.5</td><td class="r">0</td></tr>
-      <tr><td><strong>Bear Hug</strong></td><td class="r">22</td><td class="r">0.3</td><td class="r">4</td><td class="r">4</td><td class="r">0</td></tr>
-      <tr><td><strong>Blazing Dragon</strong></td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Cleaving Fang</strong></td><td class="r">16</td><td class="r">2</td><td class="r">0</td><td class="r">0.5</td><td class="r">0</td></tr>
-      <tr><td><strong>ChokeSlam</strong></td><td class="r">29.5</td><td class="r">0.188</td><td class="r">1.688</td><td class="r">1.875</td><td class="r">0</td></tr>
-      <tr><td><strong>Counter Cut</strong></td><td class="r">16</td><td class="r">1.905</td><td class="r">0.635</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Earth Shatter</strong></td><td class="r">14</td><td class="r">2.2</td><td class="r">5</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>ElbowDrop</strong></td><td class="r">24</td><td class="r">0.225</td><td class="r">3</td><td class="r">3</td><td class="r">0</td></tr>
-      <tr><td><strong>Elbow Cut</strong></td><td class="r">16</td><td class="r">2.8</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
-      <tr><td><strong>Feinting Elbow</strong></td><td class="r">15.2</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Flicker Jab</strong></td><td class="r">12</td><td class="r">1.397</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Gazelle Punch</strong></td><td class="r">15</td><td class="r">1.905</td><td class="r">0.635</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Hadouken</strong></td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Hammer Palm</strong></td><td class="r">19.5</td><td class="r">0.5</td><td class="r">4</td><td class="r">3.5</td><td class="r">0</td></tr>
-      <tr><td><strong>Iron Breaker</strong></td><td class="r">13</td><td class="r">3.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Lightning Flash</strong></td><td class="r">14</td><td class="r">1.8</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Lion Bite</strong></td><td class="r">13</td><td class="r">2</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
-      <tr><td><strong>Liver Blow</strong></td><td class="r">12</td><td class="r">1.651</td><td class="r">0.635</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>OneTwo</strong></td><td class="r">0</td><td class="r">1.27</td><td class="r">1.143</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Rock Punch</strong></td><td class="r">33</td><td class="r">0.5</td><td class="r">4</td><td class="r">3.5</td><td class="r">0</td></tr>
-      <tr><td><strong>Shoryuken</strong></td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Steel Blast</strong></td><td class="r">15</td><td class="r">3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Suplex</strong></td><td class="r">30</td><td class="r">0.188</td><td class="r">2.063</td><td class="r">1.688</td><td class="r">0</td></tr>
-      <tr><td><strong>Tatsumaki</strong></td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Triple Kick</strong></td><td class="r">15</td><td class="r">2.2</td><td class="r">0</td><td class="r">0.35</td><td class="r">0</td></tr>
-      <tr><td><strong>Weeping Willow</strong></td><td class="r">15</td><td class="r">2.5</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-      <tr><td><strong>Whirl Slam</strong></td><td class="r">29.5</td><td class="r">0.188</td><td class="r">1.688</td><td class="r">1.875</td><td class="r">0</td></tr>
-      <tr><td><strong>Whirlwind Spin</strong></td><td class="r">15</td><td class="r">2</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
-    </tbody>
+  <tbody>
+    <tr><td><strong>Avidya</strong></td><td class="r">13</td><td class="r">2</td><td class="r">0.5</td><td class="r">0.5</td><td class="r">0</td></tr>
+    <tr><td><strong>Bear Hug</strong></td><td class="r">24</td><td class="r">0.3</td><td class="r">3</td><td class="r">3</td><td class="r">0</td></tr>
+    <tr><td><strong>Blazing Dragon</strong></td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Cleaving Fang</strong></td><td class="r">16</td><td class="r">2</td><td class="r">0</td><td class="r">0.5</td><td class="r">0</td></tr>
+    <tr><td><strong>ChokeSlam</strong></td><td class="r">20.68</td><td class="r">0.188</td><td class="r">2</td><td class="r">1.758</td><td class="r">0</td></tr>
+    <tr><td><strong>Counter Cut</strong></td><td class="r">16</td><td class="r">1.905</td><td class="r">0.635</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Earth Shatter</strong></td><td class="r">14</td><td class="r">2.2</td><td class="r">5</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>ElbowDrop</strong></td><td class="r">23.5</td><td class="r">0.225</td><td class="r">1.558</td><td class="r">1.558</td><td class="r">0</td></tr>
+    <tr><td><strong>Elbow Cut</strong></td><td class="r">13.5</td><td class="r">2.2</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
+    <tr><td><strong>Feinting Elbow</strong></td><td class="r">15.2</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Flicker Jab</strong></td><td class="r">12</td><td class="r">1.397</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Gazelle Punch</strong></td><td class="r">15</td><td class="r">1.905</td><td class="r">0.635</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Hadouken</strong></td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Hammer Palm</strong></td><td class="r">21</td><td class="r">0.5</td><td class="r">3</td><td class="r">3</td><td class="r">0</td></tr>
+    <tr><td><strong>Iron Breaker</strong></td><td class="r">13</td><td class="r">2.5</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Lightning Flash</strong></td><td class="r">14</td><td class="r">1.8</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Lion Bite</strong></td><td class="r">13</td><td class="r">2</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
+    <tr><td><strong>Liver Blow</strong></td><td class="r">12</td><td class="r">1.651</td><td class="r">0.635</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>OneTwo</strong></td><td class="r">0</td><td class="r">1.27</td><td class="r">1.143</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Rock Punch</strong></td><td class="r">27</td><td class="r">0.5</td><td class="r">3</td><td class="r">3</td><td class="r">0</td></tr>
+    <tr><td><strong>Shoryuken</strong></td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Steel Blast</strong></td><td class="r">15</td><td class="r">3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Suplex</strong></td><td class="r">26.5</td><td class="r">0.188</td><td class="r">2.5</td><td class="r">1.7</td><td class="r">0</td></tr>
+    <tr><td><strong>Tatsumaki</strong></td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Triple Kick</strong></td><td class="r">15</td><td class="r">2.2</td><td class="r">0</td><td class="r">0.35</td><td class="r">0</td></tr>
+    <tr><td><strong>Weeping Willow</strong></td><td class="r">15</td><td class="r">2.5</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Whirl Slam</strong></td><td class="r">25.5</td><td class="r">0.188</td><td class="r">2</td><td class="r">1.85</td><td class="r">0</td></tr>
+    <tr><td><strong>Whirlwind Spin</strong></td><td class="r">15</td><td class="r">2</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td><strong>Body Drop</strong></td><td class="r">25</td><td class="r">0.2</td><td class="r">1.67</td><td class="r">1.67</td><td class="r">1.313</td></tr>
+    <tr><td><strong>Bulldoze</strong></td><td class="r">22</td><td class="r">0.5</td><td class="r">1</td><td class="r">1</td><td class="r">0.89</td></tr>
+    <tr><td><strong>Crushing Throw</strong></td><td class="r">24</td><td class="r">0.5</td><td class="r">2</td><td class="r">2</td><td class="r">1.15</td></tr>
+    <tr><td><strong>Palm Barrage</strong></td><td class="r">23</td><td class="r">0.5</td><td class="r">1</td><td class="r">0</td><td class="r">1.203</td></tr>
+  </tbody>
   </table>
-  <p class="note">A skill's final damage is its Power multiplied by your stat bonus and the &times;8.4 skill bonus. Grab skills like ChokeSlam and Suplex have very low Strength scaling because their power comes mostly from Muscle.</p>
+  <p class="note">A skill's final damage is its Power multiplied by your stat bonus and the &times;6 skill bonus. Grab skills like ChokeSlam and Suplex have very low Strength scaling because their power comes mostly from Muscle.</p>
 </div>
 <div class="sec" id="ref-rules">
   <div class="sec-t">Combat Rules</div>
