@@ -1773,6 +1773,46 @@ p.note { font-size: 12.5px; color: var(--muted); margin: -.3rem 0 1.2rem; }
     </div>
   </div>
   <div class="sh">Bug Fixes</div>
+<div class="ce fix">
+  <div>
+    <div class="ce-label">Reinhold &middot; Brute Throw</div>
+    <div class="ce-title">Hyper Armor Now Works</div>
+    <div class="ce-desc">Brute Throw was missing hyper armor entirely, so the grab could be knocked out of its startup by any stray hit. It now has startup hyper armor like Bear Hug &mdash; the armor holds while the grab winds up and drops once the grab connects.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Startup hyper armor</span><span class="do">None</span><span class="da">&rarr;</span><span class="dn">Added</span></div>
+  </div>
+</div>
+<div class="ce fix">
+  <div>
+    <div class="ce-label">Wrestling &middot; Suplex</div>
+    <div class="ce-title">Sped Up to Match Other Grabs</div>
+    <div class="ce-desc">Suplex animated noticeably slower than the other grab skills. Its grab and slam animations now play about 25% faster, bringing its frame data in line.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Animation speed</span><span class="dn">+25%</span></div>
+  </div>
+</div>
+<div class="ce fix">
+  <div>
+    <div class="ce-label">Auto Macro</div>
+    <div class="ce-title">No Longer Stamina-Knocks While Training Bags</div>
+    <div class="ce-desc">The bag-training macro kept punching until stamina was nearly gone, so a final punch could overshoot and stamina-knock the player. It now stops to rest with a larger buffer and properly waits for stamina to regenerate.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Rest threshold</span><span class="do">20% stamina</span><span class="da">&rarr;</span><span class="dn">35% stamina</span></div>
+  </div>
+</div>
+<div class="ce fix">
+  <div>
+    <div class="ce-label">Lion Bite &amp; Lightning Flash</div>
+    <div class="ce-title">Dashing Out of Them No Longer Breaks Movement</div>
+    <div class="ce-desc">Dash-cancelling Lion Bite or Lightning Flash could leave a leftover cleanup step running that stomped the dash and broke movement afterward. Both skills now end cleanly &mdash; dashing out of either works normally.</div>
+  </div>
+  <div class="diffs">
+    <div class="diff"><span class="dk">Dash-cancel</span><span class="dn">No longer breaks movement</span></div>
+  </div>
+</div>
   <div class="ce fix">
     <div>
       <div class="ce-label">Combo System</div>
@@ -2298,7 +2338,7 @@ Skill         =  base power   &times;  stat bonus  &times;  6</pre>
       </tr>
     </thead>
   <tbody>
-    <tr><td><strong>Avidya</strong></td><td class="r">13</td><td class="r">2</td><td class="r">0.5</td><td class="r">0.5</td><td class="r">0</td></tr>
+    <tr><td><strong>Avidya</strong></td><td class="r">13.5</td><td class="r">2.2</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
     <tr><td><strong>Bear Hug</strong></td><td class="r">24</td><td class="r">0.3</td><td class="r">3</td><td class="r">3</td><td class="r">0</td></tr>
     <tr><td><strong>Blazing Dragon</strong></td><td class="r">13</td><td class="r">2.3</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
     <tr><td><strong>Cleaving Fang</strong></td><td class="r">16</td><td class="r">2</td><td class="r">0</td><td class="r">0.5</td><td class="r">0</td></tr>
@@ -2306,7 +2346,7 @@ Skill         =  base power   &times;  stat bonus  &times;  6</pre>
     <tr><td><strong>Counter Cut</strong></td><td class="r">16</td><td class="r">1.905</td><td class="r">0.635</td><td class="r">0</td><td class="r">0</td></tr>
     <tr><td><strong>Earth Shatter</strong></td><td class="r">14</td><td class="r">2.2</td><td class="r">5</td><td class="r">0</td><td class="r">0</td></tr>
     <tr><td><strong>ElbowDrop</strong></td><td class="r">23.5</td><td class="r">0.225</td><td class="r">1.558</td><td class="r">1.558</td><td class="r">0</td></tr>
-    <tr><td><strong>Elbow Cut</strong></td><td class="r">13.5</td><td class="r">2.2</td><td class="r">0.6</td><td class="r">0.6</td><td class="r">0</td></tr>
+    <tr><td><strong>Elbow Cut</strong></td><td class="r">13</td><td class="r">2</td><td class="r">0.5</td><td class="r">0.5</td><td class="r">0</td></tr>
     <tr><td><strong>Feinting Elbow</strong></td><td class="r">15.2</td><td class="r">1.5</td><td class="r">0.5</td><td class="r">0</td><td class="r">0</td></tr>
     <tr><td><strong>Flicker Jab</strong></td><td class="r">12</td><td class="r">1.397</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
     <tr><td><strong>Gazelle Punch</strong></td><td class="r">15</td><td class="r">1.905</td><td class="r">0.635</td><td class="r">0</td><td class="r">0</td></tr>
